@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Identity Server Configuratie In Azure SQL :: Programmeren Gevorderd 3 (BETA)</title>
+    <meta name="generator" content="Antora 3.1.14">
+    <link rel="stylesheet" href="../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="#">Programmeren Gevorderd 3 (BETA)</a>
+      <button class="navbar-burger" aria-controls="topbar-nav" aria-expanded="false" aria-label="Toggle main menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+      
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+          <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link" href="#">Producten</a>
+              <div class="navbar-dropdown">
+                  <a class="navbar-item" target="_blank" href="https://learn.microsoft.com/en-us/cli/azure/">Azure CLI</a>
+                  <a class="navbar-item" target="_blank" href="https://www.docker.com/products/docker-desktop">Docker Desktop</a>
+                  <a class="navbar-item" target="_blank" href="https://desktop.github.com/download">GitHub Desktop</a>
+                  <a class="navbar-item" target="_blank" href="https://www.mysql.com/products/workbench">MySQL Workbench</a>
+                  <a class="navbar-item" target="_blank" href="https://www.postman.com/downloads/">Postman</a>
+                  <a class="navbar-item" target="_blank" href="https://www.jetbrains.com/rider/download">Rider</a>
+                  <a class="navbar-item" target="_blank" href="https://code.visualstudio.com/download">VS Code</a>
+              </div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link" href="#">Diensten</a>
+              <div class="navbar-dropdown">
+                  <a class="navbar-item" target="_blank" href="https://dev.azure.com/hogent-web4-stefancourteaux/">Azure DevOps</a>
+                  <a class="navbar-item" target="_blank" href="https://portal.azure.com">Azure Portal</a>
+                  <a class="navbar-item" target="_blank" href="https://chamilo.hogent.be">Chamilo</a>
+                  <a class="navbar-item" target="_blank" href="https://github.com">GitHub</a>
+                  <a class="navbar-item" target="_blank" href="https://jwt.io">JWT.io</a>                  
+                  <a class="navbar-item" target="_blank" href="https://dotnet.microsoft.com">MS Docs</a>
+              </div>
+          </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="pg3" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
+    <h3 class="title"><a href="index.html">Gevorderd 3</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="01-cloud-connected.html">Cloud Connected</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="02-microservices.html">Microservices</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="02-az-devops.html">Azure DevOps</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="03-git.html">Git Gebruik</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="05-cosmos.html">Cosmos Database</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="07-blob.html">Blob Storage</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="04-middleware.html">Middleware</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="08-open-data-docker.html">Open Data &amp; Docker ⭐️</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="06-02-secret-management.html">Secret Management ⭐️</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="06-pipelines.html">DevOps Pipelines️ ⭐️</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="09-auth-2526.html">Authenticatie ⭐️</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="09-auth-2526-2.html">Autorisatie ⭐️</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="10-afronden2526.html">Afronden ⭐️</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="99-tips.html">Tips</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="09-auth.html">Authenticatie AJ2425 🙅‍♂️</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="09-identity-server-systemen.html">App Clients (OAuth)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="09-identity-server-gebruikers.html">Test Users (OIDC)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="09-identity-server-shipitapp.html">Web App Verbinden</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="09-identity-server-sql.html">Config in Azure SQL</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="09-identity-server-aspnetid.html">ASP.Net Identity Users</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="09-identity-sql-server-docker.html">SQL Server Docker</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="10-afronden.html">Totaalplaatje Afronden</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="80-lesopnames-2425S2.html">Lesopnames 📺</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Gevorderd 3</span>
+    <span class="version"></span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <div class="title"><a href="index.html">Gevorderd 3</a></div>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Gevorderd 3</a></li>
+    <li><a href="09-auth.html">Authenticatie AJ2425 🙅‍♂️</a></li>
+    <li><a href="09-identity-server-sql.html">Config in Azure SQL</a></li>
+  </ul>
+</nav>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Identity Server Configuratie In Azure SQL</h1>
+<div class="sect1">
+<h2 id="_doel_van_deze_les"><a class="anchor" href="#_doel_van_deze_les"></a>Doel van deze les</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Azure SQL aanmaken</p>
+</li>
+<li>
+<p>Identity Server verbinden met SQL Server</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_azure_sql_database_aanmaken"><a class="anchor" href="#_azure_sql_database_aanmaken"></a>Azure SQL Database Aanmaken</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>SQL Server is een van de meest gebruikte relationele databanken. Microsoft biedt dit product ook aan op Azure onder de vorm van <a href="https://azure.microsoft.com/en-us/products/azure-sql/">Azure SQL</a>.</p>
+</div>
+<div class="paragraph">
+<p>We gaan een Azure SQL database gebruiken als persistent storage achter Identity Server.</p>
+</div>
+<div class="paragraph">
+<p>Ga naar de Azure Portal en kies het resource type "SQL Databases".</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/identity-server-sql/sql-resource-type.png" alt="sql resource type">
+</div>
+</div>
+<div class="paragraph">
+<p>Klik op "Create" in het overzicht.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/identity-server-sql/sql-overview-create.png" alt="sql overview create">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/identity-server-sql/sql-overview-create-2.png" alt="sql overview create 2">
+</div>
+</div>
+<div class="paragraph">
+<p>Gebruik, indien mogelijk, het aanbod om een gratis SQL Database te maken.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/identity-server-sql/sql-create-free.png" alt="sql create free">
+</div>
+</div>
+<div class="paragraph">
+<p>Een Azure SQL (Server) kan meerdere databanken bevatten. In deze wizard maak je een Server èn een Database aan.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/identity-server-sql/sql-create-db.png" alt="sql create db">
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Als je reeds een Azure SQL database gebruikt voor jouw project, hoef je geen nieuwe server te maken. Selecteer je bestaande server uit de dropdown om de Identity Server database er aan toe te voegen.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Idealiter maak je de SQL Server Resource in Europa, maar de beschikbaarheid varieert met Azure For Students. De naam van de server is heel specifiek omdat dit de publieke naam van de SQL Instance zal worden en dus uniek moet zijn.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/identity-server-sql/sql-create-server-1.png" alt="sql create server 1">
+</div>
+</div>
+<div class="paragraph">
+<p>Onder Authentication Settings van de Server, kies je voor "Use both SQL Server and Microsoft Entra Authentication". Dit zorgt ervoor dat men zich kan authenticeren met een Azure account en ook een tradionele SQL Server user en wachtwoord.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Kies je eigen Azure account als Admin.</p>
+</li>
+<li>
+<p>Stel ook de SQL server admin login credentials in.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/identity-server-sql/sql-create-server-2.png" alt="sql create server 2">
+</div>
+</div>
+<div class="paragraph">
+<p>Nu de SQL Server Instance ingesteld is, kunnen we verder met de configuratie van de databank. Onze academische context vereist relaxte netwerkbeveiliging. Kies voor:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>"Public endpoint"</p>
+</li>
+<li>
+<p>"Allow Azure services and resources to access this server"</p>
+</li>
+<li>
+<p>"Add current client IP address"</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/identity-server-sql/sql-create-db-2.png" alt="sql create db 2">
+</div>
+</div>
+<div class="paragraph">
+<p>Klik nu op "Review + Create". Controleer de instellingen en klik dan op "Create".</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/identity-server-sql/sql-review.png" alt="sql review">
+</div>
+</div>
+<div class="paragraph">
+<p>Na even wachten zal de database (en "server" instance) verschijnen als resource in het overzicht.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/identity-server-sql/sql-resource-created.png" alt="sql resource created">
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_verbinden_vs_code"><a class="anchor" href="#_verbinden_vs_code"></a>Verbinden (VS Code)</h2>
+<div class="sectionbody">
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+De <a href="https://marketplace.visualstudio.com/items?itemName=ms-mssql.mssql">SQL Server (mssql) plugin</a> vervangt Azure Data Studio. Bepaalde features zijn nog in <em>preview</em>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Het installeren van deze plugin zal de nodige dependencies meebrengen om je Azure resource te bekijken vanuit VS Code.</p>
+</div>
+<div class="paragraph">
+<p>Voeg een connectie toe op basis van je eigen Azure Account.</p>
+</div>
+<div class="paragraph">
+<p>Je kan naar wens queries uitvoeren. Let op! Op dit moment ben je hoogst waarschijnlijk met admin privileges verbonden.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/identity-server-sql/sql-vscode-query.png" alt="sql vscode query"></span></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_verbinden_azure_data_studio"><a class="anchor" href="#_verbinden_azure_data_studio"></a>Verbinden (Azure Data Studio)</h2>
+<div class="sectionbody">
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Azure data studio wordt officieel ondersteund <a href="https://learn.microsoft.com/en-us/azure-data-studio/download-azure-data-studio?tabs=win-install%2Cwin-user-install%2Credhat-install%2Cwindows-uninstall%2Credhat-uninstall">tot februari 2026</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><a href="https://learn.microsoft.com/en-us/azure-data-studio/download-azure-data-studio?tabs=win-install%2Cwin-user-install%2Credhat-install%2Cwindows-uninstall%2Credhat-uninstall">Azure Data Studio</a> is een handige tool om met de nieuwe databank te verbinden. Verbind je Azure account.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/identity-server-sql/data-studio-account.png" alt="data studio account">
+</div>
+</div>
+<div class="paragraph">
+<p>Navigeer naar de Azure database verbindingen. Ook hier vinden we visueel de 1-n relatie tussen een SQL Server en een SQL Database terug. Klik rechts op de identity databank. Kies voor "New Query" en voer een test query uit.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/identity-server-sql/data-studio-db.png" alt="data studio db">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_verbinden_firewall"><a class="anchor" href="#_verbinden_firewall"></a>Verbinden Firewall</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Bij het aanmaken van de DB heb je je IP toegevoegd aan de whitelist. Als je IP verandert, of je van op een andere locatie wil verbinden, moet je het relevante IP toevoegen.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/identity-server-sql/azure-sql-firewall.png" alt="azure sql firewall"></span></p>
+</div>
+<div class="paragraph">
+<p>Vergeet niet op <em>Save</em> te klikken.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Bepaalde apps, zoals SSMS en de VS Code plugin zullen dit detecteren en je voorstellen het werk voor jou te doen.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_sql_credentials_voor_is"><a class="anchor" href="#_sql_credentials_voor_is"></a>SQL Credentials voor IS</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Op dit moment word je persoonlijke Azure identiteit, of een admin SQl login, gebruikt om te authenticeren bij de SQL Server. Dat is de bedoeling niet.</p>
+</div>
+<div class="paragraph">
+<p>We gaan de SQL admin user <strong>niet</strong> door de applicatie laten gebruiken. We maken een aparte user voor Identity Server en kennen de gepaste rechten toe.</p>
+</div>
+<div class="sect2">
+<h3 id="_login"><a class="anchor" href="#_login"></a>Login</h3>
+<div class="paragraph">
+<p>Definieer een login voor IS op de <code>master</code> database.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">CREATE LOGIN IdentityServer WITH PASSWORD = 'kies_een_wachtwoord';</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/identity-server-sql/create-login.png" alt="create login"></span></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_user"><a class="anchor" href="#_user"></a>User</h3>
+<div class="paragraph">
+<p>We gaan straks de benodigde databasestructuur voor IdentityServer aanmaken met Entity Framework Core Migrations. De database user zal  dus rechten nodig hebben om objecten aan te maken (DDL) in de <code>shipit-identity</code> databank, alsook queries uit te voeren (DML).</p>
+</div>
+<div class="paragraph">
+<p>Definieer een user en de nodige rechten voor de IS login op de <code>shipit-identity</code> database.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">CREATE USER IdentityServer FOR LOGIN IdentityServer;
+
+GRANT CREATE TABLE TO IdentityServer
+GO
+
+CREATE SCHEMA pg3is
+GO
+GRANT ALTER ON SCHEMA :: pg3is TO IdentityServer
+GO
+GRANT INSERT, UPDATE, DELETE, SELECT, REFERENCES ON SCHEMA :: pg3is TO IdentityServer
+GO</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/identity-server-sql/create-user.png" alt="create user"></span></p>
+</div>
+<div class="paragraph">
+<p>Test de credentials die je voor IS gemaakt hebt door een nieuwe database server connectie toe te voegen.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/identity-server-sql/is-sql-conn.png" alt="is sql conn"></span></p>
+</div>
+<div class="paragraph">
+<p>Voer een test query uit.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/identity-server-sql/data-studio-who.png" alt="data studio who"></span></p>
+</div>
+<div class="paragraph">
+<p>Je hebt nu twee verschillende connecties die naar dezelfde SQL Server verwijzen, maar met andere credentials.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Connectie op basis van jouw Azure Account.</p>
+</li>
+<li>
+<p>Connectie op basis van IS SQL user credentials.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ef_core"><a class="anchor" href="#_ef_core"></a>EF Core</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_activeren"><a class="anchor" href="#_activeren"></a>Activeren</h3>
+<div class="paragraph">
+<p>Voeg onderstaande nuget packages toe aan het IdentityServer project.</p>
+</div>
+<div class="literalblock">
+<div class="title">ShipIt.IdentityServer</div>
+<div class="content">
+<pre>dotnet add package Duende.IdentityServer.EntityFramework
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+dotnet add package Microsoft.EntityFrameworkCore.Design</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Indien je de EF Core tools nog niet hebt.</p>
+</div>
+<div class="literalblock">
+<div class="title">ShipIt.IdentityServer</div>
+<div class="content">
+<pre>dotnet tool install --global dotnet-ef</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Configureer IS om de database te gebruiken.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Een SQL connectionstring (beschikbaar in Azure + credentials die je koos).</p>
+</li>
+<li>
+<p>In-Memory <code>Config</code> vervangen door een SQL <code>ConfigurationStore</code>.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">ShipIt.IdentityServer\HostingExtensions.cs</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">var connectionString = builder.Configuration.GetConnectionString("ShipItIdentityServerDb");
+
+builder.Services.AddIdentityServer(options =&gt;
+    {
+        options.EmitStaticAudienceClaim = true;
+    })
+    .AddConfigurationStore(options =&gt; <i class="conum" data-value="1"></i><b>(1)</b>
+    {
+        options.DefaultSchema = "pg3is";
+        options.ConfigureDbContext = b =&gt; <i class="conum" data-value="2"></i><b>(2)</b>
+        b.UseSqlServer(
+            connectionString,
+            sql =&gt; sql.MigrationsAssembly(
+                typeof(Program).Assembly.GetName().Name)
+                    .MigrationsHistoryTable(
+                        "__MyMigrationsHistory", <i class="conum" data-value="3"></i><b>(3)</b>
+                        "pg3is"));
+    })
+    /*
+    .AddInMemoryIdentityResources(Config.IdentityResources)
+    .AddInMemoryApiScopes(Config.ApiScopes)
+    .AddInMemoryClients(Config.Clients)
+    */
+    .AddTestUsers(TestUsers.Users);</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Lees configuratie uit database ipv InMemoryConfig</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>De property is van het type Function en verwacht dus een lambda.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Zet de <code>MigrationsHistory</code> tabel in schema <code>pg3is</code>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>De <code>ef-tool</code> zal het project starten in het kader van migrations te maken en uit voeren. Een stop omwille van <code>ef</code> is geen onverwachte stop, dus dat moeten we aangeven.</p>
+</div>
+<div class="listingblock">
+<div class="title">ShipIt.IdentityServer\Program.cs</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">catch (Exception ex) when (ex.GetType().Name is not "HostAbortedException")
+{
+    Log.Fatal(ex, "Unhandled exception");
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Maak de initiële migration.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>dotnet ef migrations add initial `
+-c ConfigurationDbContext `
+-o Data/Migrations/IdentityServer/ConfigurationDb</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>ShipItRepo\src\ShipIt\ShipIt.Identity.Api&gt; tree /f
+...
+├───Data
+│   └───Migrations
+│       └───IdentityServer
+│           └───ConfigurationDb
+│                   xyz_initial.cs
+│                   xyz_initial.Designer.cs
+│                   ConfigurationDbContextModelSnapshot.cs
+...</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Voer de migration uit.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>dotnet ef database update</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>De databasestructuur bestaat nu.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/identity-server-sql/migration-1-done.png" alt="migration 1 done">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_config_cs_migreren"><a class="anchor" href="#_config_cs_migreren"></a>Config.cs Migreren</h3>
+<div class="paragraph">
+<p>Alle tabellen zijn leeg. Onze InMemory configuratie werd niet overgedragen. Dat is ook te verwachten. Als we willen dat er iets gebeurt, gaan we het moeten programmeren.</p>
+</div>
+<div class="listingblock">
+<div class="title">ShipIt.IdentityServer\HostingExtensions.cs</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">public static WebApplication ConfigurePipeline(this WebApplication app)
+{
+	//...
+	InitializeDatabase(app);
+    //...
+}
+
+private static void InitializeDatabase(IApplicationBuilder app)
+{
+    using var serviceScope = app.ApplicationServices
+        .GetService&lt;IServiceScopeFactory&gt;()!.CreateScope();
+    var context = serviceScope.ServiceProvider
+        .GetRequiredService&lt;ConfigurationDbContext&gt;();
+
+    if (!context.Clients.Any())
+    {
+        foreach (var client in Config.Clients)
+            context.Clients.Add(client.ToEntity());
+        context.SaveChanges();
+    }
+
+    if (!context.IdentityResources.Any())
+    {
+        foreach (var resource in Config.IdentityResources)
+            context.IdentityResources.Add(resource.ToEntity());
+        context.SaveChanges();
+    }
+
+    if (!context.ApiScopes.Any())
+    {
+        foreach (var resource in Config.ApiScopes)
+            context.ApiScopes.Add(resource.ToEntity());
+        context.SaveChanges();
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Start IdentityServer opnieuw. Deze zal de bestaande configuratie in de database laden <strong>als de tabellen nog leeg zijn</strong>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">select  c.Id, c.ClientId, cs.[Type], cs.[Value], csc.Scope
+from    pg3is.clients c
+left outer join pg3is.ClientSecrets cs on c.Id = cs.ClientId
+left outer join pg3is.ClientScopes csc on csc.ClientId = c.Id</code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>2 label-api-client SharedSecret	pUR2+66UKh... shipit.pricequote.api.read
+1 postman-client   SharedSecret	K20U2KyF5k... shipit.pricequote.api.read
+1 postman-client   SharedSecret	K20U2KyF5k... shipit.pricequote.api.write
+3 webapp-client    SharedSecret	+b2sqglzm6... openid
+3 webapp-client    SharedSecret	+b2sqglzm6... profile</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Test Identity Server door een token op te vragen via Postman. De configuratie om dit te doen werken komt nu uit Azure SQL Server.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/identity-server-sql/is-postman.png" alt="is postman">
+</div>
+</div>
+<div class="paragraph">
+<p>Start de WebApp op. Als alles goed zit, gedraagt deze zich nog exact als toen we geen SQL Server in Identity Server hadden.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Begrijp dat de client config van de WebApp uit Azure SQL komt, maar de User config nog steeds van de <code>TestUsers</code> klasse.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_oefening"><a class="anchor" href="#_oefening"></a>Oefening</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Probeer zelf de taak van de week te implementeren. Je kan steeds kijken naar de code uit de les als je vast loopt.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_referenties"><a class="anchor" href="#_referenties"></a>Referenties</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://azure.microsoft.com/en-us/products/azure-sql/">Azure SQL</a></p>
+</li>
+<li>
+<p><a href="https://duendesoftware.com/products/identityserver">Identity Server</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+    <p>This page was built using a customized version of the Antora default UI. The source code for the default UI is licensed under the terms of the MPL-2.0 license.</p>
+    <p>Course material may *not* be used to teach, tutor, coach, or present without obtaining explicit consent from Stefan Courteaux.</p>
+</footer><script id="site-script" src="../_/js/site.js" data-ui-root-path="../_"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Middleware :: Programmeren Gevorderd 3 (BETA)</title>
+    <meta name="generator" content="Antora 3.1.14">
+    <link rel="stylesheet" href="../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="#">Programmeren Gevorderd 3 (BETA)</a>
+      <button class="navbar-burger" aria-controls="topbar-nav" aria-expanded="false" aria-label="Toggle main menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+      
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+          <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link" href="#">Producten</a>
+              <div class="navbar-dropdown">
+                  <a class="navbar-item" target="_blank" href="https://learn.microsoft.com/en-us/cli/azure/">Azure CLI</a>
+                  <a class="navbar-item" target="_blank" href="https://www.docker.com/products/docker-desktop">Docker Desktop</a>
+                  <a class="navbar-item" target="_blank" href="https://desktop.github.com/download">GitHub Desktop</a>
+                  <a class="navbar-item" target="_blank" href="https://www.mysql.com/products/workbench">MySQL Workbench</a>
+                  <a class="navbar-item" target="_blank" href="https://www.postman.com/downloads/">Postman</a>
+                  <a class="navbar-item" target="_blank" href="https://www.jetbrains.com/rider/download">Rider</a>
+                  <a class="navbar-item" target="_blank" href="https://code.visualstudio.com/download">VS Code</a>
+              </div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link" href="#">Diensten</a>
+              <div class="navbar-dropdown">
+                  <a class="navbar-item" target="_blank" href="https://dev.azure.com/hogent-web4-stefancourteaux/">Azure DevOps</a>
+                  <a class="navbar-item" target="_blank" href="https://portal.azure.com">Azure Portal</a>
+                  <a class="navbar-item" target="_blank" href="https://chamilo.hogent.be">Chamilo</a>
+                  <a class="navbar-item" target="_blank" href="https://github.com">GitHub</a>
+                  <a class="navbar-item" target="_blank" href="https://jwt.io">JWT.io</a>                  
+                  <a class="navbar-item" target="_blank" href="https://dotnet.microsoft.com">MS Docs</a>
+              </div>
+          </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="pg3" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
+    <h3 class="title"><a href="index.html">Gevorderd 3</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="01-cloud-connected.html">Cloud Connected</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="02-microservices.html">Microservices</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="02-az-devops.html">Azure DevOps</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="03-git.html">Git Gebruik</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="05-cosmos.html">Cosmos Database</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="07-blob.html">Blob Storage</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="04-middleware.html">Middleware</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="08-open-data-docker.html">Open Data &amp; Docker ⭐️</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="06-02-secret-management.html">Secret Management ⭐️</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="06-pipelines.html">DevOps Pipelines️ ⭐️</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="09-auth-2526.html">Authenticatie ⭐️</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="09-auth-2526-2.html">Autorisatie ⭐️</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="10-afronden2526.html">Afronden ⭐️</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="99-tips.html">Tips</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="09-auth.html">Authenticatie AJ2425 🙅‍♂️</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="09-identity-server-systemen.html">App Clients (OAuth)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="09-identity-server-gebruikers.html">Test Users (OIDC)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="09-identity-server-shipitapp.html">Web App Verbinden</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="09-identity-server-sql.html">Config in Azure SQL</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="09-identity-server-aspnetid.html">ASP.Net Identity Users</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="09-identity-sql-server-docker.html">SQL Server Docker</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="10-afronden.html">Totaalplaatje Afronden</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="80-lesopnames-2425S2.html">Lesopnames 📺</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Gevorderd 3</span>
+    <span class="version"></span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <div class="title"><a href="index.html">Gevorderd 3</a></div>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Gevorderd 3</a></li>
+    <li><a href="04-middleware.html">Middleware</a></li>
+  </ul>
+</nav>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Middleware</h1>
+<div class="sect1">
+<h2 id="_doel_van_deze_les"><a class="anchor" href="#_doel_van_deze_les"></a>Doel van deze les</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Middleware leren kennen.</p>
+</li>
+<li>
+<p>Beter begrip van Azure resources.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_middleware"><a class="anchor" href="#_middleware"></a>Middleware</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Wij hoeven niet veel code te schrijven om een werkende web api te bouwen in .Net dankzij de uitgebreide "ingebakken" functionaliteit. Een HTTP request vloeit door verschillende stappen. Onze eigen code is slechts een van die stappen.</p>
+</div>
+<div class="paragraph">
+<p>De verschillende stappen en hun volgorde noemt men de <a href="https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-8.0">request processing pipeline</a>. We kunnen het gedrag van de pipeline beïnvloeden wanneer we de app opbouwen in Program.cs door bestaande, of custom, middleware aan te spreken.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/middleware/middleware.png" alt="middleware">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_story_rate_limiting"><a class="anchor" href="#_story_rate_limiting"></a>Story - Rate Limiting</h2>
+<div class="sectionbody">
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>AS A</strong> api user, <strong>I WANT</strong> to receive clear feedback when the system is experiencing high load creating quotes, <strong>SO THAT</strong> I can take it into account when working on our system integration.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_functionele_input"><a class="anchor" href="#_functionele_input"></a>Functionele Input</h3>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>Onze api staat publiek op internet. Men kan dus van overal ter wereld ons systeem benaderen en requests uitvoeren. Elke request belast ons systeem. We moeten verhinderen dat het systeem overbelast geraakt. Dit kunnen we doen door het aantal requests in de gaten te houden zodat we kunnen ingrijpen wanneer het volume te hoog wordt.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_technische_input"><a class="anchor" href="#_technische_input"></a>Technische Input</h3>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>In de prakijk wil dit zeggen dat we bepaalde requests gaan verwerpen of pauzeren. We kunnen beroep doen op een <a href="https://learn.microsoft.com/en-us/aspnet/core/performance/rate-limit?view=aspnetcore-8.0">rate limiting middleware</a> en hoeven de nodige code dus niet from scratch te schrijven.</p>
+</div>
+<div class="paragraph">
+<p>We kunnen gebruik maken van een aantal strategieën om het aantal requests te limiteren. Kort door de bocht:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Fixed Window: Maximaal x requests in een blok van y minuten.</p>
+</li>
+<li>
+<p>Sliding Window: Maximaal x requests in de laatste y minuten.</p>
+</li>
+<li>
+<p>Token Bucket: Variant op Sliding Window met andere interne logica.</p>
+</li>
+<li>
+<p>Concurrency: Maximaal x requests tegelijk.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Een eenvoudige Fixed Window Limiter volstaat op dit moment.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_implementatie"><a class="anchor" href="#_implementatie"></a>Implementatie</h3>
+<div class="listingblock">
+<div class="title">Program.cs</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">var builder = WebApplication.CreateBuilder(args);
+//...
+builder.Services.AddRateLimiter(_ =&gt; _
+	.AddFixedWindowLimiter(policyName: "quote-creation-limiter", options =&gt; <i class="conum" data-value="1"></i><b>(1)</b>
+	{
+		options.PermitLimit = 3; <i class="conum" data-value="2"></i><b>(2)</b>
+		options.Window = TimeSpan.FromSeconds(10); <i class="conum" data-value="3"></i><b>(3)</b>
+		options.QueueProcessingOrder = QueueProcessingOrder.OldestFirst; <i class="conum" data-value="4"></i><b>(4)</b>
+		options.QueueLimit = 2; <i class="conum" data-value="5"></i><b>(5)</b>
+	}));
+//...
+var app = builder.Build();
+//...
+app.UseRateLimiter(); <i class="conum" data-value="6"></i><b>(6)</b>
+//...
+app.Run();</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>We kiezen zelf de naam van de rate limiting policy.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Aantal requests af te handelen per window.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Lengte van het window in seconden.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Requests die we dit window niet gaan afhandelen stoppen we in een FIFO queue.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Maximaal aantal requests in de queue.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>We activeren rate limiting.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Requests die niet direct kunnen behandeld worden belanden in een queue. Requests in de queue wachten hun beurt af en zullen in een van de volgende windows afgehandeld worden. Requests die niet in de queue passen krijgen een HTTP 503 Service Unavailable response.</p>
+</div>
+<div class="paragraph">
+<p>We moeten de rate limiting policy nu nog koppelen aan de relevante endpoints. Dat kunnen we doen door een annotation toe te voegen.</p>
+</div>
+<div class="listingblock">
+<div class="title">QuotesController</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">[HttpPost]
+[EnableRateLimiting("quote-creation-limiter")] <i class="conum" data-value="1"></i><b>(1)</b>
+public ActionResult&lt;QuoteResponseDTO&gt; CreateQuote(
+    [FromBody] PriceQuoteRequestContract priceQuoteRequest)
+{
+    //...
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>De policy is nu van toepassing op dit endpoint, niet op de volledige applicatie.</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Zoals je in de <a href="https://learn.microsoft.com/en-us/aspnet/core/performance/rate-limit?view=aspnetcore-8.0">documentatie</a> kan lezen, is het ook mogelijk een globale rate limiter te maken. Dit kan nuttig zijn, maar ligt niet exact in lijn met wat we in dit voorbeeld willen doen.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>In een minimal api kan je op gelijklopende wijze rate limiting introduceren. Een policy toewijzen aan een endpoint gebeurt met <code>.RequireRateLimiting("policy")</code> op de <code>Map()</code> definitie.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_story_api_documentatie"><a class="anchor" href="#_story_api_documentatie"></a>Story - Api Documentatie</h2>
+<div class="sectionbody">
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>AS A</strong> api user, <strong>I WANT</strong> to access technical api documentation, <strong>SO THAT</strong> I can integrate my system.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_functionele_input_2"><a class="anchor" href="#_functionele_input_2"></a>Functionele Input</h3>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Voorzie <em>self service</em> documentatie voor api gebruikers. Wij willen geen kostenoverhead om uitleg te geven over onze api&#8217;s.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_technische_input_2"><a class="anchor" href="#_technische_input_2"></a>Technische Input</h3>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Api Spec Doc</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.openapis.org/what-is-openapi">OpenAPI</a> document creatie werd in de afgelopen jaren gefaciliteerd door <code>Swashbuckle.AspNetCore</code>. Deze library wordt niet goed meer onderhouden en Microsoft <a href="https://devblogs.microsoft.com/dotnet/dotnet9-openapi/">distantieert er zich van</a> met de introductie van .Net 9.</p>
+</li>
+<li>
+<p>Migreer het <code>PriceQuote.Api</code> project naar .Net 9.</p>
+</li>
+<li>
+<p>Gebruik de nieuwe <code>Microsoft.AspNetCore.OpenApi</code> om het OpenAPI document te genereren.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Api Spec Doc Visualisatie</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Hoewel SwaggerUI via nuget <code>Swashbuckle.AspNetCore.SwaggerUi</code> nog steeds gebruikt kan worden op basis van (eender welk) OpenAPI document, opteren we ervoor volledig afstand te doen van de Swashbuckle dependencies.</p>
+</li>
+<li>
+<p>Gebruik <code>Scalar.AspNetCore</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_implementatie_pricequote"><a class="anchor" href="#_implementatie_pricequote"></a>Implementatie PriceQuote</h3>
+<div class="listingblock">
+<div class="title">We targeten .Net 9 door dit aan te geven in <code>ShipIt.PriceQuote.Api.csproj</code>.</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;Project Sdk="Microsoft.NET.Sdk.Web"&gt;
+
+  &lt;PropertyGroup&gt;
+    &lt;TargetFramework&gt;net9.0&lt;/TargetFramework&gt; <i class="conum" data-value="1"></i><b>(1)</b>
+    &lt;Nullable&gt;enable&lt;/Nullable&gt;
+    &lt;ImplicitUsings&gt;enable&lt;/ImplicitUsings&gt;
+  &lt;/PropertyGroup&gt;
+  ...
+&lt;/Project&gt;</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Nieuwe versie dotnet aanduiden.</td>
+</tr>
+</table>
+</div>
+<div class="literalblock">
+<div class="title">We voegen nuget <code>Microsoft.AspNetCore.OpenApi</code> toe aan <code>ShipIt.PriceQuote.Api</code>.</div>
+<div class="content">
+<pre>dotnet add package Microsoft.AspNetCore.OpenApi</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">We maken de nodige referenties in Program.cs</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">var builder = WebApplication.CreateBuilder(args);
+//...
+builder.Services.AddOpenApi(); <i class="conum" data-value="1"></i><b>(1)</b>
+//...
+var app = builder.Build();
+//...
+app.MapOpenApi(); <i class="conum" data-value="2"></i><b>(2)</b>
+//...
+app.Run();</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Voeg relevante middleware toe.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Genereer een api doc in json formaat.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>De openapi spec is beschikbaar op <code><a href="https://&lt;host&gt;:&lt;port&gt;/openapi/v1.json" class="bare">https://&lt;host&gt;:&lt;port&gt;/openapi/v1.json</a></code>. Indien gewenst, kunnen we de naam van de json file sturen door deze mee te geven aan <code>.AddOpenApi("file-naam")</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+We kunnen de inhoud van het OpenAPI document uiteraard fijnmazig controleren. Dit gaat voorbij de scope van de lessen. Je consulteert gewoon de <a href="https://learn.microsoft.com/en-us/aspnet/core/fundamentals/openapi/include-metadata?view=aspnetcore-9.0&amp;tabs=minimal-apis">documentatie</a> wanneer je iets specifiek nodig hebt.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Nu hebben we een OpenAPI spec document, maar nog geen visualisatie.</p>
+</div>
+<div class="literalblock">
+<div class="title">We voegen nuget <code>Scalar.AspNetCore</code> toe aan <code>ShipIt.PriceQuote.Api</code>.</div>
+<div class="content">
+<pre>dotnet add package Scalar.AspNetCore</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">We maken de nodige referenties in Program.cs</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">var builder = WebApplication.CreateBuilder(args);
+//...
+builder.Services.AddOpenApi();
+//...
+var app = builder.Build();
+//...
+app.MapOpenApi();
+app.MapScalarApiReference(); <i class="conum" data-value="1"></i><b>(1)</b>
+//...
+app.Run();</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Genereer een UI op basis van het OpenAPI doc.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>De Scalar UI is beschikbaar op <code><a href="https://localhost:&lt;port&gt;/scalar/v1" class="bare">https://localhost:&lt;port&gt;/scalar/v1</a></code>;</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/middleware/scalar.png" alt="scalar"></span></p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+De interactieve web ui is bedoeld om de api te verkennen. Het is documentatie. Het is <strong>geen</strong> volwaardige user interface. Verwar deze interactieve documentatie van de api ook niet met het OpenAPI document of de api zelf.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Standaard zal de CountryEnum gedocumenteerd worden als een <code>int</code>. Dit is onwenselijk gezien de ApiController een <code>string</code> verwacht. We kunnen de enum globaal annoteren voor alle gebruikers van <code>System.Text.Json</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">[JsonConverter(typeof(JsonStringEnumConverter))]
+public enum CountryEnum</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Bijgevolg zal de OpenAPI spec dit als <code>string</code> bevatten en zal het ook zo getoond worden in de Scalar UI.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/middleware/scalar-enum.png" alt="scalar enum"></span></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_implementatie_label"><a class="anchor" href="#_implementatie_label"></a>Implementatie Label</h3>
+<div class="literalblock">
+<div class="title">ShipIt.Label.Api</div>
+<div class="content">
+<pre>dotnet add package Microsoft.AspNetCore.OpenApi
+dotnet add package Scalar.AspNetCore</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Program.cs</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">//...
+builder.Services.AddOpenApi();
+
+var app = builder.Build();
+
+app.MapOpenApi();
+app.MapScalarApiReference();
+//...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>De Scalar UI voor de Label (minimal) api is beschikbaar op <code><a href="https://localhost:&lt;port&gt;/scalar/v1" class="bare">https://localhost:&lt;port&gt;/scalar/v1</a></code>.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/middleware/scalar-minimal.png" alt="scalar minimal"></span></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_openapi_doc_uitbreiden"><a class="anchor" href="#_openapi_doc_uitbreiden"></a>OpenApi Doc Uitbreiden</h3>
+<div class="paragraph">
+<p>Je kan attributes (klassiek) of fluent api (voor minimal api) gebruiken.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Attribute</th>
+<th class="tableblock halign-left valign-top">Method</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[EndpointSummary]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">WithSummary</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[EndpointDescription]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">WithDescription</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[Tags]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">WithTags</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[EndpointName]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">WithName</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[FromQuery],[FromRoute],[FromHeader],[FromForm]</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[Description]</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[FromBody]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Accepts</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[Produces]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Produces, ProducesProblem	TypedResults</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[ExcludeFromDescription]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ExcludeFromDescription</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Globale velden kunnen vertrekkende van deze filter template gezet worden.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">builder.Services.AddOpenApi(options =&gt;
+{
+    options.AddDocumentTransformer((document, context, cancellationToken) =&gt;
+    {
+        // Contact zoals in Demo Microsoft
+        document.Info.Contact = new OpenApiContact
+        {
+            Name = "Contoso Support",
+            Email = "support@contoso.com"
+        };
+        // Description aanpassen
+        document.Info.Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam quis lacus accumsan, rhoncus ante nec, porttitor neque. Mauris congue, justo ac fringilla vehicula, arcu tortor elementum metus, nec pellentesque nunc tortor ut ipsum. Curabitur posuere diam felis, id efficitur leo fermentum nec. Integer hendrerit ipsum non urna congue dignissim. Praesent id sagittis odio. Proin pulvinar porta porttitor. Integer auctor sagittis imperdiet. Praesent molestie sapien sit amet blandit tincidunt. Vivamus tincidunt metus eget turpis dignissim viverra. Ut non ex at diam cursus porttitor. Integer a augue et magna egestas consectetur. Aenean malesuada augue tellus, et dignissim diam vestibulum eget. Cras sed pulvinar nisl. Suspendisse nec sem eu mauris luctus placerat ac et augue. Donec sit amet urna ut sem viverra pellentesque. Proin et nisl egestas, lobortis nunc nec, mollis lectus.";
+        return Task.CompletedTask;
+    });
+});</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_tech_debt_service_collection_extensions"><a class="anchor" href="#_tech_debt_service_collection_extensions"></a>Tech Debt - Service Collection Extensions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>De Program.cs van de Quote api is snel uitgegroeid tot een grote file. We gaan dit leesbaarder maken door de file uit te splitsen. Een veelgebruikte manier om dit te doen, is extension methods op de ServiceCollection.</p>
+</div>
+<div class="listingblock">
+<div class="title">ServiceCollectionExtensions</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">public static class ServiceCollectionExtensions
+{
+    public static IServiceCollection AddShipitServices(this IServiceCollection services)
+    {
+        services.AddScoped&lt;IPriceQuoteRepository, PriceQuoteRepository&gt;();
+        services.AddScoped&lt;IPriceQuoteService, PriceQuoteService&gt;();
+
+        return services;
+    }
+    // etc...
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We maken zoveel extensions als logisch voelt in de context. Op dit moment brengt ons dat bijvoorbeeld tot onderstaande</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.Configure&lt;PriceQuoteRepositoryOptions&gt;(
+    builder.Configuration.GetSection(
+        nameof(PriceQuoteRepositoryOptions)
+    )
+);
+
+builder.Services.AddShipItRateLimiter(); <i class="conum" data-value="1"></i><b>(1)</b>
+builder.Services.AddOpenApi();
+builder.Services.AddShipitServices();
+builder.Services.AddShipItControllers();
+
+var app = builder.Build();
+//...</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Deze extension method encapsuleert ShipIt rate limiting settings.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Iemand die de <code>Program.cs</code> leest, ziet in een oogopslag dat deze functionaliteiten gebruikt worden, maar wordt niet overspoeld met details. Wie nood heeft aan details te zien of aan te passen, kan naar de implementatie navigeren.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_deployment"><a class="anchor" href="#_deployment"></a>Deployment</h2>
+<div class="sectionbody">
+<div class="literalblock">
+<div class="content">
+<pre>az webapp up `
+--name pg3-shipit-stefanc-quote-api `
+--plan pg3-shipit-stefanc-plan `
+--resource-group pg3-shipit-stefanc `
+--location westeurope `
+--os-type Linux</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>az webapp up `
+  --name pg3-shipit-stefanc-label-api `
+  --plan pg3-shipit-stefanc-plan `
+  --resource-group pg3-shipit-stefanc `
+  --location westeurope `
+  --os-type linux</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>De api documentatie is nu ook beschikbaar op de Azure installatie van de services.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/middleware/scalar-azure.png" alt="scalar azure"></span></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_oefening"><a class="anchor" href="#_oefening"></a>Oefening</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Probeer zelf de taak van de week te implementeren. Je kan steeds kijken naar de code uit de les als je vast loopt.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_referenties"><a class="anchor" href="#_referenties"></a>Referenties</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://learn.microsoft.com/en-us/aspnet/core/fundamentals/openapi/include-metadata?view=aspnetcore-9.0&amp;tabs=minimal-apis" class="bare">https://learn.microsoft.com/en-us/aspnet/core/fundamentals/openapi/include-metadata?view=aspnetcore-9.0&amp;tabs=minimal-apis</a></p>
+</div>
+<div class="paragraph">
+<p><a href="https://devblogs.microsoft.com/dotnet/dotnet9-openapi/" class="bare">https://devblogs.microsoft.com/dotnet/dotnet9-openapi/</a></p>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+    <p>This page was built using a customized version of the Antora default UI. The source code for the default UI is licensed under the terms of the MPL-2.0 license.</p>
+    <p>Course material may *not* be used to teach, tutor, coach, or present without obtaining explicit consent from Stefan Courteaux.</p>
+</footer><script id="site-script" src="../_/js/site.js" data-ui-root-path="../_"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

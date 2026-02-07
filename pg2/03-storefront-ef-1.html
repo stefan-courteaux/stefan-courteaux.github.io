@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Werken Met MySQL :: Programmeren Gevorderd 2 (BETA)</title>
+    <meta name="generator" content="Antora 3.1.14">
+    <link rel="stylesheet" href="../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="#">Programmeren Gevorderd 2 (BETA)</a>
+      <button class="navbar-burger" aria-controls="topbar-nav" aria-expanded="false" aria-label="Toggle main menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+      
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+          <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link" href="#">Producten</a>
+              <div class="navbar-dropdown">
+                  <a class="navbar-item" target="_blank" href="https://learn.microsoft.com/en-us/cli/azure/">Azure CLI</a>
+                  <a class="navbar-item" target="_blank" href="https://www.docker.com/products/docker-desktop">Docker Desktop</a>
+                  <a class="navbar-item" target="_blank" href="https://desktop.github.com/download">GitHub Desktop</a>
+                  <a class="navbar-item" target="_blank" href="https://www.mysql.com/products/workbench">MySQL Workbench</a>
+                  <a class="navbar-item" target="_blank" href="https://www.postman.com/downloads/">Postman</a>
+                  <a class="navbar-item" target="_blank" href="https://www.jetbrains.com/rider/download">Rider</a>
+                  <a class="navbar-item" target="_blank" href="https://code.visualstudio.com/download">VS Code</a>
+              </div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link" href="#">Diensten</a>
+              <div class="navbar-dropdown">
+                  <a class="navbar-item" target="_blank" href="https://dev.azure.com/hogent-web4-stefancourteaux/">Azure DevOps</a>
+                  <a class="navbar-item" target="_blank" href="https://portal.azure.com">Azure Portal</a>
+                  <a class="navbar-item" target="_blank" href="https://chamilo.hogent.be">Chamilo</a>
+                  <a class="navbar-item" target="_blank" href="https://github.com">GitHub</a>
+                  <a class="navbar-item" target="_blank" href="https://jwt.io">JWT.io</a>                  
+                  <a class="navbar-item" target="_blank" href="https://dotnet.microsoft.com">MS Docs</a>
+              </div>
+          </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="pg2" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
+    <h3 class="title"><a href="index.html">Gevorderd 2</a></h3>
+<ul class="nav-list">
+      <li class="nav-item is-active" data-depth="0">
+<ul class="nav-list">
+      <li class="nav-item is-active" data-depth="1">
+    <a class="nav-link" href="01-http-apis.html">RESTful HTTP Api</a>
+  </li>
+      <li class="nav-item is-active" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="02-storefront.html">Backend (Api + EF Core)</a>
+<ul class="nav-list">
+      <li class="nav-item is-active" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="02-storefront-api.html">RESTful Api</a>
+<ul class="nav-list">
+      <li class="nav-item is-active" data-depth="3">
+    <a class="nav-link" href="02-storefront-api-1.html">Customers &amp; Products</a>
+  </li>
+      <li class="nav-item is-active" data-depth="3">
+    <a class="nav-link" href="02-storefront-api-3.html">Orders &amp; Service Layer</a>
+  </li>
+      <li class="nav-item is-active" data-depth="3">
+    <a class="nav-link" href="02-query-params.html">URL Query Parameters🌟</a>
+  </li>
+</ul>
+  </li>
+      <li class="nav-item is-active" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="03-storefront-ef.html">Database</a>
+<ul class="nav-list">
+      <li class="nav-item is-active is-current-page" data-depth="3">
+    <a class="nav-link" href="03-storefront-ef-1.html">Werken Met MySQL</a>
+  </li>
+      <li class="nav-item is-active" data-depth="3">
+    <a class="nav-link" href="03-storefront-ef-2.html">EF Core (SQL First) 🌟</a>
+  </li>
+</ul>
+  </li>
+      <li class="nav-item is-active" data-depth="2">
+    <a class="nav-link" href="03-storefront-refactoring.html">Refactoring 🌟</a>
+  </li>
+</ul>
+  </li>
+      <li class="nav-item is-active" data-depth="1">
+    <a class="nav-link" href="04-ef-code-first.html">EF Core (Code First)</a>
+  </li>
+      <li class="nav-item is-active" data-depth="1">
+    <a class="nav-link" href="05-dapper.html">Dapper Micro ORM</a>
+  </li>
+      <li class="nav-item is-active" data-depth="1">
+    <a class="nav-link" href="06-async.html">Parallel &amp; Async 🌟</a>
+  </li>
+      <li class="nav-item is-active" data-depth="1">
+    <a class="nav-link" href="07-mongo.html">MongoDB</a>
+  </li>
+      <li class="nav-item is-active" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="90-oefeningen.html">Oefeningen</a>
+<ul class="nav-list">
+      <li class="nav-item is-active" data-depth="2">
+    <a class="nav-link" href="90-01-herhaling.html">Herhaling C# en UML</a>
+  </li>
+      <li class="nav-item is-active" data-depth="2">
+    <a class="nav-link" href="90-03-pokemons.html">Backend (Api + In-Memory)</a>
+  </li>
+      <li class="nav-item is-active" data-depth="2">
+    <a class="nav-link" href="90-02-backend.html">Backend (Api + EF Core)</a>
+  </li>
+      <li class="nav-item is-active" data-depth="2">
+    <a class="nav-link" href="90-02-backend-voetbal.html">Backend (Api + EF Core)</a>
+  </li>
+      <li class="nav-item is-active" data-depth="2">
+    <a class="nav-link" href="90-04-fototoestellen.html">EF Core (Code First)</a>
+  </li>
+      <li class="nav-item is-active" data-depth="2">
+    <a class="nav-link" href="90-05-backend-dapper.html">Dapper</a>
+  </li>
+      <li class="nav-item is-active" data-depth="2">
+    <a class="nav-link" href="90-06-mongo.html">Api + MongoDB</a>
+  </li>
+      <li class="nav-item is-active" data-depth="2">
+    <a class="nav-link" href="90-08-async.html">Async</a>
+  </li>
+      <li class="nav-item is-active" data-depth="2">
+    <a class="nav-link" href="90-07-alles.html">Cover-All</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Gevorderd 2</span>
+    <span class="version"></span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <div class="title"><a href="index.html">Gevorderd 2</a></div>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Gevorderd 2</a></li>
+    <li><a href="02-storefront.html">Backend (Api + EF Core)</a></li>
+    <li><a href="03-storefront-ef.html">Database</a></li>
+    <li><a href="03-storefront-ef-1.html">Werken Met MySQL</a></li>
+  </ul>
+</nav>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Werken Met MySQL</h1>
+<div class="sect1">
+<h2 id="_relationele_databanken"><a class="anchor" href="#_relationele_databanken"></a>Relationele Databanken</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>De structuur van een Relationele Databank wordt in essentie geschapen uit <strong><em>Tables</em></strong> (tabellen) en <strong><em>Constraints</em></strong> (opgelegde beperkingen) op de data in die tabellen.</p>
+</div>
+<div class="sect2">
+<h3 id="_tables"><a class="anchor" href="#_tables"></a>Tables</h3>
+<div class="paragraph">
+<p>Een <em>Table</em> is een structuur bestaande uit rijen en kolommen, gevuld met gegevens.</p>
+</div>
+<div class="paragraph">
+<p>Elke <strong><em>Table</em></strong> heeft minstens:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Een <strong>naam</strong>, bijvoorbeeld "Klanten", "Producten" of "Spelers"</p>
+</li>
+<li>
+<p>één of meer <strong>kolomdefinities</strong></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Elke <strong><em>Column</em></strong> wordt gedefinieerd a.d.h.v. onderstaande <strong>eigenschappen</strong>.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Name</dt>
+<dd>
+<p>De hoofding van de kolom, bijvoorbeeld "Voornaam" of "Geboortedatum".</p>
+</dd>
+<dt class="hdlist1">DataType</dt>
+<dd>
+<p>Technische precisering van het type data dat opgeslagen zal worden in de kolom.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>varchar(<em>&lt;lengte&gt;</em>)</code></p>
+</li>
+<li>
+<p><code>int</code></p>
+</li>
+<li>
+<p><code>decimal(<em>&lt;positiesInTotaal&gt;,&lt;cijfersAchterDeKomma&gt;</em>)</code></p>
+</li>
+<li>
+<p><code>timestamp</code></p>
+</li>
+<li>
+<p>&#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Nullability</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>null</code> &#8594; een rij mag een waarde hebben voor deze kolom</p>
+</li>
+<li>
+<p><code>not null</code> &#8594; een rij moet altijd een waarde hebben voor deze kolom</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Default Value</dt>
+<dd>
+<p>Wanneer men bij het aanmaken van een rij deze kolom niet vermeldt, wordt een standaardwaarde toegepast, bijvoorbeeld het resultaat van de functie <code>current_timestamp</code> of de vaste waarde <code>3</code>.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_constraints"><a class="anchor" href="#_constraints"></a>Constraints</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Primary Key (Constraint)</dt>
+<dd>
+<p>De waarde van een veld in deze kolom, of combinatie van kolommen, moet uniek zijn in de tabel. Er kan maar één <em>PK</em> bestaan per tabel. Dit is dé sleutel bedoeld om een <em>record</em> (=rij) binnen de tabel ondubbelzinnig te identificeren.</p>
+</dd>
+<dt class="hdlist1">Unique Key (Constraint)</dt>
+<dd>
+<p>De waarde van een veld in deze kolom, of combinatie van kolommen, moet uniek zijn in de tabel. Er kan meer dan één <em>UK</em> bestaan per tabel. Deze zijn bedoeld om business regels rond uniciteit af te dwingen.</p>
+</dd>
+<dt class="hdlist1">Foreign Key (Constraint)</dt>
+<dd>
+<p>De waarde van een veld in een bepaalde kolom in tabel A verwijst naar een <em>Key</em> (Primary of Unique) in tabel B. Indien de gerefereerde waarde in tabel B niet bestaat, zal de database het record in tabel A verwerpen.</p>
+</dd>
+<dt class="hdlist1">Check Constraint</dt>
+<dd>
+<p>Een deterministische boolean expressie die gebruik kan maken van alle kolommen in de tabel en constanten om een record te evalueren. Indien de expressie naar <code>false</code> evalueert, zal het record niet kunnen toegevoegd of aangepast worden.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_structured_query_language_sql"><a class="anchor" href="#_structured_query_language_sql"></a>Structured Query Language (SQL)</h3>
+<div class="paragraph">
+<p>Structured Query Language (SQL) is de taal die we gebruiken om een databank vorm te geven en de data te manipuleren.</p>
+</div>
+<div class="paragraph">
+<p>SQL is <strong>geen</strong> programmeertaal. In een programmeertaal beschrijf je immers hoe je iets wil doen. In SQL beschrijf je enkel wat je wil doen - het systeem bepaalt hoe dat zal gebeuren.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_mysql_opzetten"><a class="anchor" href="#_mysql_opzetten"></a>MySQL Opzetten</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_database_opstarten_als_docker_image"><a class="anchor" href="#_database_opstarten_als_docker_image"></a>Database opstarten als Docker Image</h3>
+<div class="paragraph">
+<p>Download en installeer <a href="https://www.docker.com/products/docker-desktop/">Docker Desktop</a> voor jouw besturingssysteem.</p>
+</div>
+<div class="paragraph">
+<p>Download de MySQL 8.0 Docker image</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker pull mysql:8.0</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Start de image als container.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker run --name pg2-mysql-db -p 3307:3306 -e MYSQL_ROOT_PASSWORD=WachtW00rd -d mysql:8.0</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>gevorderd2-mysql</code> is de naam van de nieuwe container instance</p>
+</li>
+<li>
+<p><code>3306</code> is de poort binnen de instance, <code>3307</code> buiten</p>
+</li>
+<li>
+<p><code>MYSQL_ROOT_PASSWORD</code> is een environment variable</p>
+</li>
+<li>
+<p><code>mysql:8.0</code> is de image die in de instance gebruikt wordt</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>De container logs laten weten wanneer de server klaar is om gebruikt te worden.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">/usr/sbin/mysqld: ready for connections...</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_verbinden_met_mysql_workbench"><a class="anchor" href="#_verbinden_met_mysql_workbench"></a>Verbinden met MySQL Workbench</h3>
+<div class="paragraph">
+<p>Download en installeer <a href="https://dev.mysql.com/downloads/workbench/">MySQL Workbench</a>.</p>
+</div>
+<div class="paragraph">
+<p>Start MySQL Workbench en voeg een nieuwe connectie toe.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/storefront-ef/mswb-start.png" alt="mswb start">
+</div>
+</div>
+<div class="paragraph">
+<p>Gebruik de poort en het wachtwoord dat je ingesteld hebt bij het <em>runnen</em> van de container.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/storefront-ef/mswb-newconn.png" alt="mswb newconn">
+</div>
+</div>
+<div class="paragraph">
+<p>Select de nieuwe connectie op het startscherm.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/storefront-ef/mswb-selectconn.png" alt="mswb selectconn">
+</div>
+</div>
+<div class="paragraph">
+<p>Verbind en voer een test query uit.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/storefront-ef/mswb-testq.png" alt="mswb testq">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_nieuwe_user_maken"><a class="anchor" href="#_nieuwe_user_maken"></a>Nieuwe User Maken</h3>
+<div class="paragraph">
+<p>We hebben de connectiviteit getest met de <em>root</em> account. Het is niet de bedoeling de <em>root</em> account te gebruiken als developer of applicatie. Het is ook niet wenselijk onze tabellen te maken in het <em>sys</em> schema.</p>
+</div>
+<div class="paragraph">
+<p>Maak een nieuw schema. Kies een passende naam.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/storefront-ef/mswb-newschema.png" alt="mswb newschema">
+</div>
+</div>
+<div class="paragraph">
+<p>Maak een nieuwe user. Kies een passende naam. Vergeet het wachtwoord niet. Klik nog <strong>niet</strong> op "Apply".</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/storefront-ef/mswb-newuser.png" alt="mswb newuser">
+</div>
+</div>
+<div class="paragraph">
+<p>Ken de nieuwe gebruiker alle rechten, behalve <code>GRANT OPTION</code>, toe op het nieuwe schema. Klik op "Apply".</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/storefront-ef/mswb-privs.png" alt="mswb privs">
+</div>
+</div>
+<div class="paragraph">
+<p>Sluit de <em>root</em> sessie.</p>
+</div>
+<div class="paragraph">
+<p>Voeg een nieuwe connectie toe. Gebruik deze keer de nieuwe user (en schema).</p>
+</div>
+<div class="paragraph">
+<p>Verbind met de nieuwe, beperkte, connectie. Probeer het <em>sys</em> schema te droppen om te valideren dat de rechten van deze user wel degelijk beperkt zijn.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/storefront-ef/mswb-privtest.png" alt="mswb privtest">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ddl_data_definition_language"><a class="anchor" href="#_ddl_data_definition_language"></a>DDL (Data Definition Language)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Hieronder een voorbeeld tabel <code>ParentTable</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">create table ParentTable (
+	Id 				int			auto_increment primary key,
+    BusinessKey		char(16) 	not null,
+    ParentName		varchar(60) not null,
+    CreatedOnUtc	timestamp	default current_timestamp,
+    CounterField	int			not null default 3
+);
+
+alter table ParentTable
+add constraint UK_ParentTable_BusinessKey
+unique (BusinessKey);
+
+alter table ParentTable
+add constraint CK_ParentTable_CounterField_Min3
+check (CounterField &gt;= 3);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Hieronder een voorbeeld tabel <code>ChildTable</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">create table ChildTable (
+	Id 				int			auto_increment primary key,
+    BusinessKey		char(16) 	not null,
+    ParentId		int			not null,
+    ChildName		varchar(60) not null,
+    CreatedOnUtc	timestamp	default current_timestamp
+);
+
+alter table ChildTable
+add constraint UK_ChildTable_BusinessKey
+unique (BusinessKey);
+
+alter table ChildTable
+add constraint FK_ChildTable_ParentTable_ParentId
+foreign key (ParentId)
+references ParentTable(Id);</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Niet elke RDBMS voorziet impliciet indexen op foreign keys. Meestal wil je elke foreign key indexeren en dus zelf expliciet de relevante indexen voorzien indien ze niet vanzelf aangemaakt worden.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Het zou handig zijn onze database te kunnen visualiseren.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_erd_entity_relationship_diagram"><a class="anchor" href="#_erd_entity_relationship_diagram"></a>ERD (Entity Relationship Diagram)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Een ERD geeft de structuur van een relationele databank weer. Dergelijke diagrammen zijn zeer handig als onderdeel van een technische analyse of documentatie.</p>
+</div>
+<div class="paragraph">
+<p>Het opstellen van een ERD begint meestal op papier of een whiteboard. Itereren op, en formaliseren van, het ontwerp gebeurt in applicaties zoals MySQL Workbench, Visual Paradigm, Oracle SQL Developer Data Modeler etc.</p>
+</div>
+<div class="paragraph">
+<p>Op papier werken heeft zijn voordelen, zeker in het begin, maar bovenstaande tools bieden krachtige mogelijkheden zoals</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>SQL script genereren uit een diagram,</p>
+</li>
+<li>
+<p>Diagram  genereren op basis van een bestaande databank</p>
+</li>
+<li>
+<p>&#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_databank_naar_erd"><a class="anchor" href="#_databank_naar_erd"></a>Databank naar ERD</h3>
+<div class="paragraph">
+<p>Open MySQL Workbench. Navigeer in de menubalk naar Database &#8594; Reverse Engineer.</p>
+</div>
+<div class="paragraph">
+<p>Selecteer de connectie die we eerder maakten.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/storefront-ef/mswb-erd-conn.png" alt="mswb erd conn">
+</div>
+</div>
+<div class="paragraph">
+<p>Volg de wizard verder. Selecteer het juiste schema.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/storefront-ef/mswb-erd-schema.png" alt="mswb erd schema">
+</div>
+</div>
+<div class="paragraph">
+<p>Kies de relevante objecten om te importeren en laat ze op het diagram plaatsen.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/storefront-ef/mswb-erd-opt.png" alt="mswb erd opt">
+</div>
+</div>
+<div class="paragraph">
+<p>Je kan nu het ERD bekijken en manipuleren naar wens.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/storefront-ef/mswb-erd-done.png" alt="mswb erd done">
+</div>
+</div>
+<div class="paragraph">
+<p>Je kan het design opslaan. Dit verandert niets aan de database waaruit het diagram gegenereerd werd.</p>
+</div>
+<div class="paragraph">
+<p>Je kan het design ook exporteren als afbeelding. File &#8594; Export &#8594; PNG.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/storefront-ef/mswb-export.png" alt="mswb export">
+</div>
+</div>
+<div class="paragraph">
+<p>Ja kan het design ook exporteren als SQL script. File &#8594; Export &#8594; SQL.</p>
+</div>
+<div class="paragraph">
+<p>Het resultaat is technisch zeer accuraat, maar minder leesbaar dan het script dat we zelf schreven.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- MySQL Script generated by MySQL Workbench
+-- Mon Oct 21 19:33:21 2024
+-- Model: New Model    Version: 1.0
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+-- -----------------------------------------------------
+-- Schema gevorderdavond
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema gevorderdavond
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `gevorderdavond` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
+USE `gevorderdavond` ;
+
+-- -----------------------------------------------------
+-- Table `gevorderdavond`.`ParentTable`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `gevorderdavond`.`ParentTable` (
+  `Id` INT NOT NULL AUTO_INCREMENT,
+  `BusinessKey` CHAR(16) NOT NULL,
+  `ParentName` VARCHAR(60) NOT NULL,
+  `CreatedOnUtc` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `CounterField` INT NOT NULL DEFAULT '3',
+  `TestCol` VARCHAR(45) NULL,
+  PRIMARY KEY (`Id`),
+  UNIQUE INDEX `UK_ParentTable_BusinessKey` (`BusinessKey` ASC) VISIBLE)
+ENGINE = InnoDB
+AUTO_INCREMENT = 3
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `gevorderdavond`.`ChildTable`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `gevorderdavond`.`ChildTable` (
+  `Id` INT NOT NULL AUTO_INCREMENT,
+  `BusinessKey` CHAR(16) NOT NULL,
+  `ParentId` INT NOT NULL,
+  `ChildName` VARCHAR(60) NOT NULL,
+  `CreatedOnUtc` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`Id`),
+  UNIQUE INDEX `UK_ChildTable_BusinessKey` (`BusinessKey` ASC) VISIBLE,
+  INDEX `FK_ChildTable_ParentTable_ParentId` (`ParentId` ASC) VISIBLE,
+  CONSTRAINT `FK_ChildTable_ParentTable_ParentId`
+    FOREIGN KEY (`ParentId`)
+    REFERENCES `gevorderdavond`.`ParentTable` (`Id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 4
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_dml_data_manipulation_language"><a class="anchor" href="#_dml_data_manipulation_language"></a>DML (Data Manipulation Language)</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_crud"><a class="anchor" href="#_crud"></a>CRUD</h3>
+<div class="paragraph">
+<p>We herhalen tijdens de les de CRUD basics</p>
+</div>
+<div class="listingblock">
+<div class="title">INSERT</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">insert into parentTable (
+    BusinessKey ,
+    ParentName ,
+    Counter
+)
+values (
+	'CODE123',
+    'Dit is de naam',
+    2
+);
+
+insert into childTable (
+	BusinessKey,
+    ParentId
+)
+values (
+	'CHILD123',
+    1
+);</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">SELECT</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">select  pt.Id, pt.BusinessKey ,ct.Id, ct.BusinessKey
+from	parentTable pt
+inner join childTable ct on pt.Id = ct.parentId; <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Test het verschil tussen <code>left</code>, <code>right</code> en <code>inner</code> uit indien je twijfelt.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/storefront-ef/joins.png" alt="joins"></span></p>
+</div>
+<div class="listingblock">
+<div class="title">UPDATE (Enkelvoudig)</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">update parentTable
+set ParentName = 'Updated name'
+where Id = 1;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">UPDATE (Meervoudig)</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">update parentTable pt
+inner join childTable ct on pt.Id = ct.parentId
+set pt.ParentName = 'Nogmaals Updated',
+    ct.BusinessKey = 'CHILD1234'
+where ct.Id = 1;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">DELETE (Foreign Key Error)</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">delete from parentTable
+where id = 1;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">DELETE</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">delete from childTable
+where id = 1;
+
+delete from parentTable
+where id = 1;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_sets"><a class="anchor" href="#_sets"></a>SETS</h3>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Set operators voeren standaard een <code>DISTINCT</code> uit. Voeg het <code>ALL</code> keyword toe om dit te vermijden.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">select 1 as value
+union / intersect / except
+select value from
+(
+	select 1 as value
+	union all
+	select 2 as value
+) sub</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/storefront-ef/sets.png" alt="sets"></span></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_gevorderde_topics"><a class="anchor" href="#_gevorderde_topics"></a>Gevorderde Topics</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_reference_manual"><a class="anchor" href="#_reference_manual"></a>Reference Manual</h3>
+<div class="paragraph">
+<p>De volledige DDL en DML syntax gaat (zeer) ver voorbij wat er typisch op school aangeleerd wordt. In een professionele context zal je waarschijnlijk nood hebben aan gedetailleerde informatie rond gevorderde onderwerpen.</p>
+</div>
+<div class="paragraph">
+<p>Er bestaan nog steeds boeken over het onderwerp, maar het loont om te weten dat er voor elke database een <em>(syntax) Reference Manual</em> bestaat. Ook MySQL heeft een <a href="https://dev.mysql.com/doc/refman/8.0/en/">online manual</a>.</p>
+</div>
+<div class="paragraph">
+<p>In staat zijn dit soort documentatie te interpreteren is een nuttige skill.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_generated_columns"><a class="anchor" href="#_generated_columns"></a>Generated Columns</h3>
+<div class="paragraph">
+<p>Net zoals in Excel, kan je ook in een relationele databank berekende velden definiëren.</p>
+</div>
+<div class="listingblock">
+<div class="title">Syntax</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">column_name data_type [GENERATED ALWAYS] AS (expression)
+   [VIRTUAL | STORED] [UNIQUE [KEY]]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Een <code>VIRUAL</code> kolom zal bij elke <code>SELECT</code> opnieuw berekend worden.</p>
+</div>
+<div class="paragraph">
+<p>Een <code>STORED</code> kolom zal berekend worden bij elke <code>UPDATE</code> van het record en het resultaat ervan opgeslagen worden.</p>
+</div>
+<div class="listingblock">
+<div class="title">Voorbeeld</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">create table VirtualColumnTest (
+	Id 			int not null auto_increment primary key,
+    FirstName	varchar(30),
+    LastName 	varchar(30)
+);
+
+insert into VirtualColumnTest (FirstName, LastName)
+values ("Stefan", "Courteaux");
+
+select * from VirtualColumnTest;
+
+select *, concat(FirstName, ' ', LastName) as FullName
+from VirtualColumnTest;
+
+alter table VirtualColumnTest add (
+	FullName varchar(60) as (concat(FirstName,' ', LastName)) STORED
+);
+
+select *
+from VirtualColumnTest;
+
+update VirtualColumnTest
+set FirstName = "Bartje"
+where id = 1;
+
+select *
+from VirtualColumnTest;
+
+drop table VirtualColumnTest;</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Het is nuttig om te weten dat virtuele kolommen bestaan. Je kan ze occasioneel gebruiken om een specifiek probleem op elegante wijze op te lossen. Denk zeker niet dat elke database propvol virtuele kolommen zit.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_views"><a class="anchor" href="#_views"></a>Views</h3>
+<div class="paragraph">
+<p>Een <em>View</em> is niet meer dan een opgeslagen <strong>query</strong> (niet data!) die een alias toebedeeld krijgt. Je kan deze aliasen gebruiken in queries alsof ze tabellen zijn.</p>
+</div>
+<div class="listingblock">
+<div class="title">Syntax</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">CREATE
+    [OR REPLACE]
+    [ALGORITHM = {UNDEFINED | MERGE | TEMPTABLE}]
+    [DEFINER = user]
+    [SQL SECURITY { DEFINER | INVOKER }]
+    VIEW view_name [(column_list)]
+    AS select_statement
+    [WITH [CASCADED | LOCAL] CHECK OPTION]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In de meest courante gevallen wordt slechts een klein deel van bovenstaande opties gebruikt.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">create or replace view vw_Report as (
+	select c.Id as CustomerId, c.FirstName, co.Id OrderId
+    from Customer c
+    left outer join CustomerOrder co on co.customerId = c.Id
+);
+
+select * from vw_Report;
+
+drop view vw_Report;</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Views worden typisch gebruikt om zeer complexe queries te abstraheren naar de applicatielaag toe, of in de context van rapportage.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Sommige databases ondersteunen ook <em>Materialized Views</em>. In dat geval wordt niet enkel de query, maar ook de data bewaard.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_indexen"><a class="anchor" href="#_indexen"></a>Indexen</h3>
+<div class="paragraph">
+<p>Goeie database performance is belangrijk om een <em>data driven</em> applicatie vlot te laten werken. Het gewenste performance niveau bereiken we liefst zo efficient mogelijk. Dat houdt de <em>run cost</em>  (hardware/cloud) laag.</p>
+</div>
+<div class="paragraph">
+<p><strong>Buiten het ontwerp van de databank zelf, kan het correct indexeren van data sterk bijdragen tot goede performance.</strong></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+In een academisch voorbeeld met een paar tientallen, of honderden, rijen maakt dit allemaal niet veel uit. In een project met honderden tabellen en miljoenen rijen is het een wereld van verschil.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Het is niet de bedoeling in dit vak aan intensieve database <em>performance tuning</em> te doen. Het is wel de bedoeling tijdens deze les een aanknopingspunt te creëren zodat je weet in welke richting te zoeken wanneer het onderwerp zich aandient in professionele context.</p>
+</div>
+<div class="paragraph">
+<p><strong>Executietijd is geen goeie metric voor databaseperformance en -efficiëntie.</strong> De gebruikte hardware, algemene systeembelasting en actuele inhoud van het geheugen, zal een grote impact hebben op de executietijd van een query.</p>
+</div>
+<div class="paragraph">
+<p>Daarom hanteren database systemen een ingebouwde <em>query cost</em> metric en een <em>query plan</em> functionaliteit. In MySQL kan je deze tekstueel en visueel weergeven.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/storefront-ef/mswb-explain.png" alt="mswb explain">
+</div>
+</div>
+<div class="paragraph">
+<p>Door hier gebruikt van te maken, kan je zien of de databank indexen gebruikt om op jouw query te antwoorden, of niet.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<strong>Met SQL vertel je het systeem welke data je wil, niet hoe deze verzameld moet worden.</strong> De database zal op basis van context en metadata een <em>Execution Plan</em> bedenken voor jouw query. Dit plan kan afwijken van een eerder plan voor dezelfde query, of niet zijn wat je verwacht had.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_voorbeeld"><a class="anchor" href="#_voorbeeld"></a>Voorbeeld</h4>
+<div class="paragraph">
+<p>Ik selecteer alle kolommen en alle rijen. Het systeem voert een <em>Full Table Scan</em> uit.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">select *
+from VirtualColumnTest; -- FTS</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Ik selecteer alle kolommen en sommige rijen. Het systeem voert een <em>Full Table Scan</em> uit. Er is op dit moment geen andere optie dan alle data "gewoon" te lezen en al dan niet in de result set te stoppen.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">select *
+from VirtualColumnTest
+where FirstName = "Bartje"; -- FTS</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Ik maak een index op de kolom <code>FirstName</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">create index ix_VirtualColumnTest_FirstName
+on VirtualColumnTest(FirstName);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Ik vraag alle voornamen op. Het systeem leest de index in plaats van de tabel. Het systeem weet immers dat er een index bestaat die alle voornamen bevat én deze index kleiner is om in te lezen dan de tabel.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">select FirstName
+from VirtualColumnTest; -- Index Lookup</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Ik vraag alle kolommen, maar enkel voor de rijen met een welbepaalde <code>FirstName</code>. Het systeem gebruikt wederom de index. In dit geval om de juiste rijen te identificeren en vervolgens alleen deze rijen uit de tabel te lezen. Het syteem moet de tabel lezen om de inhoud van de andere kolommen te vinden.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">select *
+from VirtualColumnTest
+where FirstName = "Bartje"; -- Index Lookup</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Ik stel dezelfde vraag, maar zet beide leden van de <code>=</code> om naar kleine letters. Het systeem leest de volledige tabel. Er bestaat immers geen index voor het resultaat van de functie <code>lower(FirstName)</code>, enkel voor <code>FirstName</code>!</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">select *
+from VirtualColumnTest
+where lower(FirstName) = lower("bartje"); -- FTS</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Ik definieer een <em>Function Based Index</em> voor <code>lower(FirstName)</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">create index ix_VirtualColumnTest_FirstNameLower
+on VirtualColumnTest((lower(FirstName)));</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Ik herhaal de vorige vraag. Dit keer zal het systeem wel een index kunnen gebruiken.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">select *
+from VirtualColumnTest
+where lower(FirstName) = lower("bartje"); -- Index lookup</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Een index kan ook meerdere kolommen bevatten.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_storefront_erd"><a class="anchor" href="#_storefront_erd"></a>Storefront ERD</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Stel zelf een ERD op voor de StoreFront api gebruikmakende van MySQL Workbench. Als resultaat wil je</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>afbeelding van het model als diagram</p>
+</li>
+<li>
+<p>DDL script van het model</p>
+</li>
+<li>
+<p>test data</p>
+</li>
+<li>
+<p>overweeg welke indexen nuttig zouden kunnen zijn</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using a customized version of the Antora default UI.</p>
+  <p>The source code for the default UI is licensed under the terms of the MPL-2.0 license.</p>
+    <p>Content by Stefan Courteaux unless otherwise noted. </p>
+</footer>
+<script id="site-script" src="../_/js/site.js" data-ui-root-path="../_"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

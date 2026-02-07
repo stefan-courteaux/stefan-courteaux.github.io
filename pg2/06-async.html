@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Asynchroon &amp; Parallel Programmeren :: Programmeren Gevorderd 2 (BETA)</title>
+    <meta name="generator" content="Antora 3.1.14">
+    <link rel="stylesheet" href="../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="#">Programmeren Gevorderd 2 (BETA)</a>
+      <button class="navbar-burger" aria-controls="topbar-nav" aria-expanded="false" aria-label="Toggle main menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+      
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+          <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link" href="#">Producten</a>
+              <div class="navbar-dropdown">
+                  <a class="navbar-item" target="_blank" href="https://learn.microsoft.com/en-us/cli/azure/">Azure CLI</a>
+                  <a class="navbar-item" target="_blank" href="https://www.docker.com/products/docker-desktop">Docker Desktop</a>
+                  <a class="navbar-item" target="_blank" href="https://desktop.github.com/download">GitHub Desktop</a>
+                  <a class="navbar-item" target="_blank" href="https://www.mysql.com/products/workbench">MySQL Workbench</a>
+                  <a class="navbar-item" target="_blank" href="https://www.postman.com/downloads/">Postman</a>
+                  <a class="navbar-item" target="_blank" href="https://www.jetbrains.com/rider/download">Rider</a>
+                  <a class="navbar-item" target="_blank" href="https://code.visualstudio.com/download">VS Code</a>
+              </div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link" href="#">Diensten</a>
+              <div class="navbar-dropdown">
+                  <a class="navbar-item" target="_blank" href="https://dev.azure.com/hogent-web4-stefancourteaux/">Azure DevOps</a>
+                  <a class="navbar-item" target="_blank" href="https://portal.azure.com">Azure Portal</a>
+                  <a class="navbar-item" target="_blank" href="https://chamilo.hogent.be">Chamilo</a>
+                  <a class="navbar-item" target="_blank" href="https://github.com">GitHub</a>
+                  <a class="navbar-item" target="_blank" href="https://jwt.io">JWT.io</a>                  
+                  <a class="navbar-item" target="_blank" href="https://dotnet.microsoft.com">MS Docs</a>
+              </div>
+          </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="pg2" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
+    <h3 class="title"><a href="index.html">Gevorderd 2</a></h3>
+<ul class="nav-list">
+      <li class="nav-item is-active" data-depth="0">
+<ul class="nav-list">
+      <li class="nav-item is-active" data-depth="1">
+    <a class="nav-link" href="01-http-apis.html">RESTful HTTP Api</a>
+  </li>
+      <li class="nav-item is-active" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="02-storefront.html">Backend (Api + EF Core)</a>
+<ul class="nav-list">
+      <li class="nav-item is-active" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="02-storefront-api.html">RESTful Api</a>
+<ul class="nav-list">
+      <li class="nav-item is-active" data-depth="3">
+    <a class="nav-link" href="02-storefront-api-1.html">Customers &amp; Products</a>
+  </li>
+      <li class="nav-item is-active" data-depth="3">
+    <a class="nav-link" href="02-storefront-api-3.html">Orders &amp; Service Layer</a>
+  </li>
+      <li class="nav-item is-active" data-depth="3">
+    <a class="nav-link" href="02-query-params.html">URL Query Parameters🌟</a>
+  </li>
+</ul>
+  </li>
+      <li class="nav-item is-active" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="03-storefront-ef.html">Database</a>
+<ul class="nav-list">
+      <li class="nav-item is-active" data-depth="3">
+    <a class="nav-link" href="03-storefront-ef-1.html">Werken Met MySQL</a>
+  </li>
+      <li class="nav-item is-active" data-depth="3">
+    <a class="nav-link" href="03-storefront-ef-2.html">EF Core (SQL First) 🌟</a>
+  </li>
+</ul>
+  </li>
+      <li class="nav-item is-active" data-depth="2">
+    <a class="nav-link" href="03-storefront-refactoring.html">Refactoring 🌟</a>
+  </li>
+</ul>
+  </li>
+      <li class="nav-item is-active" data-depth="1">
+    <a class="nav-link" href="04-ef-code-first.html">EF Core (Code First)</a>
+  </li>
+      <li class="nav-item is-active" data-depth="1">
+    <a class="nav-link" href="05-dapper.html">Dapper Micro ORM</a>
+  </li>
+      <li class="nav-item is-active is-current-page" data-depth="1">
+    <a class="nav-link" href="06-async.html">Parallel &amp; Async 🌟</a>
+  </li>
+      <li class="nav-item is-active" data-depth="1">
+    <a class="nav-link" href="07-mongo.html">MongoDB</a>
+  </li>
+      <li class="nav-item is-active" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="90-oefeningen.html">Oefeningen</a>
+<ul class="nav-list">
+      <li class="nav-item is-active" data-depth="2">
+    <a class="nav-link" href="90-01-herhaling.html">Herhaling C# en UML</a>
+  </li>
+      <li class="nav-item is-active" data-depth="2">
+    <a class="nav-link" href="90-03-pokemons.html">Backend (Api + In-Memory)</a>
+  </li>
+      <li class="nav-item is-active" data-depth="2">
+    <a class="nav-link" href="90-02-backend.html">Backend (Api + EF Core)</a>
+  </li>
+      <li class="nav-item is-active" data-depth="2">
+    <a class="nav-link" href="90-02-backend-voetbal.html">Backend (Api + EF Core)</a>
+  </li>
+      <li class="nav-item is-active" data-depth="2">
+    <a class="nav-link" href="90-04-fototoestellen.html">EF Core (Code First)</a>
+  </li>
+      <li class="nav-item is-active" data-depth="2">
+    <a class="nav-link" href="90-05-backend-dapper.html">Dapper</a>
+  </li>
+      <li class="nav-item is-active" data-depth="2">
+    <a class="nav-link" href="90-06-mongo.html">Api + MongoDB</a>
+  </li>
+      <li class="nav-item is-active" data-depth="2">
+    <a class="nav-link" href="90-08-async.html">Async</a>
+  </li>
+      <li class="nav-item is-active" data-depth="2">
+    <a class="nav-link" href="90-07-alles.html">Cover-All</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Gevorderd 2</span>
+    <span class="version"></span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <div class="title"><a href="index.html">Gevorderd 2</a></div>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Gevorderd 2</a></li>
+    <li><a href="06-async.html">Parallel &amp; Async 🌟</a></li>
+  </ul>
+</nav>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Asynchroon &amp; Parallel Programmeren</h1>
+<div class="sect1">
+<h2 id="_doel"><a class="anchor" href="#_doel"></a>Doel</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Verschil tussen Asynchroon en Parallel begrijpen</p>
+</li>
+<li>
+<p>Raakpunt tussen hardware (CPU) en software abstracties (OS/.Net) inzien</p>
+</li>
+<li>
+<p>Asynchroon programmeren in .Net</p>
+</li>
+<li>
+<p>Parallel programmeren in .Net</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_inleiding"><a class="anchor" href="#_inleiding"></a>Inleiding</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>De termen <em>Asynchroon</em> en <em>Parallel</em> worden vaak in één adem, of zelfs als synoniem, gebruikt. Het kan lijken alsof ze grofweg equivalent zijn. In veel gevallen kom je er ook mee weg deze concepten slechts vaag te kennen, of niet expliciet te kunnen benoemen.</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+Iets met <em>async</em> en <em>threads</em> ofzo.
+</blockquote>
+<div class="attribution">
+&#8212; menig (aspirant) developer
+</div>
+</div>
+<div class="paragraph">
+<p>Voor we in C# kunnen duiken, gaan we dus een stap terug moeten nemen en écht begrijpen wat de woorden <em>Asynchroon</em> en <em>Parallel</em> betekenen.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_definities"><a class="anchor" href="#_definities"></a>Definities</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Dat <em>Asynchroon</em> en <em>Parallel</em> geen synoniemen zijn, wordt al snel duidelijk wanneer we antoniemen introduceren in het verhaal.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Het tegengestelde van <em>Asynchroon</em> is <em>Synchroon</em>.</p>
+</li>
+<li>
+<p>Het tegengestelde van <em>Parallel</em> is <em>Sequentieel</em>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Een gesprek tussen twee mensen op straat zal <em>Synchroon</em> verlopen.</strong> Het gesprek is een vloeiende overgang van vragen, antwoorden en - eventueel - elkaar onderbreken. <strong>Er zijn geen expliciete wachttijden</strong>.</p>
+</div>
+<div class="paragraph">
+<p><strong>Een gesprek tussen twee mensen via e-mail zal <em>Asynchroon</em> verlopen.</strong> Een partij kan minuten of zelfs dagen aan een <em>draft</em> werken. Wanneer de e-mail uiteindelijk verzonden wordt, kan men <strong>niet onmiddellijk een antwoord</strong> verwachten. <strong>Er zijn expliciete wachttijden</strong> van ongekende duur. De kans is groot dat men tussen het verzenden en ontvangen van de communicatie een andere activiteit verricht.</p>
+</div>
+<div class="paragraph">
+<p><strong>Wanneer een bakker één pistolet bakt, en pas wanneer deze klaar is, de volgende bakt, kunnen we stellen dat de pistolets <em>sequentieel</em> gebakken worden.</strong></p>
+</div>
+<div class="paragraph">
+<p>Elke bakker weet natuurlijk dat het <strong>interessanter</strong> is om <strong>100 pistolets <em>parallel</em></strong> (tegelijk) te bakken.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_context"><a class="anchor" href="#_context"></a>Context</h2>
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Tijdens de les werd context geschetst voor het Parallel en Async verhaal door hardware, scheduling, threads, hyperthreading, cache, swap, verschil tussen thread en task binnen .Net etc te bespreken. Dit hoef je niet in detail te kennen, maar het helpt enorm om te begrijpen wat we hier proberen te doen.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Een kleine vergelijking van drie processoren:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Eigenschap</th>
+<th class="tableblock halign-left valign-top">Intel i486 (1989 - Desktop)</th>
+<th class="tableblock halign-left valign-top">AMD Ryzen 9 9800X3D (2024 - Desktop)</th>
+<th class="tableblock halign-left valign-top">AMD Epyc 9965 (2025 - Server)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cores</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">192</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Threads</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">16</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">384</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cache</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8 KB</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">96 MB</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">384 MB</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Transistors</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1,6 miljoen</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8,3 miljard</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">130 miljard</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Transistor Grootte</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">600 nm</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4 nm</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3 nm</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Max Klok</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">33 MHz</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5200 MHz</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3700 MHz</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Typisch Verbruik</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4 W</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">120 W</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">500 W</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_de_parallelle_patisserie"><a class="anchor" href="#_de_parallelle_patisserie"></a>De Parallelle Patisserie</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We benaderen het bakken van pistolets vanuit C#.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Om de analogie werkbaar te houden, werken we met kortere tijdspannes. Minuten uit de realiteit worden milliseconden in ons voorbeeld.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">public class Pistolet
+{
+    private const int BakTijdMs = 20;
+
+    public void Bak()
+    {
+        Thread.Sleep(BakTijdMs); <i class="conum" data-value="1"></i><b>(1)</b>
+        Console.WriteLine("Ik ben krokant gebakken.");
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>We dwingen op artificiële wijze een baktijd af.</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_een_pistolet_bakken"><a class="anchor" href="#_een_pistolet_bakken"></a>Een Pistolet Bakken</h3>
+<div class="paragraph">
+<p>We beschouwen een bakkerij en bakken één <code>Pistolet</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">public class Bakkerij
+{
+    public void RunSingle()
+    {
+        var pistolet = new Pistolet();
+        var stopwatch = new Stopwatch();
+
+        stopwatch.Start(); <i class="conum" data-value="1"></i><b>(1)</b>
+        pistolet.Bak(); <i class="conum" data-value="2"></i><b>(2)</b>
+        stopwatch.Stop(); <i class="conum" data-value="3"></i><b>(3)</b>
+
+        PrintVerstrekenTijd(stopwatch);
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>We starten een chronometer net voor het uitvoeren van het werk.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>We bakken één <code>Pistolet</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>We stoppen de chronometer net na het uitvoeren van het werk.</td>
+</tr>
+</table>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Ik ben krokant gebakken.
+Verstreken tijd d:hh:mm:ss.fffffff
+Verstreken tijd 0:00:00:00,0223354 (C#).
+Verstreken tijd 0:00:22:00,0000000 (Realiteit).</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>De totale executietijd is 22ms. Dit is de baktijd van één <code>Pistolet</code> + overhead van <code>WriteLine</code> etc.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_100_pistolets_bakken"><a class="anchor" href="#_100_pistolets_bakken"></a>100 Pistolets Bakken</h3>
+<div class="paragraph">
+<p>We gaan natuurlijk onze boterham niet verdienen als bakker wanneer we maar één <code>Pistolet</code> in de winkel liggen hebben. We willen 100 <code>Pistolets</code> bakken!</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">public class Bakkerij
+{
+    public void RunSequential()
+    {
+        var stopwatch = new Stopwatch();
+        const int aantalPistolets = 100;
+
+        var pistolets = new List&lt;Pistolet&gt;();
+        for (int i = 0; i &lt; aantalPistolets; i++) <i class="conum" data-value="1"></i><b>(1)</b>
+            pistolets.Add(new Pistolet());
+
+        stopwatch.Start();
+        foreach (var pistolet in pistolets) <i class="conum" data-value="2"></i><b>(2)</b>
+            pistolet.Bak();
+        stopwatch.Stop();
+
+        PrintVerstrekenTijd(stopwatch);
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>We bereiden 100 <code>Pistolets</code> voor.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>We bakken 100 <code>Pistolets</code>.</td>
+</tr>
+</table>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Ik ben krokant gebakken.
+Ik ben krokant gebakken.
+...etc...
+Ik ben krokant gebakken.
+Verstreken tijd d:hh:mm:ss.fffffff
+Verstreken tijd 0:00:00:02,3537221 (C#).
+Verstreken tijd 1:15:13:00,0000000 (Realiteit).</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>De totale executietijd is 2,35s. Dit vertaalt zich naar meer dan een dag in de realiteit. Dit is niet alleen niet rendabel, maar ook praktisch onhaalbaar!</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_100_pistolets_bakken_in_parallel"><a class="anchor" href="#_100_pistolets_bakken_in_parallel"></a>100 Pistolets Bakken In Parallel</h3>
+<div class="paragraph">
+<p>In werkelijkheid bakt de bakker natuurlijk die 100 <code>Pistolets</code> tegelijk, ofte in <em>Parallel</em>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">public class Bakkerij
+{
+    public void RunParallel()
+    {
+        var stopwatch = new Stopwatch();
+        const int aantalPistolets = 100;
+
+        var pistolets = new List&lt;Pistolet&gt;();
+        for (int i = 0; i &lt; aantalPistolets; i++) <i class="conum" data-value="1"></i><b>(1)</b>
+            pistolets.Add(new Pistolet());
+
+        stopwatch.Start();
+        Parallel.ForEach(pistolets, pistolet =&gt; pistolet.Bak()); <i class="conum" data-value="2"></i><b>(2)</b>
+        stopwatch.Stop();
+
+        PrintVerstrekenTijd(stopwatch);
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>We bereiden 100 <code>Pistolets</code> voor.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>We bakken 100 <code>Pistolets</code> in parallel.</td>
+</tr>
+</table>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Verstreken tijd d:hh:mm:ss.fffffff
+Verstreken tijd 0:00:00:00,2304050 (C#).
+Verstreken tijd 0:03:50:00,0000000 (Realiteit).</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>De totale executietijd is 230ms. Dit vertaalt zich naar 3 uur 50 minuten in de realiteit. Een enorme snelheidswinst ten opzichte van de sequentiële logica die meer dan een dag nodig heeft!</p>
+</div>
+<div class="paragraph">
+<p>Maar&#8230;&#8203; in de realiteit zouden de 100 <code>Pistolets</code> toch wel op 20 minuten parallel gebakken zijn? Waarom duurt het langer in C#?</p>
+</div>
+<div class="paragraph">
+<p>Het is zo dat het voorbereiden, uitvoeren en opvolgen van parallelle code een kost heeft voor het systeem. .Net handelt deze (complexe!) coördinatie volledig voor ons af, maar de <em>overhead</em> die daaruit volgt, is onvermijdbaar.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+.Net zal in de achtergrond zeker niet beslist hebben de 100 pistolets tegelijk te bakken. Er wordt een heuristiek gebruikt om in te schatten wat interessant zou zijn gegeven de context. Dit zou bijvoorbeeld kunnen leiden tot het bakken van 10 pistolets in parallel, en dat 10 keer sequentieel te doen.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Hieruit volgt dat we niet plots alle code parallel gaan programmeren in de hoop snelheidwinsten te boeken.</p>
+</div>
+<div class="paragraph">
+<p>Occasioneel zijn er mooie kansen om parallelle logica te schrijven die absoluut moeten gegrepen worden, maar een doorsnee <em>business rule</em> biedt weinig tot geen opportuniteit om aspecten te parallelliseren. Het is tevens goed mogelijk dat de <em>overhead</em> zwaarder doorweegt dan de winst.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_de_asynchrone_ambtenaar"><a class="anchor" href="#_de_asynchrone_ambtenaar"></a>De Asynchrone Ambtenaar</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We beschouwen het Ministerie Van Gedane Zaken, waar menig ambtenaar elke dag opnieuw gedurende exact 7 uur en 36 minuten het beste van zichzelf geeft.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">public class Ambtenaar
+{
+    public string Naam { get; set; }
+
+    public void VerrichtKleineTaak(int id)
+    {
+        Thread.Sleep(100);
+        Console.WriteLine($"{Naam} verrichte kleine taak {id}");
+    }
+
+    public void VerrichtGroteTaak(int id)
+    {
+        Thread.Sleep(250);
+        Console.WriteLine($"{Naam} verrichte grote taak {id}");
+    }
+
+    public void DrinkKoffie()
+    {
+        Thread.Sleep(50);
+        Console.WriteLine($"{Naam} dronk een koffie");
+    }
+}</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_een_rustige_dag"><a class="anchor" href="#_een_rustige_dag"></a>Een Rustige Dag</h3>
+<div class="paragraph">
+<p>Vandaag twee kleine taken te doen.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">public class Ministerie
+{
+    public void Run()
+    {
+        var ambtenaar = new Ambtenaar() { Naam = "Karel" };
+        var stopwatch = new Stopwatch();
+
+        stopwatch.Start();
+        ambtenaar.DrinkKoffie();
+        ambtenaar.VerrichtKleineTaak(1);
+        ambtenaar.DrinkKoffie();
+        ambtenaar.VerrichtKleineTaak(2);
+        ambtenaar.DrinkKoffie();
+        stopwatch.Stop();
+
+        PrintVerstrekenTijd(stopwatch);
+    }
+}</code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Karel dronk een koffie
+Karel verrichte kleine taak 1
+Karel dronk een koffie
+Karel verrichte kleine taak 2
+Karel dronk een koffie
+Verstreken tijd 0:00:00:00,3689939 (C#).
+Verstreken tijd 0:06:08:00,0000000 (Realiteit).</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Tijd zat om koffie te drinken en de werkdag is zelfs nog niet voorbij. Chill.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_een_drukke_dag"><a class="anchor" href="#_een_drukke_dag"></a>Een Drukke Dag</h3>
+<div class="paragraph">
+<p>Vandaag heeft Karel veel werk.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">public class Ministerie
+{
+    public void Run()
+    {
+        var ambtenaar = new Ambtenaar() { Naam = "Karel" };
+        var stopwatch = new Stopwatch();
+
+        stopwatch.Start();
+        ambtenaar.VerrichtKleineTaak(1);
+        ambtenaar.VerrichtGroteTaak(2);
+        ambtenaar.VerrichtKleineTaak(3);
+        stopwatch.Stop();
+
+        PrintVerstrekenTijd(stopwatch);
+    }
+}</code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Karel verrichte kleine taak 1
+Karel verrichte grote taak 1
+Karel verrichte kleine taak 3
+Verstreken tijd 0:00:00:00,4557278 (C#).
+Verstreken tijd 0:07:35:00,0000000 (Realiteit).</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>7h35 minuten gewerkt en dus geen tijd om koffie te drinken. Hopelijk wordt het morgen rustiger!</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_de_chef_is_terug"><a class="anchor" href="#_de_chef_is_terug"></a>De Chef Is Terug</h3>
+<div class="paragraph">
+<p>De <code>Chef</code> is terug van zijn jaarlijks zomerverlof. Zes weken Toscane hebben de man volledig opgeladen. Tijd om met volle goesting stokken in de wielen te steken! De komende weken zullen de ambtenaren voor alle grote taken toestemming moeten vragen&#8230;&#8203;</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">public class Chef : Ambtenaar
+{
+    public void GeefToestemming(int taakId)
+    {
+        Thread.Sleep(125);
+        Console.WriteLine($"{Naam} geeft toestemming voor taak {taakId}");
+    }
+}
+
+public class Ambtenaar
+{
+    //...
+    public void VraagToestemming(int id)
+    {
+        Console.WriteLine($"{Naam} vraagt toestemming voor taak {id}");
+        Chef.GeefToestemming(id);
+    }
+    //...
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Vandaag heeft Karel evenveel werk als gisteren.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">public class Ministerie
+{
+    public void Run()
+    {
+        var chef = new Chef() {Naam = "Bernard"};
+        var ambtenaar = new Ambtenaar() { Naam = "Karel", Chef = chef};
+        var stopwatch = new Stopwatch();
+
+        stopwatch.Start();
+        ambtenaar.VerrichtKleineTaak(1);
+        ambtenaar.VraagToestemming(2);
+        ambtenaar.VerrichtGroteTaak(2);
+        ambtenaar.VerrichtKleineTaak(3);
+        stopwatch.Stop();
+
+        PrintVerstrekenTijd(stopwatch);
+    }
+}</code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Karel verrichte kleine taak 1
+Karel vraagt toestemming voor taak 2
+Bernard geeft toestemming voor taak 2
+Karel verrichte grote taak 2
+Karel verrichte kleine taak 3
+Verstreken tijd 0:00:00:00,5936406 (C#).
+Verstreken tijd 0:09:53:00,0000000 (Realiteit).</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>9h en 53 minuten om het werk gedaan te krijgen. Als er ooit nog tijd is om koffie te drinken, weten we in elk geval over wat te praten!</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_waarom_wachten_met_het_werk"><a class="anchor" href="#_waarom_wachten_met_het_werk"></a>Waarom Wachten Met Het Werk?</h3>
+<div class="paragraph">
+<p>Kan dat hier niet een beetje efficiënter? Misschien. Karel is natuurlijk geen computer. We kunnen niet verwachten dat hij meerdere dingen in parallel kan doen. Maar, misschien kunnen we wel verwachten dat hij niet met zijn vingers draait terwijl hij op toestemming wacht? Misschien kan hij terwijl aan iets anders werken?</p>
+</div>
+<div class="paragraph">
+<p>De interactie waarbij toestemming gevraagd en verworven wordt is <em>asynchroon</em>. In de tijd tussen vraag en antwoord, kan Karel iets anders doen.</p>
+</div>
+<div class="paragraph">
+<p>In C# kunnen we dit bekomen door gebruik te maken van het <em>Task</em> systeem dat <em>async</em> operaties kent en, wanneer gewenst, deze kan <em>awaiten</em>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">public class Chef : Ambtenaar
+{
+    //...
+    public async Task GeefToestemmingAsync(int id)
+    {
+        await Task.Delay(125);
+        Console.WriteLine(
+            $"Chef {Naam} geeft toestemming voor taak {id}");
+    }
+}
+
+public class Ambtenaar
+{
+    //...
+    public Task VraagToestemmingAsync(int id)
+    {
+        Console.WriteLine(
+            $"{Naam} vraagt toestemming voor taak {id} aan {Chef.Naam}");
+        return Chef.GeefToestemmingAsync(id);
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">public class Ministerie
+{
+    public async Task Run()
+    {
+        var chef = new Chef() {Naam = "Bernard"};
+        var ambtenaar = new Ambtenaar() { Naam = "Karel", Chef = chef};
+        var stopwatch = new Stopwatch();
+
+        stopwatch.Start();
+        ambtenaar.VerrichtKleineTaak(1);
+        var wachtendeToestemming = ambtenaar.VraagToestemmingAsync(2); <i class="conum" data-value="1"></i><b>(1)</b>
+        ambtenaar.VerrichtKleineTaak(3);<i class="conum" data-value="2"></i><b>(2)</b>
+        await wachtendeToestemming; <i class="conum" data-value="3"></i><b>(3)</b>
+        ambtenaar.VerrichtGroteTaak(2);
+        stopwatch.Stop();
+
+        PrintVerstrekenTijd(stopwatch);
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>We vragen toestemming, maar wachten niet op het resultaat.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>We doen intussen ander werk.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>We wachten (<code>await</code>) nu expliciet op het krijgen van de toestemming voor de GroteTaak te starten.</td>
+</tr>
+</table>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Karel vraagt toestemming voor taak 2 aan Bob
+Karel deed kleine administratie 1.
+Chef Bob geeft toestemming voor taak 2
+Karel deed kleine administratie 3.
+Karel deed grote administratie 2.
+Verstreken tijd 0:00:00:00,4576303 (C#).
+Verstreken tijd 0:07:37:00,0000000 (Realiteit).</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Al het werk is gedaan na 7 uur en 37 minuten. Wat een verschil met gisteren! Eén minuut overwerken, daar maakt onze noeste ambtenaar geen enkel probleem van.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_toepassing"><a class="anchor" href="#_toepassing"></a>Toepassing</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Typisch willen we alle calls naar I/O dependencies <code>async</code> schrijven. We weten dat onze code <em>efkes</em> zal moeten wachten op het resultaat. Dit kan lokale disk access, database access, of http calls naar andere services zijn.</p>
+</div>
+<div class="paragraph">
+<p>Door het wachten te omvatten in asynchrone operaties, wordt dit wachten <em>non-blocking</em>. Op die manier kunnen de CPU cycles gebruikt worden door een andere operatie die wel direct concreet werk te doen heeft.</p>
+</div>
+<div class="paragraph">
+<p>Deze asynchrone aard zal door de calls stack naar boven bubbelen. Kortom: als je async database calls maakt, zal je web api endpoint een <code>Task&lt;&#8230;&#8203;&gt;</code>. Dat is geen probleem, want de webapi infrastructuur is daar op voorzien.</p>
+</div>
+<div class="paragraph">
+<p>Een server krijgt massa&#8217;s api calls die elkaar overlappen in de tijd. Hoewel wij zelf niet expliciet <em>Threads</em> aanmaken, voorziet dotnet achter de schermen een <em>ThreadPool</em> waarin de web api calls overlappend afgehandeld worden*. Hoe meer wachttijd we non-blocking programmeren, hoe meer werk er per thread afgehandeld kan worden.</p>
+</div>
+<div class="paragraph">
+<p>Het toewijzen van taken aan Threads wordt volledig door dotnet beheerd.</p>
+</div>
+<div class="paragraph">
+<p>*Dit is de reden dat nagenoeg alles <code>Scoped</code> (uniek object per request) geïnjecteerd wordt in een web api.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_concurrent_collections"><a class="anchor" href="#_concurrent_collections"></a>Concurrent Collections</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Wanneer een collection gemuteerd wordt door meerdere Tasks/Threads, kan dit leiden tot corruptie van de data. Om dat te verhinderen is extra logica nodig. Deze hoef je niet zelf te voorzien. Dotnet voorziet een aantal <a href="https://learn.microsoft.com/en-us/dotnet/standard/collections/thread-safe/">threadsafe collections</a>, zoals de <code>ConcurrentBag</code>. Denk eraan deze te gebruiken wanneer je een collection zelf deelt tussen Tasks/Threads.</p>
+</div>
+<div class="paragraph">
+<p>De extra logica om collections thread safe te maken, heeft natuurlijk een kost. Dit is een van de verschillende punten waarop parallelle code moet synchroniseren. Deze overhead is niet verwaarloosbaar. Je moet afwegen of <em>het sop de kool waard is</em>.</p>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using a customized version of the Antora default UI.</p>
+  <p>The source code for the default UI is licensed under the terms of the MPL-2.0 license.</p>
+    <p>Content by Stefan Courteaux unless otherwise noted. </p>
+</footer>
+<script id="site-script" src="../_/js/site.js" data-ui-root-path="../_"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

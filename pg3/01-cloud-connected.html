@@ -323,7 +323,7 @@
 </div>
 </div>
 <div class="paragraph">
-<p>De app start en communiceert op welke url deze bereikbaar is. In mijn geval is dat <a href="https://localhost:7239" class="bare">https://localhost:7239</a></p>
+<p>De app start en logt op welke url deze bereikbaar is. In mijn geval is dat <code><a href="https://localhost:7239" class="bare">https://localhost:7239</a></code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -336,6 +336,37 @@
 <div class="imageblock">
 <div class="content">
 <img src="_images/cloud-connected/browser.png" alt="browser">
+</div>
+</div>
+<div class="paragraph">
+<p>De keuzelijst met runsettings, toegewezen poort en het starten van de browser is geen magie. Alles staat opgelijst in een configuratiebestand.</p>
+</div>
+<div class="listingblock">
+<div class="title">Properties/launchSettings.json</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "$schema": "https://json.schemastore.org/launchsettings.json",
+  "profiles": {
+    "http": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": true,
+      "applicationUrl": "http://localhost:5279",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "https": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": true,
+      "applicationUrl": "https://localhost:7296;http://localhost:5279",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}</code></pre>
 </div>
 </div>
 </div>
@@ -370,6 +401,17 @@
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">az webapp up --sku F1 --name hogent-demoapi-&lt;voornaam&gt;&lt;naam&gt; --os-type linux</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Indien je een foutmelding krijgt die lijkt op <code>The subscription is not registered to use namespace 'Microsoft.Web'</code>, surf je naar de azure portal, navigeer je naar je subscription en activeer je de namespace.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/cloud-connected/msdotweb.png" alt="msdotweb">
+</div>
+</div>
+<div class="paragraph">
+<p>Dergelijke fouten los je in de toekomst op gelijkaardige manier op. Start de deploy opnieuw wanneer de Azure taak voltooid is.</p>
 </div>
 <div class="paragraph">
 <p>De api staat nu in de cloud en is beschikbaar op de url aangegeven in de terminal output. Het kan enkele minuten duren vooraleer deze bereikbaar is. Bovenop de url krijg je nog andere informatie over de deploy.</p>
@@ -425,25 +467,15 @@
 <div class="sect1">
 <h2 id="_opdracht"><a class="anchor" href="#_opdracht"></a>Opdracht</h2>
 <div class="sectionbody">
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-Installeer alle vermelde tools en begrijp hoogover waarvoor ze dienen.
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_oefening"><a class="anchor" href="#_oefening"></a>Oefening</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Probeer een api te publiceren naar je eigen Azure subscription.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Installeer alle vermelde tools en begrijp hoogover waarvoor ze dienen.</p>
+</li>
+<li>
+<p>Publiceer een api naar je eigen Azure subscription.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>

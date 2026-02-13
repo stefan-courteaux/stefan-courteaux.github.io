@@ -61,7 +61,7 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <span class="nav-text">Hoofdstukken 🗒️</span>
+    <span class="nav-text">ShipIt App 📦️</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="01-cloud-connected.html">Cloud Connected</a>
@@ -73,31 +73,40 @@
     <a class="nav-link" href="02-az-devops.html">Iteratief Ontwikkelen</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <span class="nav-text">Cosmos</span>
+    <a class="nav-link" href="05-cosmos.html">Cosmos &amp; Options Pattern</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <span class="nav-text">Blob Storage</span>
+    <a class="nav-link" href="07-blob.html">Blob Storage &amp; PDF</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="04-middleware.html">Middleware &amp; Extensions</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <span class="nav-text">Middleware</span>
+    <a class="nav-link" href="08-open-data-2526.html">Open Data</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <span class="nav-text">Open Data &amp; Docker</span>
+    <a class="nav-link" href="09-auth-2526.html">Authenticatie</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <span class="nav-text">Secret Management</span>
+    <a class="nav-link" href="09-auth-2526-2.html">Autorisatie</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="10-technisch.html">Technische Lessen</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="08-docker-2526.html">Docker</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <span class="nav-text">Testing</span>
+    <a class="nav-link" href="06-02-secret-management.html">Secret Management</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <span class="nav-text">Authenticatie</span>
+    <a class="nav-link" href="08-testing-2526.html">Testing Pyramid</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <span class="nav-text">Autorisatie</span>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <span class="nav-text">Afronden</span>
+    <span class="nav-text">CI/CD</span>
   </li>
 </ul>
   </li>
@@ -138,7 +147,8 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Gevorderd 3</a></li>
-    <li><a href="04-middleware.html">Middleware</a></li>
+    <li>ShipIt App 📦️</li>
+    <li><a href="04-middleware.html">Middleware &amp; Extensions</a></li>
   </ul>
 </nav>
 </div>
@@ -157,7 +167,10 @@
 <p>Middleware leren kennen.</p>
 </li>
 <li>
-<p>Beter begrip van Azure resources.</p>
+<p>Rate Limiting activeren.</p>
+</li>
+<li>
+<p>Api Documentatie activeren.</p>
 </li>
 </ul>
 </div>
@@ -361,10 +374,7 @@ Zoals je in de <a href="https://learn.microsoft.com/en-us/aspnet/core/performanc
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://www.openapis.org/what-is-openapi">OpenAPI</a> document creatie werd in de afgelopen jaren gefaciliteerd door <code>Swashbuckle.AspNetCore</code>. Deze library wordt niet goed meer onderhouden en Microsoft <a href="https://devblogs.microsoft.com/dotnet/dotnet9-openapi/">distantieert er zich van</a> met de introductie van .Net 9.</p>
-</li>
-<li>
-<p>Migreer het <code>PriceQuote.Api</code> project naar .Net 9.</p>
+<p><a href="https://www.openapis.org/what-is-openapi">OpenAPI</a> document creatie werd in de afgelopen jaren gefaciliteerd door <code>Swashbuckle.AspNetCore</code>. Deze library wordt niet goed meer onderhouden en Microsoft <a href="https://devblogs.microsoft.com/dotnet/dotnet9-openapi/">distantieert er zich van</a> sinds de introductie van .Net 9.</p>
 </li>
 <li>
 <p>Gebruik de nieuwe <code>Microsoft.AspNetCore.OpenApi</code> om het OpenAPI document te genereren.</p>
@@ -392,28 +402,6 @@ Zoals je in de <a href="https://learn.microsoft.com/en-us/aspnet/core/performanc
 </div>
 <div class="sect2">
 <h3 id="_implementatie_pricequote"><a class="anchor" href="#_implementatie_pricequote"></a>Implementatie PriceQuote</h3>
-<div class="listingblock">
-<div class="title">We targeten .Net 9 door dit aan te geven in <code>ShipIt.PriceQuote.Api.csproj</code>.</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;Project Sdk="Microsoft.NET.Sdk.Web"&gt;
-
-  &lt;PropertyGroup&gt;
-    &lt;TargetFramework&gt;net9.0&lt;/TargetFramework&gt; <i class="conum" data-value="1"></i><b>(1)</b>
-    &lt;Nullable&gt;enable&lt;/Nullable&gt;
-    &lt;ImplicitUsings&gt;enable&lt;/ImplicitUsings&gt;
-  &lt;/PropertyGroup&gt;
-  ...
-&lt;/Project&gt;</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Nieuwe versie dotnet aanduiden.</td>
-</tr>
-</table>
-</div>
 <div class="literalblock">
 <div class="title">We voegen nuget <code>Microsoft.AspNetCore.OpenApi</code> toe aan <code>ShipIt.PriceQuote.Api</code>.</div>
 <div class="content">

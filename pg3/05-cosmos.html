@@ -61,7 +61,7 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <span class="nav-text">Hoofdstukken 🗒️</span>
+    <span class="nav-text">ShipIt App 📦️</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="01-cloud-connected.html">Cloud Connected</a>
@@ -72,32 +72,41 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="02-az-devops.html">Iteratief Ontwikkelen</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <span class="nav-text">Cosmos</span>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="05-cosmos.html">Cosmos &amp; Options Pattern</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <span class="nav-text">Blob Storage</span>
+    <a class="nav-link" href="07-blob.html">Blob Storage &amp; PDF</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <span class="nav-text">Middleware</span>
+    <a class="nav-link" href="04-middleware.html">Middleware &amp; Extensions</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <span class="nav-text">Open Data &amp; Docker</span>
+    <a class="nav-link" href="08-open-data-2526.html">Open Data</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <span class="nav-text">Secret Management</span>
+    <a class="nav-link" href="09-auth-2526.html">Authenticatie</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <span class="nav-text">Testing</span>
+    <a class="nav-link" href="09-auth-2526-2.html">Autorisatie</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="10-technisch.html">Technische Lessen</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="08-docker-2526.html">Docker</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <span class="nav-text">Authenticatie</span>
+    <a class="nav-link" href="06-02-secret-management.html">Secret Management</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <span class="nav-text">Autorisatie</span>
+    <a class="nav-link" href="08-testing-2526.html">Testing Pyramid</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <span class="nav-text">Afronden</span>
+    <span class="nav-text">CI/CD</span>
   </li>
 </ul>
   </li>
@@ -138,7 +147,8 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Gevorderd 3</a></li>
-    <li><a href="05-cosmos.html">Cosmos Database</a></li>
+    <li>ShipIt App 📦️</li>
+    <li><a href="05-cosmos.html">Cosmos &amp; Options Pattern</a></li>
   </ul>
 </nav>
 </div>
@@ -198,6 +208,13 @@
 <ul>
 <li>
 <p>Voeg een storage layer toe aan de solution.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Refactor de oplossing naar Api-, Service- en Storagelaag.</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
 <p>Dit is geen relationele data, gebruik Cosmos NoSQL Document DB</p>
@@ -207,9 +224,6 @@
 </li>
 <li>
 <p>Voorzie een GET endpoint.</p>
-</li>
-<li>
-<p>Refactor de oplossing om Api-, Service- en Storagelaag te gebruiken.</p>
 </li>
 <li>
 <p>Let er op geen connectionstrings te committen!</p>
@@ -247,6 +261,18 @@
 </div>
 <div class="paragraph">
 <p>Maak een database <code>shipit</code> en een container <code>pricequotes</code>. Gebruik <code>/id</code> als <em>partition key</em>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Er valt meer te vertellen over <em>PartitionKeys</em>. Dat leer je wel op het werk in de mate van het nodige. We beperken ons hier tot een implementatie die gewoon werkt, zonder stil te staan bij de exacte details en implicaties van de partition key keuze.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p><span class="image"><img src="_images/cosmos/create-db.png" alt="create db"></span></p>
@@ -338,7 +364,7 @@ Op dit moment zou je zeker kunnen stellen dat de oplossing <em>overengineered</e
 <p>Voeg nuget package <code>Microsoft.Azure.Cosmos</code> en <code>Newtonsoft.Json</code> toe aan dit nieuwe project.</p>
 </div>
 <div class="paragraph">
-<p>We hebben een <em>Repository</em> interface en een <em>Contract</em> (DAO/DTO/POCO&#8230;&#8203; what&#8217;s in a name) nodig.</p>
+<p>We hebben een <em>Repository</em> interface en een <em>Contract</em> (DAO/DTO) nodig.</p>
 </div>
 <div class="listingblock">
 <div class="title">ShipIt.PriceQuote.Storage.Contracts/PriceQuoteStorageContract.cs</div>
@@ -364,7 +390,7 @@ Op dit moment zou je zeker kunnen stellen dat de oplossing <em>overengineered</e
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Cosmos verwaht een lowercase <code>id</code>.</td>
+<td>Cosmos verwacht een lowercase <code>id</code>.</td>
 </tr>
 </table>
 </div>
@@ -434,18 +460,6 @@ Op dit moment zou je zeker kunnen stellen dat de oplossing <em>overengineered</e
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
 <td>De logica om de <em>Container</em> vast te krijgen, is dezelfde voor <em>Read</em> en <em>Write</em> operaties, dus we encapsuleren dit in een methode.</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Er valt meer te vertellen over <em>PartitionKeys</em>. Dat leer je wel op het werk in de mate van het nodige. We beperken ons hier tot een implementatie die gewoon werkt, zonder stil te staan bij de exacte details en implicaties van de partition key keuze.
-</td>
 </tr>
 </table>
 </div>
@@ -613,7 +627,7 @@ builder.Services.AddControllers()
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Nieuwe setting om Async suffix van methode namen in rekening te brengen.</td>
+<td>Nieuwe configuratie om <code>&#8230;&#8203;Async</code> suffix van methode namen in rekening te brengen.</td>
 </tr>
 </table>
 </div>
@@ -630,13 +644,16 @@ Het alternatief is de naam hardcoden, maar dat is minder elegant.
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_options_pattern"><a class="anchor" href="#_options_pattern"></a>Options Pattern</h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_options_pattern"><a class="anchor" href="#_options_pattern"></a>Options Pattern</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Een handige manier om settings niet te hardcoden is een strongly typed configuratie (klasse) te definiëren en data uit <code>appsettings.(Development).json</code> daar op te mappen. Zoals altijd kan je dit zelf implementeren, maar is het verstandiger een gepaste Nuget van Microsoft te gebruiken.</p>
 </div>
-<div class="sect3">
-<h4 id="_definitie"><a class="anchor" href="#_definitie"></a>Definitie</h4>
+<div class="sect2">
+<h3 id="_definitie"><a class="anchor" href="#_definitie"></a>Definitie</h3>
 <div class="paragraph">
 <p>Voeg toe aan <em>Storage</em> en <em>Api</em> projecten: <code>Microsoft.Extensions.Options</code></p>
 </div>
@@ -658,10 +675,22 @@ Het alternatief is de naam hardcoden, maar dat is minder elegant.
 </div>
 </div>
 <div class="paragraph">
-<p><code>appsettings.json</code> hoort thuis in git. De file mag <strong>geen</strong> gevoelige settings bevatten.</p>
+<p><code>appsettings.json</code> wordt opgenomen in het git repo. De file mag <strong>geen</strong> gevoelige settings bevatten.Gevoelige settings bewaar je eventueel wel in <code>appsettings.Development.json</code>. Deze file hoort <strong>niet</strong> thuis in Git.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Gevoelige settings worden idealiter <a href="06-02-secret-management.html" class="xref page">als secrets behandeld</a>.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
-<p>Gevoelige settings bewaar je eventueel wel in <code>appsettings.Development.json</code>. Deze file hoort <strong>niet</strong> thuis in Git. De waarden in <code>appsettings.Development.json</code> overriden <code>appsettings.json</code> bij lokaal uitvoeren van de code.</p>
+<p>De waarden in <code>appsettings.Development.json</code> overriden <code>appsettings.json</code> bij lokaal uitvoeren van de code (in Development mode).</p>
 </div>
 <div class="listingblock">
 <div class="title">ShipIt.PriceQuote.Api/appsettings.Development.json</div>
@@ -692,8 +721,8 @@ Het alternatief is de naam hardcoden, maar dat is minder elegant.
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_gebruik"><a class="anchor" href="#_gebruik"></a>Gebruik</h4>
+<div class="sect2">
+<h3 id="_gebruik"><a class="anchor" href="#_gebruik"></a>Gebruik</h3>
 <div class="paragraph">
 <p>Voeg deze toe aan de constructor van het repo en spreek het object aan in de code.</p>
 </div>
@@ -735,7 +764,6 @@ public class PriceQuoteRepository(IOptions&lt;PriceQuoteRepositoryOptions&gt; op
 </table>
 </div>
 </div>
-</div>
 <div class="sect2">
 <h3 id="_dependency_injection"><a class="anchor" href="#_dependency_injection"></a>Dependency Injection</h3>
 <div class="paragraph">
@@ -768,8 +796,11 @@ public class PriceQuoteRepository(IOptions&lt;PriceQuoteRepositoryOptions&gt; op
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_deployment"><a class="anchor" href="#_deployment"></a>Deployment</h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_deployment"><a class="anchor" href="#_deployment"></a>Deployment</h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ps hljs" data-lang="ps">az webapp up `
@@ -801,7 +832,6 @@ public class PriceQuoteRepository(IOptions&lt;PriceQuoteRepositoryOptions&gt; op
 <div class="imageblock">
 <div class="content">
 <img src="_images/cosmos/data.png" alt="data">
-</div>
 </div>
 </div>
 </div>

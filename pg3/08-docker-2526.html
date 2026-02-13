@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Evaluatie :: Programmeren Gevorderd 3 (BETA)</title>
+    <title>Docker :: Programmeren Gevorderd 3 (BETA)</title>
     <meta name="generator" content="Antora 3.1.14">
     <link rel="stylesheet" href="../_/css/site.css">
   </head>
@@ -96,7 +96,7 @@
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="10-technisch.html">Technische Lessen</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="08-docker-2526.html">Docker</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -147,7 +147,8 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Gevorderd 3</a></li>
-    <li><a href="00-eindopdracht.html">Evaluatie</a></li>
+    <li><a href="10-technisch.html">Technische Lessen</a></li>
+    <li><a href="08-docker-2526.html">Docker</a></li>
   </ul>
 </nav>
 </div>
@@ -156,21 +157,68 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Evaluatie</h1>
+<h1 class="page">Docker</h1>
 <div class="sect1">
-<h2 id="_eindopdracht"><a class="anchor" href="#_eindopdracht"></a>Eindopdracht</h2>
+<h2 id="_doel_van_deze_les"><a class="anchor" href="#_doel_van_deze_les"></a>Doel van deze les</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Nut en werking van Docker.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_containerization"><a class="anchor" href="#_containerization"></a>Containerization</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Jij bouwt gedurende de lessen (en thuis) mee aan de voorbeeld-app om de technologie onder de knie te krijgen. Dit valt onder oefenen en staat niet op punten. Er zijn geen testen. Niks moet, alles mag, zolang je het kan uitleggen op de laatste dag.</p>
+<p>Software steunt op de aanwezigheid van externe componenten in het systeem. Voorbeelden van deze dependencies zijn .Net runtime, git, Python, Java runtime, Node etc. Verschillende applicaties kunnen overlappende of botsende dependencies vereisen. Het kan moeilijk worden om al deze afhankelijkheden in kaart te brengen en alle software op eenzelfde installatie van een besturingssysteem werkend te houden. In het slechtste geval kom je terecht in <a href="https://en.wikipedia.org/wiki/Dependency_hell">Dependency Hell</a>.</p>
 </div>
 <div class="paragraph">
-<p>Je kiest een onderwerp waarrond je zelf een cloud project zal bouwen én deployen op de Azure Cloud omgeving. Je zoekt interessante opportuniteiten om de aangeleerde technologie toe te passen.</p>
+<p>Het zou handiger zijn mocht men applicaties met de gepaste versie van hun dependencies apart van elkaar kunnen installeren in een omgeving die ze niet delen met andere applicaties. Strikt genomen is het al decennia mogelijk dit in te regelen. Denk aan "klassieke" virtualisatieoplossingen zoals VirtualBox, VMWare, KVM, Mainframe LPARS en uiteraard <a href="https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/about/">Hyper-V</a>. Deze isoleren een volledige OS installatie, wat hoge systeemeisen met zich meebrengt. Dit heeft zijn nut, maar is overdaad voor de situatie die wij beschouwen - we wensen applicaties te isoleren, niet het volledige OS.</p>
 </div>
 <div class="paragraph">
-<p>Je presenteert het eindresultaat mondeling voor de lesgever, eventueel vergezeld van select publiek. Je beantwoordt een aantal vragen over jouw project en kan aantonen de inzichten en technologie uit de les onder de knie te hebben.</p>
+<p>Containerization is het <em>lightweight</em> isoleren van een applicatie. Er bestaan verschillende Containerization tools. Docker is er slechts een van en, op dit moment, de populairste. De definitie van de omgeving van een geïsoleerde app is een <em>Image</em>. Een <em>Container</em> is een gedeployde image - al dan niet running.</p>
 </div>
 <div class="paragraph">
-<p>Consulteer de Studiewijzer voor meer informatie betreffende de evaluatie.</p>
+<p>Docker vindt zijn origine in de Linux (server) wereld. Bijgevolg zijn Docker containers standaard op "sandboxing" in Linux gericht. Het is intussen mogelijk om Linux Containers op Windows en Mac te draaien - handig voor (cloud) developers. In dit geval zal de Docker Engine zelf een virtuele machine, met Linux als guest OS, opstarten.</p>
+</div>
+<div class="paragraph">
+<p>Het is strikt genomen mogelijk om Windows en macOS containers te definiëren - die vereisen op hun beurt ook een passend OS, al dan niet virtueel.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_docker_compose"><a class="anchor" href="#_docker_compose"></a>Docker Compose</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://github.com/stefan-courteaux/docker-compose-demo">Docker Compose Demo</a> bespreken.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_oefening"><a class="anchor" href="#_oefening"></a>Oefening</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Prober zelf een kleine Docker service / compose te maken.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_referenties"><a class="anchor" href="#_referenties"></a>Referenties</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.docker.com/">Docker</a></p>
+</li>
+</ul>
 </div>
 </div>
 </div>

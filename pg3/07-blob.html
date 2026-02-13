@@ -61,7 +61,7 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <span class="nav-text">Hoofdstukken 🗒️</span>
+    <span class="nav-text">ShipIt App 📦️</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="01-cloud-connected.html">Cloud Connected</a>
@@ -73,31 +73,40 @@
     <a class="nav-link" href="02-az-devops.html">Iteratief Ontwikkelen</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <span class="nav-text">Cosmos</span>
+    <a class="nav-link" href="05-cosmos.html">Cosmos &amp; Options Pattern</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="07-blob.html">Blob Storage &amp; PDF</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <span class="nav-text">Blob Storage</span>
+    <a class="nav-link" href="04-middleware.html">Middleware &amp; Extensions</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <span class="nav-text">Middleware</span>
+    <a class="nav-link" href="08-open-data-2526.html">Open Data</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <span class="nav-text">Open Data &amp; Docker</span>
+    <a class="nav-link" href="09-auth-2526.html">Authenticatie</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <span class="nav-text">Secret Management</span>
+    <a class="nav-link" href="09-auth-2526-2.html">Autorisatie</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="10-technisch.html">Technische Lessen</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="08-docker-2526.html">Docker</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <span class="nav-text">Testing</span>
+    <a class="nav-link" href="06-02-secret-management.html">Secret Management</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <span class="nav-text">Authenticatie</span>
+    <a class="nav-link" href="08-testing-2526.html">Testing Pyramid</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <span class="nav-text">Autorisatie</span>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <span class="nav-text">Afronden</span>
+    <span class="nav-text">CI/CD</span>
   </li>
 </ul>
   </li>
@@ -138,7 +147,8 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Gevorderd 3</a></li>
-    <li><a href="07-blob.html">Blob Storage &amp; Web Service Architectuur</a></li>
+    <li>ShipIt App 📦️</li>
+    <li><a href="07-blob.html">Blob Storage &amp; PDF</a></li>
   </ul>
 </nav>
 </div>
@@ -157,10 +167,10 @@
 <p>Azure Blob Storage leren kennen.</p>
 </li>
 <li>
-<p>Nadenken over web service architectuur.</p>
+<p>Inzicht in microservice architectuur.</p>
 </li>
 <li>
-<p>Minimal Api beter leren kennen.</p>
+<p>Experimenteren met een <em>minimal api</em>.</p>
 </li>
 </ul>
 </div>
@@ -326,41 +336,14 @@
 </div>
 <div class="sect2">
 <h3 id="_storage_explorer"><a class="anchor" href="#_storage_explorer"></a>Storage Explorer</h3>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-De storage explorer functionaliteit in de Azure Portal wordt steeds beter. Voor basisoperaties, zoals de files oplijsten, wissen en downloaden, heb je de desktop applicatie niet nodig.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>Je kan de blob storage files verkennen via de Azure Tools extensions voor VSCode.</p>
 </div>
 <div class="paragraph">
-<p>Start de <em>Azure Storage Explorer</em> op en log in met je Hogent account.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/blob/aselogin.png" alt="aselogin">
-</div>
+<p><span class="image"><img src="_images/blob/vscode-azure-blob.png" alt="vscode azure blob"></span></p>
 </div>
 <div class="paragraph">
-<p>De applicatie is nu verbonden met je Azure resources. Open de Explorer.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/blob/aseloggedin.png" alt="aseloggedin">
-</div>
-</div>
-<div class="paragraph">
-<p>De container die we aangemaakt hebben in de Azure Portal kan nu doorbladerd worden. Op dit moment zit er natuurlijk nog geen data in.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/blob/asecontainer.png" alt="asecontainer">
-</div>
+<p>Andere opties zijn de Azure Portal (website) en de Azure Storage Explorer (desktop app).</p>
 </div>
 </div>
 </div>
@@ -881,8 +864,11 @@ async Task&lt;Results&lt;Ok&lt;string&gt;, BadRequest, FileContentHttpResult&gt;
 </ul>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_deployen"><a class="anchor" href="#_deployen"></a>Deployen</h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_deployen"><a class="anchor" href="#_deployen"></a>Deployen</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>We hebben nu twee services om te deployen.</p>
 </div>
@@ -937,7 +923,6 @@ Je kan de pdf in dit geval niet downloaden met een gewone web browser omdat de g
 </td>
 </tr>
 </table>
-</div>
 </div>
 </div>
 </div>

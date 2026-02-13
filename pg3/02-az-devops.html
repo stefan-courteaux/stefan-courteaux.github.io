@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Azure DevOps :: Programmeren Gevorderd 3 (BETA)</title>
+    <title>Iteratief Ontwikkelen :: Programmeren Gevorderd 3 (BETA)</title>
     <meta name="generator" content="Antora 3.1.14">
     <link rel="stylesheet" href="../_/css/site.css">
   </head>
@@ -69,8 +69,8 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="02-microservices.html">Microservices</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <span class="nav-text">Iteratief Ontwikkelen</span>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="02-az-devops.html">Iteratief Ontwikkelen</a>
   </li>
   <li class="nav-item" data-depth="2">
     <span class="nav-text">Cosmos</span>
@@ -138,7 +138,8 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Gevorderd 3</a></li>
-    <li><a href="02-az-devops.html">Azure DevOps</a></li>
+    <li>Hoofdstukken 🗒️</li>
+    <li><a href="02-az-devops.html">Iteratief Ontwikkelen</a></li>
   </ul>
 </nav>
 </div>
@@ -147,7 +148,7 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Azure DevOps</h1>
+<h1 class="page">Iteratief Ontwikkelen</h1>
 <div class="sect1">
 <h2 id="_doel_van_deze_les"><a class="anchor" href="#_doel_van_deze_les"></a>Doel van deze les</h2>
 <div class="sectionbody">
@@ -157,10 +158,10 @@
 <p>Wat is iteratief ontwikkelen?</p>
 </li>
 <li>
-<p>Azure DevOps leren kennen.</p>
+<p>GitHub leren kennen.</p>
 </li>
 <li>
-<p>Git flows.</p>
+<p>Git flow bespreken.</p>
 </li>
 <li>
 <p>Een eerste Story uitwerken.</p>
@@ -176,10 +177,10 @@
 <p>Bij traditionele softwareontwikkeling schrijven analisten een enkel groot specificatiedocument. Dit wordt overhandigd aan het ontwikkelteam en x maand later wordt de software opgeleverd. Dit kan goed werken onder bepaalde omstandigheden, maar veelal moet men bij oplevering toch concluderen dat een en ander over het hoofd gezien werd tijdens de analyse. Deze manier van werken wordt het <a href="https://en.wikipedia.org/wiki/Waterfall_model">waterfall model</a> genoemd.</p>
 </div>
 <div class="paragraph">
-<p>Wanneer iedereen akkoord is dat er een mate van onzekerheid bestaat rond de specificaties, werkt het beter om in <a href="https://en.wikipedia.org/wiki/Iterative_and_incremental_development">kleine stapjes te ontwikkelen</a> en veel feedbackmomenten met de klant te organiseren. Wanneer je bijvoorbeeld elke 2 weken een nieuwe versie oplevert en de resultaten bespreekt met de klant, is de kans groot dat je project na 6 maand dichter aanleunt bij de werkelijke wensen en noden, dan wanneer je 6 maand niet gesproken hebt met elkaar. Dit wil niet automatisch zeggen dat het sneller klaar zal zijn of goedkoper zal zijn.</p>
+<p>Wanneer iedereen akkoord is dat er een mate van onzekerheid bestaat rond de specificaties, werkt het beter om in <a href="https://en.wikipedia.org/wiki/Iterative_and_incremental_development">kleine stapjes te ontwikkelen</a> en veel feedbackmomenten met de klant te organiseren. Wanneer je bijvoorbeeld elke twee weken een nieuwe versie oplevert en de resultaten bespreekt met de klant, is de kans groot dat je project na zes maand dichter aanleunt bij de werkelijke wensen en noden, dan wanneer je zes maand niet gesproken hebt met elkaar. Dit wil niet zeggen dat het project sneller klaar zal zijn of goedkoper zal zijn.</p>
 </div>
 <div class="paragraph">
-<p>Er zijn vele manieren om softwareontwikkeling op flexibele, iteratieve manier te organiseren. Er werden al vele boeken over geschreven en een niet te onderschatten aantal mensen en bedrijven slaan geld uit het prediken en coachen van een bepaalde aanpak. Ook hier geldt dat het bedrijf waar je terechtkomt zal bepalen hoe er gewerkt wordt.</p>
+<p>Er zijn vele manieren om softwareontwikkeling op flexibele, iteratieve manier te organiseren. Er werden al vele boeken over geschreven en een niet te onderschatten aantal mensen en bedrijven slaan geld uit het prediken en coachen van een bepaalde aanpak. Ook hier geldt dat het bedrijf waar je terecht komt, zal bepalen hoe er gewerkt wordt.</p>
 </div>
 <div class="paragraph">
 <p>Een populaire iteratieve aanpak is <a href="https://en.wikipedia.org/wiki/Scrum_(software_development)">SCRUM</a>.</p>
@@ -189,11 +190,11 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/az-devops/userstory.jpeg" alt="userstory">
+<img src="_images/az-devops/github-userstory.jpeg" alt="github userstory">
 </div>
 </div>
 <div class="paragraph">
-<p>We houden rekening met <strong>Definition Of Ready</strong> for development (DOR), <strong>Definition Of Done</strong> (DOD), en <strong>Tech Debt</strong>.</p>
+<p>We houden ook rekening met een <strong>Definition Of Ready</strong> for development (DOR), <strong>Definition Of Done</strong> (DOD) en <strong>Tech Debt</strong>.</p>
 </div>
 <div class="sect2">
 <h3 id="_definition_of_ready_dor"><a class="anchor" href="#_definition_of_ready_dor"></a>Definition Of Ready (DOR)</h3>
@@ -236,66 +237,18 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_azure_devops"><a class="anchor" href="#_azure_devops"></a>Azure DevOps</h2>
+<h2 id="_github"><a class="anchor" href="#_github"></a>GitHub</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In dit vak gebruiken we Microsoft Azure DevOps om de ontwikkeling van software te plannen en op te volgen. Zoek de <em>Azure Devops organizations</em> service in de Azure Portal.</p>
+<p>In dit vak gebruiken we Microsoft GitHub om de ontwikkeling van software te plannen en op te volgen.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/az-devops/devops-activeren.png" alt="devops activeren">
+<img src="_images/az-devops/github-welcome.png" alt="github welcome">
 </div>
 </div>
 <div class="paragraph">
-<p>De belangrijkste elementen verhouden zich als volgt:</p>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">Organisations</dt>
-<dd>
-<p>Een bedrijf of organisatie die DevOps zal gebruiken.</p>
-</dd>
-<dt class="hdlist1">Projects</dt>
-<dd>
-<p>Een applicatie.</p>
-</dd>
-<dt class="hdlist1">Boards</dt>
-<dd>
-<p>Beheer van taken en planning.</p>
-</dd>
-<dt class="hdlist1">Code</dt>
-<dd>
-<p>Code repositories (Git).</p>
-</dd>
-<dt class="hdlist1">Pipelines</dt>
-<dd>
-<p>Uitvoeren van taken om code te builden en te deployen.</p>
-</dd>
-</dl>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Microsoft publiceert <a href="https://learn.microsoft.com/en-us/azure/devops/get-started/?view=azure-devops">uitgebreide documentatie</a>.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Intussen biedt GitHub, ook van Microsoft, de meeste functionaliteit die Azure DevOps biedt. Men kan vermoeden dat deze producten niet voor altijd samen zullen blijven bestaan.
-</td>
-</tr>
-</table>
+<p>Intussen biedt GitHub de meeste functionaliteit die Azure DevOps biedt. Azure DevOps wordt op dit moment nog veel gebruikt in bedrijven met een iets conservatievere aanpak. Men kan vermoeden dat deze producten niet voor altijd samen zullen blijven bestaan. Je gebruikt Azure DevOps in <em>Projectwerk 2</em>.</p>
 </div>
 </div>
 </div>
@@ -303,7 +256,7 @@ Intussen biedt GitHub, ook van Microsoft, de meeste functionaliteit die Azure De
 <h2 id="_git"><a class="anchor" href="#_git"></a>Git</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Git is een open source versiebeheersysteem. Dit systeem vormt de kern van de meeste moderne versiebheersproducten zoals GitHub, BitBucket, en Azure DevOps Code Repositories. Git is dus <strong>geen</strong> afkorting voor GitHub, wel het systeem achter verschillende vergelijkbare diensten.</p>
+<p>Git is een open source versiebeheersysteem. Dit systeem vormt de kern van de meeste moderne broncode versiebheersproducten zoals GitHub, BitBucket, en Azure DevOps Code Repositories. Git is dus <strong>geen</strong> afkorting voor GitHub, wel het systeem achter verschillende vergelijkbare diensten.</p>
 </div>
 <div class="paragraph">
 <p>Een <strong>repository</strong> omvat alles wat je in het versiebeheersysteem onderbrengt.</p>
@@ -324,23 +277,19 @@ Pullen en dan pushen noemen we <strong>syncen</strong>.</p>
 <p>Wanneer je de wijzigingen op jouw branch wil doorvoeren op een andere branch, gaan we deze <strong>mergen</strong>.</p>
 </div>
 <div class="paragraph">
-<p>Mergen wordt gedaan aan de hand van <strong>pull requests</strong>. Deze geven 1 of meer collega&#8217;s de kans om jouw code te bekijken en hun opmerkingen te geven vooraleer de merge finaal doorgevoerd wordt.</p>
+<p>Mergen wordt idealiter gedaan aan de hand van <strong>pull requests</strong>. Deze geven één of meer collega&#8217;s de kans om jouw code te bekijken en hun opmerkingen te geven voordat de wijzigingen finaal doorgevoerd wordt.</p>
 </div>
 <div class="paragraph">
 <p>Er bestaan verschillende standaard <strong>branching strategies</strong>. Je kan er ook zelf verzinnen. Afhankelijk van het bedrijf waar je terechtkomt, zal dit anders verlopen. Enkele opties zijn</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://www.gitkraken.com/learn/git/git-flow">Git Flow</a></p>
-</li>
-<li>
-<p><a href="https://www.atlassian.com/continuous-delivery/continuous-integration/trunk-based-development">Trunk Based</a></p>
-</li>
-</ul>
-</div>
 <div class="paragraph">
-<p>Voor dit vak gaan we trunk based development gebruiken op basis van een <em>main</em> branch en <em>feature</em> branches.</p>
+<p>De lessen zullen <a href="https://trunkbaseddevelopment.com">scaled trunk based development</a> hanteren.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/az-devops/github-trunk.png" alt="github trunk">
+</div>
+<div class="title">Figure 1. <a href="https://trunkbaseddevelopment.com" class="bare">https://trunkbaseddevelopment.com</a></div>
 </div>
 <div class="paragraph">
 <p>Er bestaan verschillende tools om een git repository op je computer te beheren.</p>
@@ -348,21 +297,18 @@ Pullen en dan pushen noemen we <strong>syncen</strong>.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Git command line tools</p>
+<p>Git CLI</p>
 </li>
 <li>
-<p>IDE&#8217;s zoals Visual Studio, Rider,&#8230;&#8203;</p>
+<p>IDE/Plugins zoals VS Code, Visual Studio, Rider,&#8230;&#8203;</p>
 </li>
 <li>
-<p>Editor (plugin) zoals VS Code</p>
-</li>
-<li>
-<p>Applicaties zoals Sourcetree</p>
+<p>Dedicated applicaties zoals Sourcetree</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Ze kennen elk hun eigen voor- en nadelen en werken over het algemeen naadloos samen, gezien ze in de achtergrond dezelfde git commando&#8217;s uitvoeren.</p>
+<p>Ze kennen elk hun eigen voor- en nadelen, maar werken over het algemeen naadloos samen gezien ze in de achtergrond dezelfde git commando&#8217;s uitvoeren.</p>
 </div>
 </div>
 </div>
@@ -372,7 +318,7 @@ Pullen en dan pushen noemen we <strong>syncen</strong>.</p>
 <div class="sidebarblock">
 <div class="content">
 <div class="paragraph">
-<p><strong>AS A</strong> ShipIt customer, <strong>I WANT</strong> to calculate the price of a shipment, <strong>SO THAT</strong> I can inform my own customers.</p>
+<p><strong>AS A</strong> Webshop Owner, <strong>I WANT</strong> the ability to dynamically request a shipment price calculation, <strong>SO THAT</strong> I can inform my own customers.</p>
 </div>
 </div>
 </div>
@@ -419,7 +365,7 @@ Pullen en dan pushen noemen we <strong>syncen</strong>.</p>
 <p>Voorzie een Web API endpoint met JSON in- en output.</p>
 </li>
 <li>
-<p>Gebruik geen minimal api, maar wel Controllers met DTO en ModelBinding.</p>
+<p>Gebruik geen minimal api, maar wel Controllers met Api Contracts (DTO&#8217;s) en ModelBinding.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -443,80 +389,75 @@ Pullen en dan pushen noemen we <strong>syncen</strong>.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_devops_workflow"><a class="anchor" href="#_devops_workflow"></a>DevOps Workflow</h3>
+<h3 id="_github_workflow"><a class="anchor" href="#_github_workflow"></a>GitHub Workflow</h3>
 <div class="paragraph">
-<p>Maak een <em>work item</em> aan in het relevante Azure DevOps project board.</p>
+<p>Maak een nieuw Project in GitHub.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/az-devops/prep-create-item.png" alt="prep create item">
+<img src="_images/az-devops/github-projects.png" alt="github projects">
 </div>
 </div>
 <div class="paragraph">
-<p>Voeg alle relevante informatie toe. Bewaar het <em>work item</em> en maak een <em>branch</em> om in te werken.</p>
+<p>Opteer voor het type Kanban. Dit is een vereenvoudigd bord zonder expliciete sprints, die een aantal  categorieën voorziet om taken op te volgen.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/az-devops/prep-create-branch-1.png" alt="prep create branch 1">
+<img src="_images/az-devops/github-kanban.png" alt="github kanban">
 </div>
 </div>
 <div class="paragraph">
-<p>Maak de branch onder <code>feature/&#8230;&#8203;</code></p>
+<p>Voeg een nieuwe taak toe (<code>Add item</code>) aan de Backlog. Gebruik de story als titel en voeg alle relevante informatie toe.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/az-devops/prep-create-branch-2.png" alt="prep create branch 2">
+<img src="_images/az-devops/github-nieuwe-taak.png" alt="github nieuwe taak">
 </div>
 </div>
 <div class="paragraph">
-<p>Deze branch is automatisch gelinkt aan het <em>work item</em>.</p>
+<p>Wanneer een taak Ready (for development) is, sleep je deze naar de Ready kolom. Wanneer je aan een taak wil werken, sleep je deze naar de In Progress kolom.</p>
 </div>
 <div class="paragraph">
-<p>Navigeer naar het <em>repository</em> in DevOps en start de <em>Clone</em> operatie.</p>
+<p>Maak een nieuwe branch (op basis van <code>main</code>) waarin je aan de taak zal werken. Op deze manier zal de branch, de commits en de pull request aan de taak, en dus veel context, verbonden blijven.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/az-devops/clone-1.png" alt="clone 1">
+<img src="_images/az-devops/github-branch-1.png" alt="github branch 1">
 </div>
 </div>
 <div class="paragraph">
-<p>Kies voor VS Code.</p>
+<p>Controller het repository en de source branch. Vaak worden branches voor stories onder <code>featue/</code> in de hiërarchie gezet. Kies een logische naam voor de branch. Gebruik niet meer dan een handvol woorden.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/az-devops/clone-2.png" alt="clone 2">
+<img src="_images/az-devops/github-branch-2.png" alt="github branch 2">
 </div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Deze lessenreeks maakt gebruik van VS Code. Je kan de repository natuurlijk ook op tal van andere manieren, waaronder de klassieke Visual Studio, benaderen.
-</td>
-</tr>
-</table>
 </div>
 <div class="paragraph">
-<p>Kies een gepaste locatie voor de <em>repository</em>.</p>
+<p>Eenmaal de branch bestaat, kan je deze lokaal ophalen. Voor een git fetch uit.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/az-devops/clone-3.png" alt="clone 3">
+<img src="_images/az-devops/github-fetch.png" alt="github fetch">
 </div>
 </div>
 <div class="paragraph">
-<p>Werk op de <em>branch</em> die je gemaakt hebt voor deze <em>story</em>.</p>
+<p>Nu zal de branch verschijnen in de keuzelijst</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/az-devops/clone-4.png" alt="clone 4">
+<img src="_images/az-devops/github-checkout.png" alt="github checkout">
 </div>
 </div>
 <div class="paragraph">
-<p>Maak een <em>folder</em> genaamd <code>src</code> aan. Bewaar alle broncode in deze <em>folder</em>.</p>
+<p>Je gebruikt uiteraard een tool naar keuze, of gewoon de CLI.</p>
+</div>
+<div class="literalblock">
+<div class="title">CLI</div>
+<div class="content">
+<pre>git fetch origin
+git checkout feature/price-calc</pre>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -524,7 +465,7 @@ Deze lessenreeks maakt gebruik van VS Code. Je kan de repository natuurlijk ook 
 <div class="sect3">
 <h4 id="_solution_opzetten"><a class="anchor" href="#_solution_opzetten"></a>Solution Opzetten</h4>
 <div class="paragraph">
-<p>Zet een <em>solution</em> op met een <em>web</em> project voor de api en een <em>class library</em> voor de contracten.</p>
+<p>Zet een <em>solution</em> op met een <em>web</em> project voor de api en een <em>class library</em> voor de contracten (~api dto&#8217;s).</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -558,6 +499,18 @@ Deze lessenreeks maakt gebruik van VS Code. Je kan de repository natuurlijk ook 
 </td>
 <td class="content">
 De <em>story</em> werd tijdens de les stapsgewijs geïmplementeerd. Deze samenvatting beperkt zich tot de aandachtspunten van het eindresultaat.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+De lessen Programmeren Gevorderd 2 bespreken in meer detail hoe een Api opgebouwd wordt.
 </td>
 </tr>
 </table>
@@ -704,49 +657,49 @@ namespace ShipIt.PriceQuote.Api.Controllers
 <div class="sect2">
 <h3 id="_versiebeheer"><a class="anchor" href="#_versiebeheer"></a>Versiebeheer</h3>
 <div class="paragraph">
-<p>Weer ongewenste bestanden uit het git <em>repository</em>.</p>
+<p>Weer ongewenste bestanden uit het git <em>repository</em>. Je kan expliciet elk bestand oplijsten, maar wildcards kunnen handig zijn. Voeg zelf de relevante files toe. Dit kan sterk verschillen per OS/IDE/&#8230;&#8203;</p>
 </div>
 <div class="literalblock">
 <div class="title">.gitignore</div>
 <div class="content">
-<pre>.DS_Store
-src/ShipIt.PriceQuote.Api/obj/
-src/ShipIt.PriceQuote.Api/bin/
-src/ShipIt.PriceQuote.Api.Contracts/obj/
-src/ShipIt.PriceQuote.Api.Contracts/bin/
+<pre>**/.DS_Store
+**/.vs/
+**/.rider/
+**/obj/
+**/bin/
 src/ShipIt.PriceQuote.Api/appsettings.Development.json</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Push je branch naar Azure DevOps.</p>
+<p>Push je aangepaste branch naar GitHub.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/az-devops/push.png" alt="push">
+<img src="_images/az-devops/github-push.png" alt="github push">
 </div>
 </div>
 <div class="paragraph">
-<p>Controleer deze in Azure DevOps.</p>
+<p>Controleer aanwezigheid van jouw commit op de branch in GitHub en maak een Pull Request.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/az-devops/pushed.png" alt="pushed">
+<img src="_images/az-devops/github-push-validate.png" alt="github push validate">
 </div>
 </div>
 <div class="paragraph">
-<p>Open een <em>Pull Request</em> naar <code>main</code>.</p>
+<p>Dit is het moment dat jij en jouw collega&#8217;s de aanpassing gaan valideren. Merge het <em>PR</em> wanneer alles er goed uit ziet.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/az-devops/createpr.png" alt="createpr">
+<img src="_images/az-devops/github-complete-pr.png" alt="github complete pr">
 </div>
 </div>
 <div class="paragraph">
-<p>Complete het <em>PR</em>.</p>
+<p>De aanpassingen zouden nu op <code>main</code> beschikbaar moeten zijn.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/az-devops/completepr.png" alt="completepr">
+<img src="_images/az-devops/github-merged.png" alt="github merged">
 </div>
 </div>
 </div>
@@ -784,11 +737,13 @@ src/ShipIt.PriceQuote.Api/appsettings.Development.json</pre>
 <div class="sect1">
 <h2 id="_azure_deployment_resources"><a class="anchor" href="#_azure_deployment_resources"></a>Azure Deployment &amp; Resources</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_opruimen"><a class="anchor" href="#_opruimen"></a>Opruimen</h3>
 <div class="paragraph">
 <p>Tot op heden hebben we zeer kort door de bocht gedeployed naar Azure. Deze manier van deployen is handig, maar doet veel impliciet werk dat na herhaalde deployments ongewenste resources achterlaat in Azure. We kunnen dit beter doen door expliciet te zijn en resources te hergebruiken.</p>
 </div>
 <div class="paragraph">
-<p>Indien er nog resources bestaan, wissen we deze eerst via de Azure Portal. De handigste manier is vertrekken vanuit Resource Groups.</p>
+<p>Indien er nog resources bestaan, wissen we deze eerst via de Azure Portal. De handigste manier om te zien wat er bestaat, is te vertrekken vanuit Resource Groups.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -796,29 +751,39 @@ src/ShipIt.PriceQuote.Api/appsettings.Development.json</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Dan kunnen we een Resource Group en de inhoud ineens wissen.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/middleware/rgdelete.png" alt="rgdelete">
+<p>Wis al de resources die aangemaakt werden tijdens vorige deployment pogingen.</p>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_hiërarchie"><a class="anchor" href="#_hiërarchie"></a>Hiërarchie</h3>
 <div class="paragraph">
 <p>Nu kunnen we stap voor stap de nodige resources aanmaken en expliciet benoemen.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Je kan <strong>PowerShell commands splitsen over meerdere lijnen door een backtick te gebruiken</strong>. Dit is geen magic, backtick is gewoon het <em>escape character</em>. De newline zal dus genegeerd worden. Gebruik backslash in Linux/MacOS style terminal.
+</td>
+</tr>
+</table>
 </div>
 <div class="listingblock">
 <div class="title">Resource Group</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ps hljs" data-lang="ps">az group create ` <i class="conum" data-value="1"></i><b>(1)</b>
-  --name hogent-gevorderd3-dag-stefancourteaux-shipit ` <i class="conum" data-value="2"></i><b>(2)</b>
-  --location westeurope <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+--name hogent-pg3-stefanc-shipit ` <i class="conum" data-value="2"></i><b>(2)</b>
+--location westeurope <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Je kan PowerShell commands splitsen over meerdere lijnen door een backtick <strong>`</strong> te gebruiken.</td>
+<td>Lukt het allemaal niet, zet het commande dan op één lijn.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
@@ -826,7 +791,7 @@ src/ShipIt.PriceQuote.Api/appsettings.Development.json</pre>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>We deployen naar Azure in Europa.</td>
+<td>We deployen naar Azure in Europa. Gebruik een regio die beschikbaar is op jouw Azure subscription.</td>
 </tr>
 </table>
 </div>
@@ -834,10 +799,10 @@ src/ShipIt.PriceQuote.Api/appsettings.Development.json</pre>
 <div class="title">App Service Plan</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ps hljs" data-lang="ps">az appservice plan create `
-  --name hogent-gevorderd3-dag-stefancourteaux-shipit-plan ` <i class="conum" data-value="1"></i><b>(1)</b>
-  --resource-group hogent-gevorderd3-dag-stefancourteaux-shipit ` <i class="conum" data-value="2"></i><b>(2)</b>
-  --is-linux `
-  --sku F1</code></pre>
+--name hogent-pg3-stefanc-shipit-plan ` <i class="conum" data-value="1"></i><b>(1)</b>
+--resource-group hogent-pg3-stefanc-shipit ` <i class="conum" data-value="2"></i><b>(2)</b>
+--is-linux `
+--sku F1</code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -856,10 +821,10 @@ src/ShipIt.PriceQuote.Api/appsettings.Development.json</pre>
 <div class="title">App Service</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ps hljs" data-lang="ps">az webapp up `
-  --name hogent-gevorderd3-dag-stefancourteaux-shipit-quote ` <i class="conum" data-value="1"></i><b>(1)</b>
-  --resource-group hogent-gevorderd3-dag-stefancourteaux-shipit ` <i class="conum" data-value="2"></i><b>(2)</b>
-  --plan hogent-gevorderd3-dag-stefancourteaux-shipit-plan ` <i class="conum" data-value="3"></i><b>(3)</b>
-  --os-type linux</code></pre>
+--name hogent-pg3-stefanc-shipit-quote ` <i class="conum" data-value="1"></i><b>(1)</b>
+--resource-group hogent-pg3-stefanc-shipit ` <i class="conum" data-value="2"></i><b>(2)</b>
+--plan hogent-pg3-stefanc-shipit-plan ` <i class="conum" data-value="3"></i><b>(3)</b>
+--os-type linux</code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -881,6 +846,9 @@ src/ShipIt.PriceQuote.Api/appsettings.Development.json</pre>
 <div class="paragraph">
 <p>We kunnen een nieuwe versie van de app deployen door bovenstaand commando opnieuw uit te voeren. Op deze manier worden er niet elke keer bijkomende resources aangemaakt.</p>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_korte_versie"><a class="anchor" href="#_korte_versie"></a>Korte Versie</h3>
 <div class="paragraph">
 <p>Nu we de hiërarchie begrijpen, is het interessant om weten dat we dit allemaal in een enkel statement kunnen inrichten. We moeten er gewoon op letten telkens exact hetzelfde statement uit te voeren om een bepaalde service te deployen.</p>
 </div>
@@ -888,11 +856,12 @@ src/ShipIt.PriceQuote.Api/appsettings.Development.json</pre>
 <div class="title">Alles ineens</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ps hljs" data-lang="ps">az webapp up `
-  --name hogent-gevorderd3-dag-stefancourteaux-shipit-quote `
-  --plan hogent-gevorderd3-dag-stefancourteaux-shipit-plan `
-  --resource-group hogent-gevorderd3-dag-stefancourteaux-shipit `
+  --name hogent-pg3-stefanc-shipit-quote `
+  --plan hogent-pg3-stefanc-shipit-plan `
+  --resource-group hogent-pg3-stefanc-shipit `
   --location westeurope `
   --os-type linux</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -900,17 +869,8 @@ src/ShipIt.PriceQuote.Api/appsettings.Development.json</pre>
 <div class="sect1">
 <h2 id="_opdracht"><a class="anchor" href="#_opdracht"></a>Opdracht</h2>
 <div class="sectionbody">
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-Maak zelf een Organization <code>hg-pg3-naam-voornaam</code> en Project aan in Azure DevOps.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>Maak zelf een GitHub repo, board etc voor jouw oefeningen. Maak een aparte repo voor jouw eigen project. Geef de lesgever toegang tot het repo indien je feedback wil kunnen vragen.</p>
 </div>
 </div>
 </div>
@@ -933,9 +893,6 @@ Maak zelf een Organization <code>hg-pg3-naam-voornaam</code> en Project aan in A
 </div>
 <div class="paragraph">
 <p><a href="https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-dev-certs">Dev Certs Accepteren</a></p>
-</div>
-<div class="paragraph">
-<p><a href="https://learn.microsoft.com/en-us/azure/devops/get-started/?view=azure-devops">DevOps Manual</a></p>
 </div>
 </div>
 </div>

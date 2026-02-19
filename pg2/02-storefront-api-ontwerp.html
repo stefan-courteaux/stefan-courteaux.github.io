@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>API Ontwerp :: Programmeren Gevorderd 2 (BETA)</title>
+    <meta name="generator" content="Antora 3.1.14">
+    <link rel="stylesheet" href="../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="#">Programmeren Gevorderd 2 (BETA)</a>
+      <button class="navbar-burger" aria-controls="topbar-nav" aria-expanded="false" aria-label="Toggle main menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+      
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+          <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link" href="#">Producten</a>
+              <div class="navbar-dropdown">
+                  <a class="navbar-item" target="_blank" href="https://learn.microsoft.com/en-us/cli/azure/">Azure CLI</a>
+                  <a class="navbar-item" target="_blank" href="https://www.docker.com/products/docker-desktop">Docker Desktop</a>
+                  <a class="navbar-item" target="_blank" href="https://desktop.github.com/download">GitHub Desktop</a>
+                  <a class="navbar-item" target="_blank" href="https://www.mongodb.com/try/download/compass">MongoDB Compass</a>
+                  <a class="navbar-item" target="_blank" href="https://www.pgadmin.org">pgAdmin</a>
+                  <a class="navbar-item" target="_blank" href="https://www.postman.com/downloads/">Postman</a>
+                  <a class="navbar-item" target="_blank" href="https://www.jetbrains.com/rider/download">Rider</a>
+                  <a class="navbar-item" target="_blank" href="https://code.visualstudio.com/download">VS Code</a>
+              </div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link" href="#">Diensten</a>
+              <div class="navbar-dropdown">
+                  <a class="navbar-item" target="_blank" href="https://dev.azure.com/hogent-web4-stefancourteaux/">Azure DevOps</a>
+                  <a class="navbar-item" target="_blank" href="https://portal.azure.com">Azure Portal</a>
+                  <a class="navbar-item" target="_blank" href="https://chamilo.hogent.be">Chamilo</a>
+                  <a class="navbar-item" target="_blank" href="https://github.com">GitHub</a>
+                  <a class="navbar-item" target="_blank" href="https://jwt.io">JWT.io</a>                  
+                  <a class="navbar-item" target="_blank" href="https://dotnet.microsoft.com">MS Docs</a>
+              </div>
+          </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="pg2" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
+    <h3 class="title"><a href="index.html">Gevorderd 2</a></h3>
+<ul class="nav-list">
+      <li class="nav-item is-active" data-depth="0">
+<ul class="nav-list">
+      <li class="nav-item is-active" data-depth="1">
+    <a class="nav-link" href="01-situering.html">Situering</a>
+  </li>
+      <li class="nav-item is-active" data-depth="1">
+    <a class="nav-link" href="01-http-apis.html">RESTful HTTP Api</a>
+  </li>
+      <li class="nav-item is-active" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="02-storefront-api.html">Storefront Backend</a>
+<ul class="nav-list">
+      <li class="nav-item is-active is-current-page" data-depth="2">
+    <a class="nav-link" href="02-storefront-api-ontwerp.html">API Ontwerp</a>
+  </li>
+      <li class="nav-item is-active" data-depth="2">
+    <a class="nav-link" href="02-storefront-api-architectuur.html">Architectuur</a>
+  </li>
+      <li class="nav-item is-active" data-depth="2">
+    <a class="nav-link" href="02-storefront-api-implementatie.html">Implementatie C#</a>
+  </li>
+      <li class="nav-item is-active" data-depth="2">
+    <span class="nav-text">PostgreSQL</span>
+  </li>
+      <li class="nav-item is-active" data-depth="2">
+    <span class="nav-text">Dapper</span>
+  </li>
+      <li class="nav-item is-active" data-depth="2">
+    <span class="nav-text">HATEOAS</span>
+  </li>
+</ul>
+  </li>
+      <li class="nav-item is-active" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Oefeningen</span>
+<ul class="nav-list">
+      <li class="nav-item is-active" data-depth="2">
+    <a class="nav-link" href="90-01-herhaling.html">Herhaling C# en UML</a>
+  </li>
+      <li class="nav-item is-active" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Backend Api</span>
+<ul class="nav-list">
+      <li class="nav-item is-active" data-depth="3">
+    <a class="nav-link" href="90-03-pokemons.html">Api + In-Memory Data</a>
+  </li>
+      <li class="nav-item is-active" data-depth="3">
+    <a class="nav-link" href="90-03-pokemons-dapper.html">Dapper</a>
+  </li>
+</ul>
+  </li>
+      <li class="nav-item is-active" data-depth="2">
+    <a class="nav-link" href="90-07-alles.html">Cover-All</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Gevorderd 2</span>
+    <span class="version"></span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <div class="title"><a href="index.html">Gevorderd 2</a></div>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Gevorderd 2</a></li>
+    <li><a href="02-storefront-api.html">Storefront Backend</a></li>
+    <li><a href="02-storefront-api-ontwerp.html">API Ontwerp</a></li>
+  </ul>
+</nav>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">API Ontwerp</h1>
+<div class="sect1">
+<h2 id="_api_endpoints"><a class="anchor" href="#_api_endpoints"></a>Api Endpoints</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>De beschikbare api paden en methoden, noemen we vaak <em>Endpoints</em>.</p>
+</div>
+<div class="sect2">
+<h3 id="_opbouw"><a class="anchor" href="#_opbouw"></a>Opbouw</h3>
+<div class="paragraph">
+<p>Idealiter zijn deze opgebouwd uit <strong>meervoudige zelfstandige naamwoorden</strong>, niet uit werkwoorden. Immers, het werkwoord is vervat in de HTTP Method.</p>
+</div>
+<div class="paragraph">
+<p><code>GET <a href="http://server.domain/customers" class="bare">http://server.domain/customers</a></code> ✅</p>
+</div>
+<div class="paragraph">
+<p><code>GET <a href="http://server.domain/GetCustomers" class="bare">http://server.domain/GetCustomers</a></code> ❌</p>
+</div>
+<div class="paragraph">
+<p>Wanneer we niets verder specifiëren, krijgen we gewoonlijk alle resources van een type terug, bijvoorbeeld alle <em>Customers</em>. Een json met een array van objecten.</p>
+</div>
+<div class="paragraph">
+<p>Een <strong>specifieke <em>Resource</em></strong>, bijvoorbeeld een <em>Customer</em>, heeft een <strong>uniek adres</strong>.</p>
+</div>
+<div class="paragraph">
+<p><code>GET <a href="http://server.domain/customers/12" class="bare">http://server.domain/customers/12</a></code> &#8594; Klant met id 12</p>
+</div>
+<div class="paragraph">
+<p>Dit zal een json met één object teruggeven.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_filters"><a class="anchor" href="#_filters"></a>Filters</h3>
+<div class="paragraph">
+<p>Je wil niet altijd de volledige lijst van een type resource uitlezen. Vaak heeft een gebruiker de mogelijkheid filters in te stellen. De web app moet deze filters kunnen communiceren naar de backend api.</p>
+</div>
+<div class="paragraph">
+<p>Gebruik url query parameters. Deze kan je appenden aan een route gebruikmakende van <code>?</code>.</p>
+</div>
+<div class="paragraph">
+<p><code>GET <a href="http://server.domain/customers?name=tom" class="bare">http://server.domain/customers?name=tom</a></code></p>
+</div>
+<div class="paragraph">
+<p>Je kan meerdere discrete parameters meegeven door ze te scheiden met <code>&amp;</code>.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="http://server.domain/customers?name=tom&amp;minAge=18" class="bare">http://server.domain/customers?name=tom&amp;minAge=18</a></code></p>
+</div>
+<div class="paragraph">
+<p>Dit wordt vaak gebruikt om resultaten te pagineren.</p>
+</div>
+<div class="paragraph">
+<p><code><a href="http://server.domain/customers?page=3&amp;pageSize=20" class="bare">http://server.domain/customers?page=3&amp;pageSize=20</a></code></p>
+</div>
+<div class="paragraph">
+<p>Je kan ook eenzelfde parameter meermaals meegeven. Dit zal zich in C# vertalen naar een array.</p>
+</div>
+<div class="paragraph">
+<p><code>GET <a href="http://server.domain/products?category=pants&amp;category=sweater" class="bare">http://server.domain/products?category=pants&amp;category=sweater</a></code></p>
+</div>
+<div class="paragraph">
+<p>Geeft in C# <code>string["pants", "sweater"]</code>. Aan je om te kiezen of dit dan een <code>AND</code> of <code>OR</code> filter wordt.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_hiërarchie"><a class="anchor" href="#_hiërarchie"></a>Hiërarchie</h3>
+<div class="paragraph">
+<p>Je kan hiërarchie aanwenden in api routes. Dit is geen noodzaak, maar het kan handig zijn. Probeer consequent te zijn binnen de api van eenzelfde applicatie.</p>
+</div>
+<div class="paragraph">
+<p>Stel, je wil alle <em>Orders</em> van een <em>Customer</em>.</p>
+</div>
+<div class="paragraph">
+<p><code>GET <a href="http://server.domain/orders?customerId=123" class="bare">http://server.domain/orders?customerId=123</a></code></p>
+</div>
+<div class="paragraph">
+<p>Je zou dit ook kunnen inregelen als volgt.</p>
+</div>
+<div class="paragraph">
+<p><code>GET <a href="http://server.domain/customers/123/orders" class="bare">http://server.domain/customers/123/orders</a></code></p>
+</div>
+<div class="paragraph">
+<p>Handig, maar wat als je dan toch alle <em>Orders</em>, of <em>Orders</em> van een aantal klanten tegelijk wil? Geen probleem. Beide paden kunnen in dezelfde api aanwezig zijn. Eventueel met een andere set aan beschikbare methods. De <em>U</em> in <em>URL</em>, staat niet voor <em>Unique</em>, wel voor <em>Uniform</em>.</p>
+</div>
+<div class="paragraph">
+<p>Probeer geen hiërarchie te forceren. Maak ze ook niet waanzinnig diep.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_guids"><a class="anchor" href="#_guids"></a>GUIDS</h3>
+<div class="paragraph">
+<p>GUIDS zijn moeilijker te raden dan (oplopende) integers, maar niet inherent veiliger. Als een resource echt niet publiek gezien mag worden, moet je passende security en logins voorzien.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_response_codes"><a class="anchor" href="#_response_codes"></a>Response Codes</h3>
+<div class="paragraph">
+<p>Een endpoint kan meestal meerdere response codes teruggeven. We zullen volgende codes gebruiken.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>200 Ok</p>
+</li>
+<li>
+<p>201 Created</p>
+</li>
+<li>
+<p>204 No Content</p>
+</li>
+<li>
+<p>400 Bad Request</p>
+</li>
+<li>
+<p>404 Not Found</p>
+</li>
+<li>
+<p>405 Method Not Allowed</p>
+</li>
+<li>
+<p>500 Internal Server Error</p>
+</li>
+<li>
+<p>501 Not Implemented</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_beheren"><a class="anchor" href="#_beheren"></a>Beheren</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We opteren voor een standaard invulling van <em>beheren</em>, namelijk <em>CRUD</em> op <em>endpoints</em> zonder hiërarchie. We willen de basisconcepten kunnen aanmaken, lezen, wijzigen en wissen.</p>
+</div>
+<div class="paragraph">
+<p>Initieel kunnen we stellen dat we</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>POST</code>, <code>GET</code>, <code>PUT</code> en <code>DELETE</code> willen op <code>/customers</code> en <code>/products</code>.</p>
+</li>
+<li>
+<p><code>POST</code> en <code>GET</code> op <code>/orders</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Uiteraard gaan we dit moeten uitdiepen. Wat is een <em>Customer</em>? Welke response codes verwachten we? &#8230;&#8203;</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+We kunnen het gewenste resultaat formeel documenteren gebruikmakende van een api documentatietool zoals <a href="https://editor.swagger.io">Swagger Editor</a>. Het is ook mogelijk deze documentatie achteraf te genereren uit bestaande C#.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_customer"><a class="anchor" href="#_customer"></a>Customer</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_model"><a class="anchor" href="#_model"></a>Model</h3>
+<div class="paragraph">
+<p>Uit grondige analyse besluiten we dat een <code>Customer</code> bestaat uit</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>(Id)</p>
+</li>
+<li>
+<p>FirstName</p>
+</li>
+<li>
+<p>LastName</p>
+</li>
+<li>
+<p>DateOfBirth</p>
+</li>
+<li>
+<p>Email</p>
+</li>
+<li>
+<p>AddressLine1</p>
+</li>
+<li>
+<p>AddressLine2</p>
+</li>
+<li>
+<p>AddressLine3 (Nullable)</p>
+</li>
+<li>
+<p>Country</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_api"><a class="anchor" href="#_api"></a>Api</h3>
+<div class="literalblock">
+<div class="title">POST (Create)</div>
+<div class="content">
+<pre>POST api/customers
+    Expected Request
+        Body: Customer Object
+    Expected Response
+        Status: 201 - Created
+        Body: Customer Object</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="title">GET (Read)</div>
+<div class="content">
+<pre>GET api/customers
+    Expected Request
+        Body: Empty
+    Expected Response
+        Status: 200 - Ok
+        Body: Customer Object []
+
+GET api/customers/{id}
+    Expected Request
+        Body: Empty
+        Path: {id} = Valid Customer Id
+    Expected Response
+        Status: 200 - Ok
+        Body: Customer Object</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="title">PUT (Update)</div>
+<div class="content">
+<pre>PUT api/customers/{id}
+    Expected Request
+        Body: Customer Object
+        Path: {id} = Customer Id
+    Expected Response
+        Status: 200 - Ok
+        Body: Empty</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="title">Delete (Delete)</div>
+<div class="content">
+<pre>DELETE api/customers/{id}
+    Expected Request
+        Body: Empty
+        Path: {id} = Valid Customer Id
+    Expected Response
+        Status: 200 - Ok
+        Body: Empty</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_products"><a class="anchor" href="#_products"></a>Products</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_model_2"><a class="anchor" href="#_model_2"></a>Model</h3>
+<div class="paragraph">
+<p>Uit grondige analyse besluiten we dat een <code>Product</code> bestaat uit</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>(Id)</p>
+</li>
+<li>
+<p>Name</p>
+</li>
+<li>
+<p>Description</p>
+</li>
+<li>
+<p>Price</p>
+</li>
+<li>
+<p>AgeRating (Nullable)</p>
+</li>
+<li>
+<p>StockCount</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_api_2"><a class="anchor" href="#_api_2"></a>Api</h3>
+<div class="paragraph">
+<p>Dit vul je zelf aan. Dit is volledig analoog aan <code>Customer</code>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_orders"><a class="anchor" href="#_orders"></a>Orders</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_model_3"><a class="anchor" href="#_model_3"></a>Model</h3>
+<div class="paragraph">
+<p>Uit grondige analyse besluiten we dat een <code>Order</code> bestaat uit</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>(Id)</p>
+</li>
+<li>
+<p>OrderDate</p>
+</li>
+<li>
+<p>CustomerId</p>
+</li>
+<li>
+<p>OrderProduct [ ]</p>
+<div class="ulist">
+<ul>
+<li>
+<p>ProductId</p>
+</li>
+<li>
+<p>Price</p>
+</li>
+<li>
+<p>Quantity</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_api_3"><a class="anchor" href="#_api_3"></a>Api</h3>
+<div class="literalblock">
+<div class="title">POST (Create)</div>
+<div class="content">
+<pre>POST api/orders
+    Expected Request
+        Body: Order Object
+    Expected Response
+        Status: 201 - Created
+        Body: Order Object</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="title">GET (Read)</div>
+<div class="content">
+<pre>GET api/orders
+    Expected Request
+        Body: Empty
+    Expected Response
+        Status: 200 - Ok
+        Body: Order Object []
+
+GET api/orders/{id}
+    Expected Request
+        Body: Empty
+        Path: {id} = Valid Order Id
+    Expected Response
+        Status: 200 - Ok
+        Body: Order Object</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_api_contracten"><a class="anchor" href="#_api_contracten"></a>Api Contracten</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We zullen nooit het interne Model van een resource zomaar vrijgeven over de api. We zullen het interne model mappen naar DTO&#8217;s, die in api context vaak <em>Contracten</em> genoemd worden.</p>
+</div>
+<div class="paragraph">
+<p>We maken onderscheid tussen een RequestContract en ResponseContract.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Het request contract wordt door de client naar de server gezonden.</p>
+</li>
+<li>
+<p>Het response contract wordt door de server naar de client gezonden.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Vaak bestaan er meerdere varianten van deze contracten, vooral van de responses. Zo wil je misschien een beknoptere versie gebruiken wanneer je een lijst van objecten teruggeeft, en een gedetailleerde versie wanneer er een enkel object gevraagd wordt.</p>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+    <p>This page was built using a customized version of the Antora default UI. The source code for the default UI is licensed under the terms of the MPL-2.0 license.</p>
+    <p>Course material may *not* be used to teach, tutor, coach, or present without obtaining explicit consent from Stefan Courteaux.</p>
+</footer><script id="site-script" src="../_/js/site.js" data-ui-root-path="../_"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

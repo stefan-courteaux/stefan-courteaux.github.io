@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Database :: Programmeren Gevorderd 2 (BETA)</title>
+    <title>Architectuur :: Programmeren Gevorderd 2 (BETA)</title>
     <meta name="generator" content="Antora 3.1.14">
     <link rel="stylesheet" href="../_/css/site.css">
   </head>
@@ -73,7 +73,7 @@
       <li class="nav-item is-active" data-depth="2">
     <a class="nav-link" href="02-storefront-api-ontwerp.html">API Ontwerp</a>
   </li>
-      <li class="nav-item is-active" data-depth="2">
+      <li class="nav-item is-active is-current-page" data-depth="2">
     <a class="nav-link" href="02-storefront-api-architectuur.html">Architectuur</a>
   </li>
       <li class="nav-item is-active" data-depth="2">
@@ -139,7 +139,8 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Gevorderd 2</a></li>
-    <li><a href="03-storefront-ef.html">Database</a></li>
+    <li><a href="02-storefront-api.html">Storefront Backend</a></li>
+    <li><a href="02-storefront-api-architectuur.html">Architectuur</a></li>
   </ul>
 </nav>
 </div>
@@ -148,28 +149,135 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Database</h1>
+<h1 class="page">Architectuur</h1>
 <div class="sect1">
-<h2 id="_doel"><a class="anchor" href="#_doel"></a>Doel</h2>
+<h2 id="_lagenmodel"><a class="anchor" href="#_lagenmodel"></a>Lagenmodel</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>We beogen een gelaagd backend model. Dit heeft drie lagen, maar is niet te verwarren met Hét Drielagenmodel. Immers, in dit geval wordt de (React) UI de vierde laag!</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/storefront-api/intro/spa-1.drawio.png" alt="spa 1.drawio"></span></p>
+</div>
+<div class="paragraph">
+<p>TODO doel van de lagen
+TODO Api COntrollers
+TODO DI (IOC sample) + lifecycle</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Api Layer (Gebruikt .NET "ApiControllers")</dt>
+<dd>
 <div class="ulist">
 <ul>
 <li>
-<p>MySQL Docker image installeren</p>
+<p>Routing</p>
 </li>
 <li>
-<p>Opfrissen Data Modeling, DDL, DML</p>
+<p>Modelbinding</p>
 </li>
 <li>
-<p>Storefront ERD opstellen</p>
+<p>Bepalen HTTP responses</p>
 </li>
 <li>
-<p>Storefront ERD implementeren</p>
-</li>
-<li>
-<p>Entity Framework Core (SQL First) leren kennen</p>
+<p>(Meestal) App startup logica</p>
 </li>
 </ul>
+</div>
+</dd>
+<dt class="hdlist1">Service Layer</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Business Logica</p>
+</li>
+<li>
+<p>Http-agnostic</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Data Layer</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Encapsuleert data en bijhorende 'low level' logica.</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>Dit zou er zo <em>kunnen</em> uitzien als Solution:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/storefront-ef/lagenmodel.png" alt="lagenmodel">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_representaties"><a class="anchor" href="#_representaties"></a>Representaties</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Elke laag heeft zijn eigen representatie van de data.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>ApiController: <em>ApiContract</em> ~ DTO</p>
+</li>
+<li>
+<p>Service: <em>DomainModel</em> ~ Model</p>
+</li>
+<li>
+<p>Persistence:  <em>DataModel</em> ~ DAO</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Dit wil zeggen dat we mapping tussen de lagen moeten voorzien. Er is veel vrijheid in de manier waarop deze projecten elkaar zouden kunnen kennen.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Waar worden interfaces en implementaties aangemaakt?</p>
+</li>
+<li>
+<p>Welke laag zal wat naar wat mappen?</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Een optie: Repo gebruikt intern <strong>data</strong> model, maar haar publieke methodes werken met <strong>domein</strong> model<br>
+&#8594; Mapping gebeurt in Persistence</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/storefront-ef/lagenmodel-repo.jpg" alt="lagenmodel repo">
+</div>
+</div>
+<div class="paragraph">
+<p>Andere optie: Repo gebruikt intern <strong>data</strong> model, haar publieke methodes werken met diezelfde <strong>data</strong> model klassen<br>
+&#8594; Mapping gebeurt in Service</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/storefront-ef/lagenmodel-service.jpg" alt="lagenmodel service">
+</div>
+</div>
+<div class="paragraph">
+<p>etc&#8230;&#8203; Er zijn nog veel varianten mogelijk.</p>
+</div>
+<div class="paragraph">
+<p>Ook kunnen deze lagen eerst als folders binnen één project gemaakt worden, en pas later opgesplitst worden in aparte projecten. Hier is geen eenduidig juist of fout antwoord voor.</p>
+</div>
+<div class="paragraph">
+<p>Als je zeker weet hoe je wil werken, werk je uiteraard vanaf het begin in die richting.</p>
 </div>
 </div>
 </div>

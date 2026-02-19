@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Customers &amp; Products :: Programmeren Gevorderd 2 (BETA)</title>
+    <title>Implementatie C# :: Programmeren Gevorderd 2 (BETA)</title>
     <meta name="generator" content="Antora 3.1.14">
     <link rel="stylesheet" href="../_/css/site.css">
   </head>
@@ -76,7 +76,7 @@
       <li class="nav-item is-active" data-depth="2">
     <a class="nav-link" href="02-storefront-api-architectuur.html">Architectuur</a>
   </li>
-      <li class="nav-item is-active" data-depth="2">
+      <li class="nav-item is-active is-current-page" data-depth="2">
     <a class="nav-link" href="02-storefront-api-implementatie.html">Implementatie C#</a>
   </li>
       <li class="nav-item is-active" data-depth="2">
@@ -139,7 +139,8 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Gevorderd 2</a></li>
-    <li><a href="02-storefront-api-1.html">Customers &amp; Products</a></li>
+    <li><a href="02-storefront-api.html">Storefront Backend</a></li>
+    <li><a href="02-storefront-api-implementatie.html">Implementatie C#</a></li>
   </ul>
 </nav>
 </div>
@@ -148,7 +149,7 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Customers &amp; Products</h1>
+<h1 class="page">Implementatie C#</h1>
 <div class="sect1">
 <h2 id="_solution"><a class="anchor" href="#_solution"></a>Solution</h2>
 <div class="sectionbody">
@@ -258,10 +259,10 @@ IDE&#8217;s hebben schermpjes die deze parameters voorstellen als checkboxes of 
 </div>
 </div>
 <div class="sect1">
-<h2 id="_customers"><a class="anchor" href="#_customers"></a>Customers</h2>
+<h2 id="_customers_v1"><a class="anchor" href="#_customers_v1"></a>Customers V1</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_contracten"><a class="anchor" href="#_contracten"></a>Contracten</h3>
+<h3 id="_contracts"><a class="anchor" href="#_contracts"></a>Contracts</h3>
 <div class="paragraph">
 <p>We maken onderscheid tussen een <code>CustomerRequestContract</code> en <code>CustomerResponseContract</code>. Het request contract wordt door de client naar de server gezonden. Het response contract wordt door de server naar de client gezonden.</p>
 </div>
@@ -277,8 +278,6 @@ IDE&#8217;s hebben schermpjes die deze parameters voorstellen als checkboxes of 
     public DateTime DateOfBirth { get; set; }
     [EmailAddress] <i class="conum" data-value="2"></i><b>(2)</b>
     public string Email { get; set; }
-    [MaxLength(20)]
-    public string? TaxIdentificationNumber { get; set; }
     [MaxLength(50)]
     public string Addressline1 { get; set; }
     [MaxLength(50)]
@@ -327,7 +326,6 @@ Het is niet omdat dingen in de praktijk (initieel) op elkaar lijken, dat ze conc
     public string LastName { get; set; }
     public DateTime DateOfBirth { get; set; }
     public string Email { get; set; }
-    public string? TaxIdentificationNumber { get; set; }
     public string Addressline1 { get; set; }
     public string Addressline2 { get; set; }
     public string? Addressline3 { get; set; }
@@ -337,139 +335,16 @@ Het is niet omdat dingen in de praktijk (initieel) op elkaar lijken, dat ze conc
 </div>
 </div>
 <div class="sect2">
-<h3 id="_repository"><a class="anchor" href="#_repository"></a>Repository</h3>
+<h3 id="_controllers"><a class="anchor" href="#_controllers"></a>Controllers</h3>
 <div class="paragraph">
-<p>De Customers moet ergens vandaan komen. We hebben op dit moment nog geen databank en opteren voor een eenvoudige <em>Repository</em> interface met eigen in-memory implementatie.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Momenteel gebruiken we <em>Contract</em> klassen in de repository. We herzien dit later.
-</td>
-</tr>
-</table>
-</div>
-<div class="listingblock">
-<div class="title">ICustomerRepository</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">public interface ICustomerRepository
-{
-    List&lt;CustomerResponseContract&gt; GetAll();
-    CustomerResponseContract Get(int id);
-    void Delete(int id);
-    CustomerResponseContract Create(CustomerRequestContract customer);
-    void Update(CustomerRequestContract customer, int id);
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>De exacte implementatie van dit repository is onbelangrijk, maar <code>Dictionary&lt;K,V&gt;</code> is een goede keuze om de informatie in te bewaren.</p>
-</div>
-<div class="listingblock">
-<div class="title">CustomerRepository</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">public class CustomerRepository : ICustomerRepository
-{
-    private readonly Dictionary&lt;int, CustomerResponseContract&gt; _customers
-        = new();
-
-    public List&lt;CustomerResponseContract&gt; GetAll()
-    {
-        return _customers.Values.ToList();
-    }
-
-    public CustomerResponseContract Get(int id)
-    {
-        return _customers[id];
-    }
-
-    public void Delete(int id)
-    {
-        _customers.Remove(id);
-    }
-
-    public CustomerResponseContract Create(CustomerRequestContract customer) <i class="conum" data-value="1"></i><b>(1)</b>
-    {
-        var customerToStore = customer.Map();
-
-        var id = _customers.Keys.Any() ? _customers.Keys.Max() + 1 : 1;
-        customerToStore.Id = id;
-
-        _customers.Add(id, customerToStore);
-
-        return _customers[id];
-    }
-
-    public void Update(CustomerRequestContract customer, int id)
-    {
-        var customerToStore = customer.Map();
-        customerToStore.Id = id;
-
-        _customers[id] = customerToStore;
-    }
-}</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Bij het toevoegen van een entry moeten we een nieuw <code>id</code> toewijzen. Bovenstaande logica is rudimentair en kan voor problemen zorgen. Een volwaardige database, zoals SQL Server, zal hier uiteraard een stuk intelligenter mee omgaan.</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>We voegen deze repository toe aan de <em>DI Container</em> (in <code>Program.cs</code>) als Singleton zodat de dataset in geheugen blijft zolang onze api <em>up</em> is.</p>
-</div>
-<div class="listingblock">
-<div class="title">DI</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">public class Program
-{
-    public static void Main(string[] args)
-    {
-        var builder = WebApplication.CreateBuilder(args);
-
-        // Add services to the container.
-        builder.Services
-            .AddSingleton&lt;ICustomerRepository, CustomerRepository&gt;();<i class="conum" data-value="1"></i><b>(1)</b>
-        builder.Services.AddControllers();
-
-        var app = builder.Build();
-
-        // Configure the HTTP request pipeline.
-        app.UseHttpsRedirection();
-
-        app.MapControllers();
-        app.Run();
-    }
-}</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Hier wordt onze repository toegevoegd.</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_apicontroller"><a class="anchor" href="#_apicontroller"></a>ApiController</h3>
-<div class="paragraph">
-<p>Om de api endpoints te definieren en aan logica te koppelen, maken we een <em>ApiController</em>.</p>
+<p>Om de api endpoints te definiëren en aan logica te koppelen, maken we een <em>ApiController</em>.</p>
 </div>
 <div class="listingblock">
 <div class="title">CustomersController</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">[ApiController] <i class="conum" data-value="1"></i><b>(1)</b>
 [Route("api/[controller]")] <i class="conum" data-value="2"></i><b>(2)</b>
-public class CustomersController(ICustomerRepository repository) <i class="conum" data-value="3"></i><b>(3)</b>
+public class CustomersController(ICustomerService service) <i class="conum" data-value="3"></i><b>(3)</b>
     : ControllerBase <i class="conum" data-value="4"></i><b>(4)</b>
 {
     //...
@@ -552,37 +427,109 @@ Bij het returnen van een api methode, kan je expliciet HTTP Status Codes terugge
 <div class="paragraph">
 <p>We implementeren uiteraard ook de andere methodes.</p>
 </div>
-<div class="listingblock">
-<div class="title">CustomersController</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">[HttpGet]
-public ActionResult&lt;IEnumerable&lt;CustomerResponseContract&gt;&gt; GetAll()
-{
-    return Ok(repository.GetAll());
-}
-
-[HttpPut]
-[Route("{id}")]
-public ActionResult Update(
-    [FromBody] CustomerRequestContract customerContract,
-    [FromRoute] int id)
-{
-    repository.Update(customerContract, id);
-    return Ok();
-}
-
-[HttpDelete]
-[Route("{id}")]
-public ActionResult Delete([FromRoute] int id)
-{
-    repository.Delete(id);
-    return Ok();
-}</code></pre>
 </div>
+<div class="sect2">
+<h3 id="_service"><a class="anchor" href="#_service"></a>Service</h3>
+<div class="paragraph">
+<p>Dit bevat het domeinmodel en relevante logica. Bij aanvang is dit zeer eenvoudig.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Voorzie domeinmodel.</p>
+</li>
+<li>
+<p>Voorzie een service interface + implementatie</p>
+</li>
+<li>
+<p>Laat injecteren.</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_test_met_postman"><a class="anchor" href="#_test_met_postman"></a>Test Met Postman</h3>
+<h3 id="_data"><a class="anchor" href="#_data"></a>Data</h3>
+<div class="paragraph">
+<p>De Customers moet ergens vandaan komen. We hebben op dit moment nog geen databank en opteren voor een eenvoudige in-memory implementatie die gebruik maakt van het Model.</p>
+</div>
+<div class="listingblock">
+<div class="title">ICustomerRepository</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">public interface ICustomerRepository
+{
+    List&lt;Customer&gt; GetAll();
+    Customer Get(int id);
+    void Delete(int id);
+    Customer Create(Customer customer);
+    void Update(Customer customer, int id);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>De exacte implementatie van dit repository is onbelangrijk, maar <code>Dictionary&lt;K,V&gt;</code> is een goede keuze om de informatie in te bewaren.</p>
+</div>
+<div class="listingblock">
+<div class="title">CustomerRepository</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">public class CustomerRepository : ICustomerRepository
+{
+    private readonly Dictionary&lt;int, Customer&gt; _customers
+        = new();
+
+    public List&lt;Customer&gt; GetAll()
+    {
+        return _customers.Values.ToList();
+    }
+
+    public Customer Get(int id)
+    {
+        return _customers[id];
+    }
+
+    public void Delete(int id)
+    {
+        _customers.Remove(id);
+    }
+
+    public Customer Create(Customer customer) <i class="conum" data-value="1"></i><b>(1)</b>
+    {
+        var customerToStore = customer;
+
+        var id = _customers.Keys.Any() ? _customers.Keys.Max() + 1 : 1;
+        customerToStore.Id = id;
+
+        _customers.Add(id, customerToStore);
+
+        return _customers[id];
+    }
+
+    public void Update(Customer customer, int id)
+    {
+        var customerToStore = customer
+        customerToStore.Id = id;
+
+        _customers[id] = customerToStore;
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Bij het toevoegen van een entry moeten we een nieuw <code>id</code> toewijzen. Bovenstaande logica is rudimentair en kan voor problemen zorgen. Een volwaardige database, zoals PostgreSQL, zal hier uiteraard een stuk intelligenter mee omgaan.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>We voegen deze repository toe aan de <em>DI Container</em> (in <code>Program.cs</code>) als Singleton zodat de dataset in geheugen blijft zolang onze api <em>up</em> is.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_postman"><a class="anchor" href="#_postman"></a>Postman</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>We testen de api met Postman. Merk op dat</p>
 </div>
@@ -604,12 +551,19 @@ public ActionResult Delete([FromRoute] int id)
 </div>
 </div>
 </div>
-</div>
 <div class="sect1">
 <h2 id="_products"><a class="anchor" href="#_products"></a>Products</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Schrijf zelf de <code>ProductsController</code>. Dit is volledig analoog aan de <code>CustomersController</code>. Overweeg welke scenario&#8217;s je nog wil ondersteunen gebruikmakende van andere <em>ActionResults</em>. Voorbeeld: wat als een onbestaand product id opgevraagd wordt?</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_orders"><a class="anchor" href="#_orders"></a>Orders</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>🏗️</p>
 </div>
 </div>
 </div>

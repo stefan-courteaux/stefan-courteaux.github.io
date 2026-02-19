@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Database :: Programmeren Gevorderd 2 (BETA)</title>
+    <title>PostgreSQL :: Programmeren Gevorderd 2 (BETA)</title>
     <meta name="generator" content="Antora 3.1.14">
     <link rel="stylesheet" href="../_/css/site.css">
   </head>
@@ -139,7 +139,7 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Gevorderd 2</a></li>
-    <li><a href="03-storefront-ef.html">Database</a></li>
+    <li><a href="02-storefront-db-postgres.html">PostgreSQL</a></li>
   </ul>
 </nav>
 </div>
@@ -148,28 +148,185 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Database</h1>
+<h1 class="page">PostgreSQL</h1>
 <div class="sect1">
-<h2 id="_doel"><a class="anchor" href="#_doel"></a>Doel</h2>
+<h2 id="_relationele_databanken"><a class="anchor" href="#_relationele_databanken"></a>Relationele Databanken</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>De structuur van een Relationele Databank bestaat uit <strong><em>Tables</em></strong> (tabellen) en <strong><em>Constraints</em></strong> (beperkingen) van toepassing op de data in die tabellen.</p>
+</div>
+<div class="sect2">
+<h3 id="_tables"><a class="anchor" href="#_tables"></a>Tables</h3>
+<div class="paragraph">
+<p>Een <em>Table</em> is een structuur bestaande uit rijen en kolommen, gevuld met gegevens.</p>
+</div>
+<div class="paragraph">
+<p>Elke <strong><em>Table</em></strong> heeft minstens:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p>MySQL Docker image installeren</p>
+<p>Een <strong>naam</strong>, bijvoorbeeld "Klanten", "Producten" of "Spelers"</p>
 </li>
 <li>
-<p>Opfrissen Data Modeling, DDL, DML</p>
-</li>
-<li>
-<p>Storefront ERD opstellen</p>
-</li>
-<li>
-<p>Storefront ERD implementeren</p>
-</li>
-<li>
-<p>Entity Framework Core (SQL First) leren kennen</p>
+<p>één of meer <strong>kolomdefinities</strong></p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>Elke <strong><em>Column</em></strong> wordt gedefinieerd a.d.h.v. onderstaande <strong>eigenschappen</strong>.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Name</dt>
+<dd>
+<p>De hoofding van de kolom, bijvoorbeeld "Voornaam" of "Geboortedatum".</p>
+</dd>
+<dt class="hdlist1">DataType</dt>
+<dd>
+<p>Technische precisering van het type data dat opgeslagen zal worden in de kolom.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>varchar(<em>&lt;lengte&gt;</em>)</code></p>
+</li>
+<li>
+<p><code>int</code> / <code>bigint</code></p>
+</li>
+<li>
+<p><code>decimal(<em>&lt;positiesInTotaal&gt;,&lt;cijfersAchterDeKomma&gt;</em>)</code></p>
+</li>
+<li>
+<p><code>bool</code></p>
+</li>
+<li>
+<p><code>timestamp</code></p>
+</li>
+<li>
+<p>&#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Nullability</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>null</code> &#8594; een rij mag een waarde hebben voor deze kolom</p>
+</li>
+<li>
+<p><code>not null</code> &#8594; een rij moet altijd een waarde hebben voor deze kolom</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Default Value</dt>
+<dd>
+<p>Wanneer men bij het aanmaken van een rij deze kolom niet vermeldt, wordt een standaardwaarde toegepast, bijvoorbeeld het resultaat van de functie <code>current_time()</code> of de vaste waarde <code>3</code>.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_constraints"><a class="anchor" href="#_constraints"></a>Constraints</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Primary Key (Constraint)</dt>
+<dd>
+<p>De waarde van een veld in deze kolom, of combinatie van kolommen, moet uniek zijn in de tabel. Er kan maar één <em>PK</em> bestaan per tabel. Dit is dé sleutel bedoeld om een <em>record</em> (=rij) binnen de tabel ondubbelzinnig te identificeren.</p>
+</dd>
+<dt class="hdlist1">Unique Key (Constraint)</dt>
+<dd>
+<p>De waarde van een veld in deze kolom, of combinatie van kolommen, moet uniek zijn in de tabel. Er kan meer dan één <em>UK</em> bestaan per tabel. Deze zijn bedoeld om business regels rond uniciteit af te dwingen.</p>
+</dd>
+<dt class="hdlist1">Foreign Key (Constraint)</dt>
+<dd>
+<p>De waarde van een veld in een bepaalde kolom in tabel A verwijst naar een <em>Key</em> (Primary of Unique) in tabel B. Indien de gerefereerde waarde in tabel B niet bestaat, zal de database het record in tabel A verwerpen.</p>
+</dd>
+<dt class="hdlist1">Check Constraint</dt>
+<dd>
+<p>Een deterministische boolean expressie die gebruik kan maken van alle kolommen in de tabel en constanten om een record te evalueren. Indien de expressie naar <code>false</code> evalueert, zal het record niet kunnen toegevoegd of aangepast worden.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_sql"><a class="anchor" href="#_sql"></a>SQL</h3>
+<div class="paragraph">
+<p>Structured Query Language (SQL) is de taal die we gebruiken om een databank vorm te geven en de data te manipuleren.</p>
+</div>
+<div class="paragraph">
+<p>SQL is <strong>geen</strong> programmeertaal. In een programmeertaal beschrijf je immers hoe je iets wil doen. In SQL beschrijf je enkel wat je wil doen - het systeem bepaalt hoe dat zal gebeuren.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_postgresql_opzetten"><a class="anchor" href="#_postgresql_opzetten"></a>PostgreSQL Opzetten</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Download en installeer <a href="https://www.docker.com/products/docker-desktop/">Docker Desktop</a> voor jouw besturingssysteem.</p>
+</div>
+<div class="listingblock">
+<div class="title">Download de PostgreSQL image</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker pull postgres</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Start de image als container ( <code>\</code> of <code>`</code> als escape character naargelang omgeving)</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker run -d \
+  --name pg2-postgres \
+  -e POSTGRES_USER=admin \
+  -e POSTGRES_PASSWORD=secret \
+  -e POSTGRES_DB=pg2db \
+  -p 5432:5432 \
+  postgres</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>--name</code> is vrij te kiezen container naam</p>
+</li>
+<li>
+<p><code>-e</code> zijn environment variables</p>
+</li>
+<li>
+<p><code>-p</code> mapt netwerkpoort buiten docker (links) op poort binnen docker (rechts)</p>
+</li>
+<li>
+<p><code>postgres</code> is de image</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Door unieke <code>-p</code> en <code>--name</code> toe te wijzen, kan je meerdere containers simultaan runnen op basis van eenzelfde image.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Container logt wanneer klaar voor gebruik</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">database system is ready to accept connections</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_verbinden"><a class="anchor" href="#_verbinden"></a>Verbinden</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://www.pgadmin.org">pgAdmin</a> is de officiële database management tool. Dit heeft een bestaansreden, maar voor basistaken kan je perfect uit de voeten met de <a href="https://marketplace.visualstudio.com/items?itemName=ms-ossdata.vscode-pgsql">VS Code Extension</a>, Rider of een van de vele alternatieven.</p>
 </div>
 </div>
 </div>

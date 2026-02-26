@@ -61,29 +61,29 @@
       <li class="nav-item is-active" data-depth="0">
 <ul class="nav-list">
       <li class="nav-item is-active" data-depth="1">
-    <a class="nav-link" href="01-situering.html">Situering</a>
+    <a class="nav-link" href="00-situering.html">Situering</a>
   </li>
       <li class="nav-item is-active" data-depth="1">
     <a class="nav-link" href="01-http-apis.html">RESTful HTTP Api</a>
   </li>
       <li class="nav-item is-active" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="02-storefront-api.html">Storefront Backend</a>
+    <a class="nav-link" href="02-storefront-00-intro.html">Storefront Backend</a>
 <ul class="nav-list">
       <li class="nav-item is-active" data-depth="2">
-    <a class="nav-link" href="02-storefront-api-ontwerp.html">API Ontwerp</a>
+    <a class="nav-link" href="02-storefront-01-api-ontwerp.html">API Ontwerp</a>
   </li>
       <li class="nav-item is-active" data-depth="2">
-    <a class="nav-link" href="02-storefront-api-architectuur.html">Architectuur</a>
+    <a class="nav-link" href="02-storefront-02-api-architectuur.html">Architectuur</a>
   </li>
       <li class="nav-item is-active" data-depth="2">
-    <a class="nav-link" href="02-storefront-api-implementatie.html">Implementatie C#</a>
+    <a class="nav-link" href="02-storefront-03-api-implementatie.html">Implementatie C#</a>
+  </li>
+      <li class="nav-item is-active is-current-page" data-depth="2">
+    <a class="nav-link" href="02-storefront-04-db-postgres.html">PostgreSQL</a>
   </li>
       <li class="nav-item is-active" data-depth="2">
-    <span class="nav-text">PostgreSQL</span>
-  </li>
-      <li class="nav-item is-active" data-depth="2">
-    <span class="nav-text">Dapper</span>
+    <a class="nav-link" href="02-storefront-05-dapper.html">Dapper</a>
   </li>
       <li class="nav-item is-active" data-depth="2">
     <span class="nav-text">HATEOAS</span>
@@ -105,9 +105,21 @@
     <a class="nav-link" href="90-03-pokemons.html">Api + In-Memory Data</a>
   </li>
       <li class="nav-item is-active" data-depth="3">
-    <a class="nav-link" href="90-03-pokemons-dapper.html">Dapper</a>
+    <a class="nav-link" href="90-03-pokemons-dapper.html">Api + Dapper</a>
+  </li>
+      <li class="nav-item is-active" data-depth="3">
+    <span class="nav-text">Api + EF Core Scaffolding</span>
+  </li>
+      <li class="nav-item is-active" data-depth="3">
+    <span class="nav-text">Api + EF Core Migrations</span>
   </li>
 </ul>
+  </li>
+      <li class="nav-item is-active" data-depth="2">
+    <span class="nav-text">Async &amp; Parallel</span>
+  </li>
+      <li class="nav-item is-active" data-depth="2">
+    <span class="nav-text">MongoDb</span>
   </li>
       <li class="nav-item is-active" data-depth="2">
     <a class="nav-link" href="90-07-alles.html">Cover-All</a>
@@ -139,7 +151,8 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Gevorderd 2</a></li>
-    <li><a href="02-storefront-db-postgres.html">PostgreSQL</a></li>
+    <li><a href="02-storefront-00-intro.html">Storefront Backend</a></li>
+    <li><a href="02-storefront-04-db-postgres.html">PostgreSQL</a></li>
   </ul>
 </nav>
 </div>
@@ -251,20 +264,26 @@
 </dl>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_sql"><a class="anchor" href="#_sql"></a>SQL</h3>
-<div class="paragraph">
-<p>Structured Query Language (SQL) is de taal die we gebruiken om een databank vorm te geven en de data te manipuleren.</p>
 </div>
+</div>
+<div class="sect1">
+<h2 id="_erd"><a class="anchor" href="#_erd"></a>ERD</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>SQL is <strong>geen</strong> programmeertaal. In een programmeertaal beschrijf je immers hoe je iets wil doen. In SQL beschrijf je enkel wat je wil doen - het systeem bepaalt hoe dat zal gebeuren.</p>
+<p>Eerste versie Storefront Entity Relationship Diagram.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/storefront-api/pgadmin-erd.png" alt="pgadmin erd">
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_postgresql_opzetten"><a class="anchor" href="#_postgresql_opzetten"></a>PostgreSQL Opzetten</h2>
+<h2 id="_postgresql"><a class="anchor" href="#_postgresql"></a>PostgreSQL</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_opzetten"><a class="anchor" href="#_opzetten"></a>Opzetten</h3>
 <div class="paragraph">
 <p>Download en installeer <a href="https://www.docker.com/products/docker-desktop/">Docker Desktop</a> voor jouw besturingssysteem.</p>
 </div>
@@ -321,12 +340,154 @@ Door unieke <code>-p</code> en <code>--name</code> toe te wijzen, kan je meerder
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_verbinden"><a class="anchor" href="#_verbinden"></a>Verbinden</h3>
+<div class="paragraph">
+<p><a href="https://www.pgadmin.org">pgAdmin</a> is de officiële database management tool.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/storefront-api/pgadmin.png" alt="pgadmin">
+</div>
+</div>
+<div class="paragraph">
+<p>Je kan ook opteren voor de <a href="https://marketplace.visualstudio.com/items?itemName=ms-ossdata.vscode-pgsql">VS Code Extension</a>, Rider of een van de vele alternatieven.</p>
+</div>
+</div>
+</div>
 </div>
 <div class="sect1">
-<h2 id="_verbinden"><a class="anchor" href="#_verbinden"></a>Verbinden</h2>
+<h2 id="_sql"><a class="anchor" href="#_sql"></a>SQL</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><a href="https://www.pgadmin.org">pgAdmin</a> is de officiële database management tool. Dit heeft een bestaansreden, maar voor basistaken kan je perfect uit de voeten met de <a href="https://marketplace.visualstudio.com/items?itemName=ms-ossdata.vscode-pgsql">VS Code Extension</a>, Rider of een van de vele alternatieven.</p>
+<p>Structured Query Language (SQL) is de taal die we gebruiken om een databank vorm te geven en de data te manipuleren.</p>
+</div>
+<div class="paragraph">
+<p>SQL is <strong>geen</strong> programmeertaal. In een programmeertaal beschrijf je immers hoe je iets wil doen. In SQL beschrijf je enkel wat je wil doen - het systeem bepaalt hoe dat zal gebeuren.</p>
+</div>
+<div class="sect2">
+<h3 id="_ddl"><a class="anchor" href="#_ddl"></a>DDL</h3>
+<div class="paragraph">
+<p>Data Definition Language.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">DROP SCHEMA Storefront CASCADE;
+CREATE SCHEMA Storefront;
+
+CREATE TABLE Storefront.Customers (
+    CustomerId   BIGINT GENERATED ALWAYS AS IDENTITY NOT NULL,
+    FirstName    VARCHAR(60)                         NOT NULL,
+    LastName     VARCHAR(60)                         NOT NULL,
+    DateOfBirth  TIMESTAMP                           NOT NULL,
+    Email        VARCHAR(100)                        NOT NULL,
+    AddressLine1 VARCHAR(36)                         NOT NULL,
+    AddressLine2 VARCHAR(36)                         NOT NULL,
+    AddressLine3 VARCHAR(36)                             NULL,
+    Country      CHAR(2)                             NOT NULL
+);
+
+ALTER TABLE Storefront.Customers
+ADD CONSTRAINT pk_Customers
+PRIMARY KEY (CustomerId);
+
+ALTER TABLE Storefront.Customers
+ADD CONSTRAINT uk_Customers
+UNIQUE (Email);
+
+CREATE TABLE Storefront.Products (
+    ProductId   BIGINT GENERATED ALWAYS AS IDENTITY NOT NULL,
+    Title       VARCHAR(50)                         NOT NULL,
+    Description VARCHAR(250)                        NOT NULL,
+    Price       DECIMAL(8,2)                        NOT NULL,
+    StockCount  INT									NOT NULL
+);
+
+ALTER TABLE Storefront.Products
+ADD CONSTRAINT pk_Products
+PRIMARY KEY (ProductId);
+
+ALTER TABLE Storefront.Products
+ADD CONSTRAINT uk_Products
+UNIQUE (Title);
+
+CREATE TABLE Storefront.Orders (
+    OrderId    BIGINT GENERATED ALWAYS AS IDENTITY NOT NULL,
+	OrderDate  TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+	CustomerId BIGINT 							   NOT NULL,
+	TotalPrice DECIMAL(8,2) 					   NOT NULL
+);
+
+ALTER TABLE Storefront.Orders
+ADD CONSTRAINT pk_Orders
+PRIMARY KEY (OrderId);
+
+ALTER TABLE Storefront.Orders
+ADD CONSTRAINT uk_Orders
+UNIQUE (CustomerId, OrderDate);
+
+ALTER TABLE Storefront.Orders
+ADD CONSTRAINT fk_Orders_Customers
+FOREIGN KEY (CustomerId)
+REFERENCES Storefront.Customers(CustomerId);
+
+CREATE INDEX fki_Orders_CustomerId
+ON Storefront.Orders(CustomerId);
+
+CREATE TABLE Storefront.OrderProducts (
+    OrderProductId BIGINT GENERATED ALWAYS AS IDENTITY NOT NULL,
+	OrderId        BIGINT 							   NOT NULL,
+	ProductId      BIGINT 							   NOT NULL,
+	Quantity       INT								   NOT NULL,
+	Price          DECIMAL(6,2)						   NOT NULL
+);
+
+ALTER TABLE Storefront.OrderProducts
+ADD CONSTRAINT pk_OrderProducts
+PRIMARY KEY (OrderProductId);
+
+ALTER TABLE Storefront.OrderProducts
+ADD CONSTRAINT uk_OrderProducts
+UNIQUE (OrderId, ProductId);
+
+ALTER TABLE Storefront.OrderProducts
+ADD CONSTRAINT fk_OrderProducts_Orders
+FOREIGN KEY (OrderId)
+REFERENCES Storefront.Orders(OrderId);
+
+ALTER TABLE Storefront.OrderProducts
+ADD CONSTRAINT fk_OrderProducts_Products
+FOREIGN KEY (ProductId)
+REFERENCES Storefront.Products(ProductId);
+
+CREATE INDEX fki_OrderProducts_OrderId
+ON Storefront.OrderProducts(OrderId);
+
+CREATE INDEX fki_OrderProducts_ProductId
+ON Storefront.OrderProducts(ProductId);</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Niet elke RDBMS voorziet impliciet indexen op foreign keys. Meestal wil je elke foreign key indexeren en dus zelf expliciet de relevante indexen voorzien indien ze niet vanzelf aangemaakt worden.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_dml"><a class="anchor" href="#_dml"></a>DML</h3>
+<div class="paragraph">
+<p>Iedereen kent de basis CRUD query operaties, maar het kan nuttig zijn even stil te staan bij de <code>join</code> operaties.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="_images/storefront-ef/joins.png" alt="joins"></span></p>
+</div>
 </div>
 </div>
 </div>

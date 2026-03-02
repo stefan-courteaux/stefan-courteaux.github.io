@@ -182,7 +182,7 @@
 <div class="sidebarblock">
 <div class="content">
 <div class="paragraph">
-<p><strong>AS A</strong> ShipIt Customer <strong>I WANT</strong> to obtain a reference to my quote <strong>SO THAT</strong> I can consult it later on.</p>
+<p><strong>AS A</strong> ShipIt Customer <strong>I WANT</strong> to obtain a pricequote reference <strong>SO THAT</strong> I can refer to it later on.</p>
 </div>
 </div>
 </div>
@@ -287,7 +287,7 @@ Er valt meer te vertellen over <em>PartitionKeys</em>. Dat leer je wel op het we
 <div class="sect2">
 <h3 id="_solution"><a class="anchor" href="#_solution"></a>Solution</h3>
 <div class="paragraph">
-<p>We maken gebruik van deze kans om de structuur van de solution verder uit te diepen.</p>
+<p>We maken gebruik van deze kans om de structuur van de solution verder uit te diepen. Dit wordt uitgebreid besproken in Programmeren Gevorderd 2.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -296,7 +296,7 @@ Er valt meer te vertellen over <em>PartitionKeys</em>. Dat leer je wel op het we
 <div class="ulist">
 <ul>
 <li>
-<p>Api.Contracts (Immutable Record Types)</p>
+<p>Api.Contracts &#8594; "DTO"</p>
 </li>
 </ul>
 </div>
@@ -309,7 +309,7 @@ Er valt meer te vertellen over <em>PartitionKeys</em>. Dat leer je wel op het we
 <p>Uitsplitsen naar eigen layer.</p>
 </li>
 <li>
-<p>Services.Models &#8594; Mutable Class Types</p>
+<p>Services.Models &#8594; "Domeinmodel"</p>
 </li>
 <li>
 <p>Mapping: Api.Contracts &#8592;&#8594; Services.Models &#8592;&#8594; Storage.Contracts</p>
@@ -325,7 +325,7 @@ Er valt meer te vertellen over <em>PartitionKeys</em>. Dat leer je wel op het we
 <p>Layer toevoegen</p>
 </li>
 <li>
-<p>Storage.Contracts (Immutable Record Types)</p>
+<p>Storage.Contracts &#8594; "DAO"</p>
 </li>
 </ul>
 </div>
@@ -352,7 +352,7 @@ Er valt meer te vertellen over <em>PartitionKeys</em>. Dat leer je wel op het we
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Op dit moment zou je zeker kunnen stellen dat de oplossing <em>overengineered</em> is. Deze nieuwe solution structuur houdt steek <strong>als</strong> je weet dat het project nog sterk zal groeien.
+Op dit moment zou je zeker kunnen stellen dat de oplossing <em>overengineered</em> is. Een dergelijke structuur houdt steek <strong>als</strong> je weet dat het project nog sterk zal groeien.
 </td>
 </tr>
 </table>
@@ -364,32 +364,30 @@ Op dit moment zou je zeker kunnen stellen dat de oplossing <em>overengineered</e
 <p>Voeg nuget package <code>Microsoft.Azure.Cosmos</code> en <code>Newtonsoft.Json</code> toe aan dit nieuwe project.</p>
 </div>
 <div class="paragraph">
-<p>We hebben een <em>Repository</em> interface en een <em>Contract</em> (DAO/DTO) nodig.</p>
+<p>We hebben een <em>Repository</em> interface en een <em>Contract</em> (DAO/DTO) nodig. Immutable records (reference type) zijn een goeie keuze voor een datastructuur die enkel dient om informatie over te dragen. Klassen zijn ook ok, no worries, dat is de focus hier niet.</p>
 </div>
 <div class="listingblock">
 <div class="title">ShipIt.PriceQuote.Storage.Contracts/PriceQuoteStorageContract.cs</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">public record PriceQuoteStorageContract( <i class="conum" data-value="1"></i><b>(1)</b>
-    string id, // cosmos key <i class="conum" data-value="2"></i><b>(2)</b>
-    int width,
-    int height,
-    int depth,
-    double weight,
-    CountryEnum from,
-    CountryEnum to,
-    double price,
-    DateTime validUntil
-);</code></pre>
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">public class PriceQuoteStorageContract
+{
+    public string id {get;set;} <i class="conum" data-value="1"></i><b>(1)</b>
+    public int widthCm { get; set; }
+    public int heightCm { get; set; }
+    public int lengthCm { get; set; }
+    public double weightKg { get; set; }
+    public CountryEnum fromCountry { get; set; }
+    public CountryEnum toCountry { get; set; }
+    public DateTime createdOn { get; set; }
+    public DateTime validUntil { get; set; }
+    public decimal price { get; set; }
+}</code></pre>
 </div>
 </div>
 <div class="colist arabic">
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Immutable record (reference type) is de logische keuze voor een datastructuur die enkel dient om informatie over te dragen.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
 <td>Cosmos verwacht een lowercase <code>id</code>.</td>
 </tr>
 </table>
@@ -418,6 +416,8 @@ Op dit moment zou je zeker kunnen stellen dat de oplossing <em>overengineered</e
     public async Task&lt;PriceQuoteStorageContract&gt; CreateAsync(
         PriceQuoteStorageContract storageContract)
     {
+        storageContract.id = Guid.NewGuid().ToString();
+
         var itemResponse = await GetCosmosContainer()
             .CreateItemAsync(
                 item: storageContract,
@@ -428,12 +428,12 @@ Op dit moment zou je zeker kunnen stellen dat de oplossing <em>overengineered</e
     }
 
     public async Task&lt;PriceQuoteStorageContract?&gt; GetAsync(
-        string id)
+        string Id)
     {
         var itemResponse = await GetCosmosContainer()
             .ReadItemAsync&lt;PriceQuoteStorageContract&gt;(
-                id: id,
-                partitionKey: new PartitionKey(id)
+                id: Id,
+                partitionKey: new PartitionKey(Id)
             );
 
         return itemResponse.Resource;
@@ -441,9 +441,9 @@ Op dit moment zou je zeker kunnen stellen dat de oplossing <em>overengineered</e
 
     private static Container GetCosmosContainer() <i class="conum" data-value="1"></i><b>(1)</b>
     {
-        var client = new CosmosClient("&lt;connectionstring&gt;");
-        var database = client.GetDatabase("shipit");
-        var container = database.GetContainer("pricequotes");
+        var client = new CosmosClient("connectionstring");
+        var database = client.GetDatabase("dbname");
+        var container = database.GetContainer("containername");
 
         if (container is null)
         {
@@ -546,23 +546,16 @@ Op dit moment zou je zeker kunnen stellen dat de oplossing <em>overengineered</e
 </div>
 <div class="sect2">
 <h3 id="_api_layer"><a class="anchor" href="#_api_layer"></a>Api Layer</h3>
-<div class="paragraph">
-<p>Om te kunnen voldoen aan de <em>CreatedAt</em> requirement, breiden we het <code>PriceQuoteResponseContract</code> uit. Ook dit wordt een immutable reference type.</p>
-</div>
 <div class="listingblock">
 <div class="title">ShipIt.PriceQuote.Api.Contracts/PriceQuoteResponseContract.cs</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">public record PriceQuoteResponseContract(
-    string Id,
-    int WidthCm,
-    int HeightCm,
-    int DepthCm,
-    double WeightKg,
-    CountryEnum CountryFrom,
-    CountryEnum CountryTo,
-    double Price,
-    DateTime ValidUntil
-);</code></pre>
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">public class PriceQuoteResponseContract
+{
+    public string Id { get; set; }
+    public DateTime CreatedOn { get; set; }
+    public DateTime ValidUntil { get; set; }
+    public decimal Price { get; set; }
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -613,10 +606,7 @@ public class PriceQuoteController(IPriceQuoteService priceQuoteService): Control
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">//...
 builder.Services.AddControllers()
-    .AddJsonOptions(opt =&gt; {
-    opt.JsonSerializerOptions.Converters.Add(
-        new JsonStringEnumConverter());
-    })
+    ...
     .AddMvcOptions(options =&gt; {
         options.SuppressAsyncSuffixInActionNames = false; <i class="conum" data-value="1"></i><b>(1)</b>
     });
@@ -804,31 +794,29 @@ public class PriceQuoteRepository(IOptions&lt;PriceQuoteRepositoryOptions&gt; op
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ps hljs" data-lang="ps">az webapp up `
-  --name hogent-pg3-stefancourteaux-shipit-quote ` <i class="conum" data-value="1"></i><b>(1)</b>
-  --plan hogent-pg3-stefancourteaux-shipit-plan `
-  --resource-group hogent-pg3-stefancourteaux-shipit `
+  --name hogent-pg3-stefanc-shipit-quote `
+  --plan hogent-pg3-stefanc-shipit-plan `
+  --resource-group hogent-pg3-stefanc-shipit `
   --location westeurope `
   --os-type linux</code></pre>
 </div>
 </div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Backtick <code>`</code> is het escape character in powershell. Backslash <code>\</code> is equivalent in Linux, macOS en vele programmeertalen.</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>As always, backtick in powershell, backslash in unix-like omgevingen.</p>
 </div>
-<div class="sect3">
-<h4 id="_api"><a class="anchor" href="#_api"></a>Api</h4>
+<div class="paragraph">
+<p>Vergeet niet te testen of het effectief lukt een bestaande entry uit te lezen met en <code>GET</code> operatie.</p>
+</div>
+<div class="sect2">
+<h3 id="_api"><a class="anchor" href="#_api"></a>Api</h3>
 <div class="imageblock">
 <div class="content">
 <img src="_images/cosmos/postman.png" alt="postman">
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_cosmos"><a class="anchor" href="#_cosmos"></a>Cosmos</h4>
+<div class="sect2">
+<h3 id="_cosmos"><a class="anchor" href="#_cosmos"></a>Cosmos</h3>
 <div class="imageblock">
 <div class="content">
 <img src="_images/cosmos/data.png" alt="data">

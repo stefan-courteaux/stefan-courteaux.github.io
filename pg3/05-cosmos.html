@@ -325,7 +325,7 @@ Er valt meer te vertellen over <em>PartitionKeys</em>. Dat leer je wel op het we
 <p>Layer toevoegen</p>
 </li>
 <li>
-<p>Storage.Contracts &#8594; "DAO"</p>
+<p>Storage.DataModel &#8594; "DAO"</p>
 </li>
 </ul>
 </div>
@@ -369,7 +369,7 @@ Op dit moment zou je zeker kunnen stellen dat de oplossing <em>overengineered</e
 <div class="listingblock">
 <div class="title">ShipIt.PriceQuote.Storage.Contracts/PriceQuoteStorageContract.cs</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">public class PriceQuoteStorageContract
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp"> public class PriceQuoteDataModel
 {
     public string id {get;set;} <i class="conum" data-value="1"></i><b>(1)</b>
     public int widthCm { get; set; }
@@ -400,8 +400,8 @@ Op dit moment zou je zeker kunnen stellen dat de oplossing <em>overengineered</e
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">public interface IPriceQuoteRepository
 {
-    Task&lt;PriceQuoteStorageContract&gt; CreateAsync(PriceQuoteStorageContract storageContract);
-    Task&lt;PriceQuoteStorageContract?&gt; GetAsync(string id);
+    Task&lt;PriceQuoteDataModel&gt; CreateAsync(PriceQuoteDataModel dataModel);
+    Task&lt;PriceQuoteDataModel&gt; GetAsync(string Id);
 }</code></pre>
 </div>
 </div>
@@ -411,39 +411,35 @@ Op dit moment zou je zeker kunnen stellen dat de oplossing <em>overengineered</e
 <div class="listingblock">
 <div class="title">ShipIt.PriceQuote.Storage/PriceQuoteRepository.cs</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">public class PriceQuoteRepository : IPriceQuoteRepository
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">public class PriceQuoteRepository(IOptions&lt;PriceQuoteRepositoryOptions&gt; options) : IPriceQuoteRepository
 {
-    public async Task&lt;PriceQuoteStorageContract&gt; CreateAsync(
-        PriceQuoteStorageContract storageContract)
+    public async Task&lt;PriceQuoteDataModel&gt; CreateAsync(PriceQuoteDataModel dataModel)
     {
-        storageContract.id = Guid.NewGuid().ToString();
+        dataModel.id = Guid.NewGuid().ToString();
 
-        var itemResponse = await GetCosmosContainer()
-            .CreateItemAsync(
-                item: storageContract,
-                partitionKey: new PartitionKey(storageContract.id)
-            );
+        var createdQuote = await GetCosmosContainer().CreateItemAsync(
+            item: dataModel,
+            partitionKey: new PartitionKey(dataModel.id)
+        );
 
-        return itemResponse.Resource;
+        return createdQuote.Resource;
     }
 
-    public async Task&lt;PriceQuoteStorageContract?&gt; GetAsync(
-        string Id)
+    public async Task&lt;PriceQuoteDataModel&gt; GetAsync(string Id)
     {
-        var itemResponse = await GetCosmosContainer()
-            .ReadItemAsync&lt;PriceQuoteStorageContract&gt;(
-                id: Id,
-                partitionKey: new PartitionKey(Id)
-            );
+        var existing = await GetCosmosContainer().ReadItemAsync&lt;PriceQuoteDataModel&gt;(
+            id: Id,
+            partitionKey: new PartitionKey(Id)
+        );
 
-        return itemResponse.Resource;
+        return existing.Resource;
     }
 
-    private static Container GetCosmosContainer() <i class="conum" data-value="1"></i><b>(1)</b>
+    private Container GetCosmosContainer() <i class="conum" data-value="1"></i><b>(1)</b>
     {
-        var client = new CosmosClient("connectionstring");
-        var database = client.GetDatabase("dbname");
-        var container = database.GetContainer("containername");
+        var client = new CosmosClient(options.Value.Connectionstring);
+        var database = client.GetDatabase(options.Value.DatabaseName);
+        var container = database.GetContainer(options.Value.ContainerName);
 
         if (container is null)
         {
@@ -500,42 +496,92 @@ Op dit moment zou je zeker kunnen stellen dat de oplossing <em>overengineered</e
 <div class="listingblock">
 <div class="title">ShipIt.PriceQuote.Services/PriceQuoteService.cs</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">public class PriceQuoteService(IPriceQuoteRepository priceQuoteRepository)
-    : IPriceQuoteService
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">public class PriceQuoteService(IPriceQuoteRepository priceQuoteRepository) : IPriceQuoteService
 {
-    public async Task&lt;PriceQuoteResponseContract&gt; CreatePriceQuoteAsync(
-        PriceQuoteRequestContract priceQuoteRequestContract)
+    //TODO Factor out mapping logic.
+    public async Task&lt;PriceQuoteResponseContract&gt; CreateAsync(PriceQuoteRequestContract requestContract)
     {
-        // Map to model
-        var quoteModel = priceQuoteRequestContract.AsModel();
+        // Map to Model
+        var model = new PriceQuoteModel
+        {
+            PriceArguments = new PriceQuoteModelArguments
+            {
+                WidthCm = requestContract.WidthCm,
+                HeightCm = requestContract.HeightCm,
+                LengthCm = requestContract.LengthCm,
+                WeightKg = requestContract.WeightKg,
+                FromCountry = requestContract.FromCountry,
+                ToCountry = requestContract.ToCountry
+            }
+        };
 
-        // Execute business logic
-        if(quoteModel is { CountryFrom: CountryEnum.NL, WeightKg: &gt; 10 })
-            throw new Exception("Package from NL exceeds max weight of 10kg.");
+        // Business Logic
+        if (model.PriceArguments.FromCountry == CountryEnum.NL &amp;&amp; model.PriceArguments.WeightKg &gt; 10)
+        {
+            throw new PriceQuoteExceptionNLWeightExceeded(
+                $"For shipments from NL, the maximum weight is 10kg. You submitted {model.PriceArguments.WeightKg}");
+        }
 
-        quoteModel.Price = CalculatePrice(quoteModel);
-        quoteModel.ValidUntil = DateTime.Now.AddHours(48);
+        var price = 2.5 + model.PriceArguments.LengthCm * model.PriceArguments.WidthCm * model.PriceArguments.HeightCm * 0.0001 + model.PriceArguments.WeightKg * 1.15;
+        if (model.PriceArguments.FromCountry != model.PriceArguments.ToCountry)
+        {
+            price += 3.0;
+        }
 
-        // Store data
-        var quoteRecord = quoteModel.AsRecord();
-        var createdQuoteRecord = await priceQuoteRepository
-            .CreateAsync(quoteRecord);
-        quoteModel = createdQuoteRecord.AsModel();
+        model.PriceResult = new PriceQuoteModelResult
+        {
+            Price = decimal.Round((decimal)price, 1),
+            CreatedOn = DateTime.UtcNow,
+            ValidUntil = DateTime.UtcNow.AddHours(48)
+        };
 
-        // Map to contract and return
-        return quoteModel.AsResponseContract();
+        // Stel u voor: nog meer logica enzo op model
+
+        // Map to DataModel
+        var dbQuote = new PriceQuoteDataModel
+        {
+            widthCm = model.PriceArguments.WidthCm,
+            heightCm = model.PriceArguments.HeightCm,
+            lengthCm = model.PriceArguments.LengthCm,
+            weightKg = model.PriceArguments.WeightKg,
+            fromCountry = model.PriceArguments.FromCountry,
+            toCountry = model.PriceArguments.ToCountry,
+            price = model.PriceResult.Price,
+            createdOn = model.PriceResult.CreatedOn,
+            validUntil = model.PriceResult.ValidUntil
+        };
+
+        // Create in DB
+        var created = await priceQuoteRepository.CreateAsync(dbQuote);
+
+        // TODO Map to Model, then Contract... cleaner?
+
+        // Map to Contract
+        var responseContract = new PriceQuoteResponseContract
+        {
+            Id = created.id,
+            CreatedOn = created.createdOn,
+            ValidUntil = created.validUntil,
+            Price = created.price
+        };
+
+        return responseContract;
     }
 
-    public async Task&lt;PriceQuoteResponseContract?&gt; GetPriceQuoteAsync(
-        string id)
+    //TODO refactor duplicate logic
+    public async Task&lt;PriceQuoteResponseContract&gt; GetAsync(string Id)
     {
-        var quoteRecord = await priceQuoteRepository.GetAsync(id);
-        return quoteRecord?.AsModel().AsResponseContract();
-    }
+        var existing = await priceQuoteRepository.GetAsync(Id);
 
-    private double CalculatePrice(PriceQuoteModel model)
-    {
-        // ...
+        var responseContract = new PriceQuoteResponseContract
+        {
+            Id = existing.id,
+            CreatedOn = existing.createdOn,
+            ValidUntil = existing.validUntil,
+            Price = existing.price
+        };
+
+        return responseContract;
     }
 }</code></pre>
 </div>
@@ -564,28 +610,26 @@ Op dit moment zou je zeker kunnen stellen dat de oplossing <em>overengineered</e
 <div class="listingblock">
 <div class="title">ShipIt.PriceQuote.Api/Controllers/PriceQuoteController.cs</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">[Route("api/pricequotes")]
-[ApiController]
-public class PriceQuoteController(IPriceQuoteService priceQuoteService): ControllerBase
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">public class PriceQuoteController(IPriceQuoteService quoteService) : ControllerBase
 {
     [HttpPost]
-    public async Task&lt;ActionResult&lt;PriceQuoteResponseContract&gt;&gt; CreatePriceQuoteAsync(
-        [FromBody]PriceQuoteRequestContract priceQuoteRequestContract)
+    public async Task&lt;ActionResult&lt;PriceQuoteResponseContract&gt;&gt; CalculatePriceQuoteAsync([FromBody]PriceQuoteRequestContract priceQuoteRequest)
     {
-        var created = await priceQuoteService.CreatePriceQuoteAsync(priceQuoteRequestContract);
-        return CreatedAtAction(nameof(GetPriceQuote), new { id = created.Id}, created); <i class="conum" data-value="1"></i><b>(1)</b>
+        try
+        {
+            var created = await quoteService.CreateAsync(priceQuoteRequest);
+            return CreatedAtAction(nameof(GetByIdAsync), new {Id = created.Id}, created); <i class="conum" data-value="1"></i><b>(1)</b>
+        }
+        catch(PriceQuoteExceptionNLWeightExceeded e)
+        {
+            return Problem(title: e.Message, statusCode: StatusCodes.Status400BadRequest);
+        }
     }
 
     [HttpGet("{id}")]
-    public async Task&lt;ActionResult&lt;PriceQuoteResponseContract&gt;&gt; GetPriceQuoteAsync(
-        [FromRoute] string id)
+    public async Task&lt;ActionResult&lt;PriceQuoteResponseContract&gt;&gt; GetByIdAsync([FromRoute]string Id)
     {
-        var result = await priceQuoteService.GetPriceQuoteAsync(id);
-
-        if (result is null)
-            return NotFound();
-
-        return Ok(result);
+        return Ok(await quoteService.GetAsync(Id));
     }
 }</code></pre>
 </div>

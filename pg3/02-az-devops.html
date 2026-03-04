@@ -527,54 +527,36 @@ De lessen Programmeren Gevorderd 2 bespreken in meer detail hoe een Api opgebouw
 <div class="listingblock">
 <div class="title">ShipIt/ShipIt.PriceQuote.Api/Program.cs</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">using System.Text.Json.Serialization; <i class="conum" data-value="1"></i><b>(1)</b>
-using ShipIt.PriceQuote.Api.Services;
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddControllers().AddJsonOptions(opt =&gt; {
+    opt.JsonSerializerOptions.Converters.Add( <i class="conum" data-value="1"></i><b>(1)</b>
+        new JsonStringEnumConverter());
+});
 
-namespace ShipIt.PriceQuote.Api
-{
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            var builder = WebApplication.CreateBuilder(args);
-            builder.Services.AddControllers().AddJsonOptions(opt =&gt; {
-                opt.JsonSerializerOptions.Converters.Add(
-                    new JsonStringEnumConverter()); <i class="conum" data-value="2"></i><b>(2)</b>
-            });
-            ;
+var app = builder.Build();
 
-            builder.Services.AddScoped&lt;IPriceQuoteService, PriceQuoteService&gt;();
+app.MapControllers(); <i class="conum" data-value="2"></i><b>(2)</b>
 
-            var app = builder.Build();
-            app.MapControllers(); <i class="conum" data-value="3"></i><b>(3)</b>
+if (app.Environment.IsDevelopment()) <i class="conum" data-value="3"></i><b>(3)</b>
+    app.UseExceptionHandler("/error-development");
+else
+    app.UseExceptionHandler("/error");
 
-            if (app.Environment.IsDevelopment()) <i class="conum" data-value="4"></i><b>(4)</b>
-                app.UseExceptionHandler("/error-development");
-            else
-                app.UseExceptionHandler("/error");
-
-            app.Run();
-        }
-    }
-}</code></pre>
+app.Run();</code></pre>
 </div>
 </div>
 <div class="colist arabic">
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td><code>System.Text.Json</code>, er is hier geen reden om het historisch populaire <code>Newtonsoft</code> te gebruiken.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
 <td><em>Enumerations</em> zullen naar buiten toe geserialiseerd worden als <code>string</code> - niet als <code>int</code>.</td>
 </tr>
 <tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
 <td>Verken en map de <em>routes</em> gedefinieerd in <em>api controllers</em>.</td>
 </tr>
 <tr>
-<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
 <td><em>Exceptions</em> worden afgevangen en verwerkt door <code>ErrorsController</code>.</td>
 </tr>
 </table>
@@ -582,26 +564,21 @@ namespace ShipIt.PriceQuote.Api
 <div class="listingblock">
 <div class="title">ShipIt/ShipIt.PriceQuote.Api/Controllers/PriceQuotesController.cs</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">using Microsoft.AspNetCore.Mvc;
-using ShipIt.PriceQuote.Api.Contracts;
-
-namespace ShipIt.PriceQuote.Api.Controllers
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">[ApiController] <i class="conum" data-value="2"></i><b>(2)</b>
+[Route("pricequotes")] <i class="conum" data-value="1"></i><b>(1)</b>
+public class PriceQuoteController : ControllerBase
 {
-    [Route("api/[controller]")] <i class="conum" data-value="1"></i><b>(1)</b>
-    [ApiController] <i class="conum" data-value="2"></i><b>(2)</b>
-    public class PriceQuotesController : ControllerBase
+    [HttpPost]
+    public ActionResult&lt;PriceQuoteResponseContract&gt; CalculatePriceQuote([FromBody]PriceQuoteRequestContract priceQuoteRequest)
     {
-        [HttpPost]
-        public ActionResult&lt;PriceQuoteResponseContract&gt; CreatePriceQuote(
-            PriceQuoteRequestContract priceQuoteRequest) {
-            ...</code></pre>
+    ...</code></pre>
 </div>
 </div>
 <div class="colist arabic">
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>De route <code>api/pricequotes</code> wordt dynamisch bepaald op basis van de controllernaam.</td>
+<td>De route <code>pricequotes</code> wordt bepaald.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>

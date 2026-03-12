@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Title</title>
+
+    <style>
+
+        :root{
+            --text:#1d1d1f;
+            --muted:#6e6e73;
+            --card:rgba(255,255,255,0.65);
+            --border:rgba(255,255,255,0.35);
+        }
+
+        /* Reset */
+
+        *{
+            box-sizing:border-box;
+            margin:0;
+            padding:0;
+        }
+
+        body{
+            font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Helvetica,Arial,sans-serif;
+            color:var(--text);
+            min-height:100vh;
+
+            display:flex;
+            align-items:center;
+            justify-content:center;
+
+            padding:40px 20px;
+            overflow:hidden;
+
+            background:#0f0f17;
+        }
+
+        /* Animated gradient blobs */
+
+        body::before,
+        body::after{
+            content:"";
+            position:fixed;
+            width:900px;
+            height:900px;
+            border-radius:50%;
+            filter:blur(120px);
+            opacity:0.7;
+            z-index:-1;
+        }
+
+        body::before{
+            background:radial-gradient(circle,#8b5cf6,#6366f1,#9333ea);
+            top:-200px;
+            left:-200px;
+            animation:blob1 18s infinite alternate ease-in-out;
+        }
+
+        body::after{
+            background:radial-gradient(circle,#a855f7,#7c3aed,#6366f1);
+            bottom:-250px;
+            right:-200px;
+            animation:blob2 22s infinite alternate ease-in-out;
+        }
+
+        @keyframes blob1{
+            0%{ transform:translate(0,0) scale(1);}
+            50%{ transform:translate(150px,120px) scale(1.2);}
+            100%{ transform:translate(50px,200px) scale(0.9);}
+        }
+
+        @keyframes blob2{
+            0%{ transform:translate(0,0) scale(1);}
+            50%{ transform:translate(-120px,-80px) scale(1.1);}
+            100%{ transform:translate(-50px,-160px) scale(0.95);}
+        }
+
+        /* Layout */
+
+        .container{
+            max-width:920px;
+            width:100%;
+            text-align:center;
+        }
+
+        h1{
+            font-size:44px;
+            font-weight:600;
+            margin-bottom:14px;
+            letter-spacing:-0.02em;
+            color:white;
+        }
+
+        .intro{
+            font-size:18px;
+            color:#d1d1d6;
+            margin-bottom:42px;
+        }
+
+        /* Cards */
+
+        .cards{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+            gap:24px;
+        }
+
+        .card{
+            text-decoration:none;
+            color:inherit;
+
+            background:var(--card);
+            backdrop-filter: blur(25px);
+
+            border:1px solid var(--border);
+            border-radius:20px;
+
+            padding:30px 26px;
+
+            transition:all .3s ease;
+
+            box-shadow:
+                    0 10px 25px rgba(0,0,0,0.2),
+                    0 25px 60px rgba(0,0,0,0.25);
+        }
+
+        .card:hover{
+            transform:translateY(-8px) scale(1.03);
+
+            box-shadow:
+                    0 20px 40px rgba(0,0,0,0.3),
+                    0 35px 80px rgba(0,0,0,0.35);
+        }
+
+        /* Icons */
+
+        .icon{
+            width:46px;
+            height:46px;
+            margin:0 auto 18px auto;
+
+            border-radius:12px;
+
+            display:flex;
+            align-items:center;
+            justify-content:center;
+
+            font-size:20px;
+            color:white;
+        }
+
+        /* Purple Apple-style icon gradients */
+
+        .icon1{
+            background:linear-gradient(135deg,#a855f7,#6366f1);
+        }
+
+        .icon2{
+            background:linear-gradient(135deg,#c084fc,#8b5cf6);
+        }
+
+        .icon3{
+            background:linear-gradient(135deg,#9333ea,#6366f1);
+        }
+
+        .card-title{
+            font-size:20px;
+            font-weight:600;
+            margin-bottom:8px;
+        }
+
+        .card-desc{
+            font-size:14px;
+            color:#6e6e73;
+        }
+
+        footer{
+            margin-top:48px;
+            font-size:13px;
+            color:#a1a1aa;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>stefan-courteaux.github.io</h1>
+
+    <p class="intro">
+        Deze landing page linkt door naar het online cursusmateriaal waar ik aan werk.
+    </p>
+
+    <div class="cards">
+
+        <a class="card" href="https://stefan-courteaux.github.io/pg2/" target="_blank">
+            <div class="icon icon1">💻</div>
+            <div class="card-title">PG2</div>
+            <div class="card-desc">Programmeren Gevorderd 2</div>
+        </a>
+
+        <a class="card" href="https://stefan-courteaux.github.io/pg3/" target="_blank">
+            <div class="icon icon2">☁️</div>
+            <div class="card-title">PG3</div>
+            <div class="card-desc">Programmeren Gevorderd 3</div>
+        </a>
+
+        <a class="card" href="https://thesurfingpikachus.github.io/so2/" target="_blank">
+            <div class="icon icon3">💡</div>
+            <div class="card-title">SO2</div>
+            <div class="card-desc">Softwareontwerp 2 (Tommy)</div>
+        </a>
+
+    </div>
+
+    <footer>
+        © 2026 Course material may <strong>not</strong> be used to teach, tutor, coach, or present without getting explicit consent from Stefan Courteaux.
+        <br />
+        Landing page 99% vibe coded. Mea Culpa.
+    </footer>
+
+</div>
+
+</body>
+</html>

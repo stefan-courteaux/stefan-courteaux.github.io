@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Welkom bij Programmeren Gevorderd 2! :: Programmeren Gevorderd 2 (BETA)</title>
+    <title>Opdracht Evaluatie PG2 :: Programmeren Gevorderd 2 (BETA)</title>
     <meta name="generator" content="Antora 3.1.14">
     <link rel="stylesheet" href="../_/css/site.css">
   </head>
-  <body class="article home">
+  <body class="article">
 <header class="header">
   <nav class="navbar">
     <div class="navbar-brand">
@@ -115,7 +115,7 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Opdrachten</span>
 <ul class="nav-list">
-      <li class="nav-item is-active" data-depth="2">
+      <li class="nav-item is-active is-current-page" data-depth="2">
     <a class="nav-link" href="tussentijdse.html">Tussentijdse 1</a>
   </li>
 </ul>
@@ -184,7 +184,8 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Gevorderd 2</a></li>
-    <li><a href="index.html">Welkom bij Programmeren Gevorderd 2!</a></li>
+    <li>Opdrachten</li>
+    <li><a href="tussentijdse.html">Tussentijdse 1</a></li>
   </ul>
 </nav>
 </div>
@@ -193,208 +194,115 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Welkom bij Programmeren Gevorderd 2!</h1>
-<div class="sect1">
-<h2 id="_inhoud"><a class="anchor" href="#_inhoud"></a>Inhoud</h2>
-<div class="sectionbody">
+<h1 class="page">Opdracht Evaluatie PG2</h1>
+<div class="sidebarblock">
+<div class="content">
 <div class="paragraph">
-<p>In <em>Programmeren Basis</em> leerde je</p>
+<p><strong>We introduceren het concept <em>WishList</em> in de <em>StoreFront</em> applicatie. Een <em>WishList</em> is een lijst van <em>Products</em> die een <em>Customer</em> in de toekomst misschien zou willen bestellen.</strong></p>
 </div>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Domeinregels</dt>
+<dd>
 <div class="ulist">
 <ul>
 <li>
-<p>logica uitdrukken in C#</p>
-</li>
-<li>
-<p>OO-Programmeren</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>In <em>Programmeren Gevorderd</em> leerde je</p>
-</div>
+<p>Een <em>Customer</em> heeft <code>0..1</code> <em>WishLists</em>.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>grotere probleemstellingen oplossen</p>
+<p>Een <em>WishList</em> heeft altijd een <strong>naam</strong>, aanpasbaar door de <em>Customer</em>.</p>
 </li>
 <li>
-<p>een traditionele drielagenapplicatie bouwen.</p>
+<p>De <strong>naam</strong> van een <em>WishList</em> is niet uniek in het systeem.</p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>In <em>Programmeren Gevorderd 2</em> zal je dus niet leren programmeren. Dat kan je al 😎 We behandelen de fundamenten van enkele technieken en technologieën die veel gebruikt worden in het werkveld.</p>
-</div>
+</li>
+<li>
+<p>Een <em>WishList</em> bevat <code>0..*</code> <em>Products</em>.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Dotnet CLI</p>
+<p>Elk <em>Product</em> op de <em>WishList</em> kan een <strong>nota</strong> hebben, gekozen door de <em>Customer</em>.</p>
 </li>
 <li>
-<p>RESTful HTTP Api&#8217;s</p>
+<p>Elk <em>Product</em> op de <em>WishList</em> heeft een <strong>aantal</strong> (default 1, minstens 1) aanpasbaar door de <em>Customer</em>.</p>
 </li>
 <li>
-<p>Meerlagige Backends</p>
-</li>
-<li>
-<p>Entity Framework Core</p>
-</li>
-<li>
-<p>Dapper Micro ORM</p>
-</li>
-<li>
-<p>Async &amp; Parallel</p>
-</li>
-<li>
-<p>MongoDB</p>
-</li>
-<li>
-<p>PostgreSQL</p>
+<p>De <em>Customer</em> ziet altijd de actuele naam en prijs van een <em>Product</em> op de <em>WishList</em>.</p>
 </li>
 </ul>
 </div>
+</li>
+</ul>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_studiemateriaal"><a class="anchor" href="#_studiemateriaal"></a>Studiemateriaal</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Studiemateriaal is online beschikbaar.</p>
-</div>
+</dd>
+<dt class="hdlist1">Deliverables</dt>
+<dd>
 <div class="ulist">
 <ul>
 <li>
-<p>Code komt na de les op <a href="https://github.com/VedromDest/pg2">GitHub</a>.</p>
-</li>
-<li>
-<p>Deze cursus is steeds beschikbaar.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_aanpak"><a class="anchor" href="#_aanpak"></a>Aanpak</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Lessen zijn een mix van theorie en live coding tutorial. Code uit de les komt integraal online.</p>
-</div>
-<div class="paragraph">
-<p>Je wordt verondersteld mee te denken, maar <strong>niet</strong> code van de projectie manueel over te nemen.</p>
-</div>
-<div class="paragraph">
-<p>Er worden oefeningen beschikbaar gesteld voor studenten die materie willen inoefenen.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_tooling"><a class="anchor" href="#_tooling"></a>Tooling</h2>
-<div class="sectionbody">
+<p>Uitbreiding van de RESTful api om deze <em>WishList</em> CRUD operaties te ondersteunen:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Visual Studio / VS Code / Rider</p>
+<p><code>GET/POST</code> op <code>/wishlists</code></p>
 </li>
 <li>
-<p>GitHub</p>
+<p><code>GET/PUT/DELETE</code> op <code>/wishlists/{wishlistId}</code></p>
 </li>
 <li>
-<p>.NET 10 SDK</p>
+<p><code>POST</code> op <code>/wishlists/{wishlistId}/products</code></p>
 </li>
 <li>
-<p>Docker Desktop</p>
-</li>
-<li>
-<p>Postman</p>
-</li>
-<li>
-<p>pgAdmin</p>
-</li>
-<li>
-<p>MongoDB Compass</p>
+<p><code>GET</code> op <code>/customers/{customerId}/wishlist</code> of <code>/wishlists?customerId={customerId}</code></p>
 </li>
 </ul>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_ai_gebruik"><a class="anchor" href="#_ai_gebruik"></a>AI Gebruik</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Vertrouw niet blind op AI-gegenereerde antwoorden.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Is de oplossing logisch?</p>
-</li>
-<li>
-<p>Is de oplossing eenvoudig?</p>
-</li>
-<li>
-<p>Is de oplossing actueel?</p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>Wanneer een AI-antwoord sterk afwijkt van een voorbeeld in de cursus, zal dit meestal om bovenstaande redenen zijn.</p>
+</dd>
+<dt class="hdlist1">Opdracht</dt>
+<dd>
+<p><strong>Ontwerp</strong> en <strong>implementeer</strong> (api/service/data/postgres) een passende oplossing op basis van de domeinregels en de reeds aangeleerde technieken (Web Api + Dapper). Respecteer de bestaande applicatiearchitectuur.</p>
+</dd>
+</dl>
 </div>
-<div class="paragraph">
-<p>Cross-reference de <a href="https://dotnet.microsoft.com/en-us/">Microsoft documentatie</a> bij twijfel.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_evaluatie"><a class="anchor" href="#_evaluatie"></a>Evaluatie</h2>
-<div class="sectionbody">
-<div class="admonitionblock important">
+<div class="admonitionblock tip">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-important" title="Important"></i>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-De <strong>evaluaties</strong> voor dit vak steunen op <strong>parate kennis</strong>. <strong>AI</strong> gebruik is <strong>niet toegestaan</strong>.
+Begin niet onmiddellijk met programmeren. Stel eerst voor jezelf een (informeel) ontwerp op. Identificeer de verschillende taken die je moet uitvoeren om in de to-be situatie te belanden. Blijf zeker niet naar het scherm staren als je vast zit, maak liever een wandeling. Test je systeem grondig en regelmatig tijdens het ontwikkelingsproces.
 </td>
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p><strong>Waarom evalueren zonder AI als het wel gebruikt wordt in het werkveld?</strong><br>
-Omdat we de absolute basis van deze onderwerpen behandelen.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Pas op voor <a href="https://en.wikipedia.org/wiki/Scope_creep"><em>Scope Creep</em></a>. Lever niet meer op dan wat er gevraagd werd, &#8230;&#8203;maar ook niet minder ;-)
+</td>
+</tr>
+</table>
 </div>
-<div class="paragraph">
-<p><em>Je mag gerust 37x42 oplossen met een rekenmachine om vlotter te werken. Heb je een rekenmachine nodig om 3x4 uit te werken, dan weet je niet wat je aan het doen bent en vertrouw ik je niet met een rekenmachine</em> 😉</p>
-</div>
-<div class="paragraph">
-<p>Evaluaties</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Individuele opdracht tijdens semester (10%)</p>
-</li>
-<li>
-<p>Individuele theorie test tijdens semester (15%)</p>
-</li>
-<li>
-<p>Individuele praktische test in evaluatieperiode (75%)</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_broncode"><a class="anchor" href="#_broncode"></a>Broncode</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Tijdens de lessen wordt er aan live coding gedaan. Dit heeft als gevolg dat de code uit de les niet <em>exact</em> overeen zal komen met deze cursus.</p>
-</div>
-<div class="paragraph">
-<p>Laat je hierdoor niet in de war brengen. Je zal snel ondervinden dat deze afwijkingen zeer oppervlakkig zijn en het geheel conceptueel identiek is aan de cursus. Immers: <strong>de lessen volgen de cursus, niet omgekeerd</strong>.</p>
-</div>
-</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><strong>Indienen</strong></dt>
+<dd>
+<p>Dien de eindsituatie van jouw solution, voor de deadline in via de relevante GitHub Classroom opdracht.</p>
+</dd>
+</dl>
 </div>
 </article>
   </div>

@@ -437,34 +437,21 @@ EF Core genereert <code>partial</code> klassen. Bij compilatie worden alle parti
 <p>Verantwoordelijk voor database toegang en beschrijving van data mapping, inclusief relaties.</p>
 </div>
 <div class="listingblock">
-<div class="title">Voorbeeld</div>
+<div class="title">DbContext gegenereerd door EF Core</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">public partial class StoreFrontDbContext : DbContext
+<pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">public partial class WebShoppieDbContext : DbContext
 {
-    //...
-    public virtual DbSet&lt;Customer&gt; Customers { get; set; } <i class="conum" data-value="1"></i><b>(1)</b>
-    public virtual DbSet&lt;Order&gt; Orders { get; set; }
-    public virtual DbSet&lt;OrderProduct&gt; OrderProducts { get; set; }
-    public virtual DbSet&lt;Product&gt; Products { get; set; }
+    public WebShoppieDbContext(){}
 
+    public WebShoppieDbContext(DbContextOptions&lt;WebShoppieDbContext&gt; options)
+        : base(options){}
+
+    public virtual DbSet&lt;Customer&gt; Customers { get; set; }
+    public virtual DbSet&lt;Order&gt; Orders { get; set; }
+    public virtual DbSet&lt;Orderproduct&gt; Orderproducts { get; set; }
+    public virtual DbSet&lt;Product&gt; Products { get; set; }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity&lt;Customer&gt;(entity =&gt; <i class="conum" data-value="2"></i><b>(2)</b>
-        {
-            entity.HasKey(e =&gt; e.Id).HasName("PRIMARY");
-
-            entity.Property(e =&gt; e.AddressLine1).HasMaxLength(30);
-            entity.Property(e =&gt; e.AddressLine2).HasMaxLength(30);
-            entity.Property(e =&gt; e.AddressLine3).HasMaxLength(30);
-            entity.Property(e =&gt; e.Country).HasMaxLength(30);
-            entity.Property(e =&gt; e.DateOfBirth).HasColumnType("datetime");
-            entity.Property(e =&gt; e.Email).HasMaxLength(60);
-            entity.Property(e =&gt; e.FirstName).HasMaxLength(30);
-            entity.Property(e =&gt; e.LastName).HasMaxLength(30);
-            entity.Property(e =&gt; e.Tin)
-                .HasMaxLength(20)
-                .HasColumnName("TIN");
-        });
         //...
     }
 }</code></pre>

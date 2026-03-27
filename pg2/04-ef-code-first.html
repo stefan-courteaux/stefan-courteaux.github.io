@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>EF Core Migrations :: Programmeren Gevorderd 2 (BETA)</title>
+    <meta name="generator" content="Antora 3.1.14">
+    <link rel="stylesheet" href="../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="#">Programmeren Gevorderd 2 (BETA)</a>
+      <button class="navbar-burger" aria-controls="topbar-nav" aria-expanded="false" aria-label="Toggle main menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+      
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+          <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link" href="#">Producten</a>
+              <div class="navbar-dropdown">
+                  <a class="navbar-item" target="_blank" href="https://learn.microsoft.com/en-us/cli/azure/">Azure CLI</a>
+                  <a class="navbar-item" target="_blank" href="https://www.docker.com/products/docker-desktop">Docker Desktop</a>
+                  <a class="navbar-item" target="_blank" href="https://desktop.github.com/download">GitHub Desktop</a>
+                  <a class="navbar-item" target="_blank" href="https://www.mongodb.com/try/download/compass">MongoDB Compass</a>
+                  <a class="navbar-item" target="_blank" href="https://www.pgadmin.org">pgAdmin</a>
+                  <a class="navbar-item" target="_blank" href="https://www.postman.com/downloads/">Postman</a>
+                  <a class="navbar-item" target="_blank" href="https://www.jetbrains.com/rider/download">Rider</a>
+                  <a class="navbar-item" target="_blank" href="https://code.visualstudio.com/download">VS Code</a>
+              </div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link" href="#">Diensten</a>
+              <div class="navbar-dropdown">
+                  <a class="navbar-item" target="_blank" href="https://dev.azure.com/hogent-web4-stefancourteaux/">Azure DevOps</a>
+                  <a class="navbar-item" target="_blank" href="https://portal.azure.com">Azure Portal</a>
+                  <a class="navbar-item" target="_blank" href="https://chamilo.hogent.be">Chamilo</a>
+                  <a class="navbar-item" target="_blank" href="https://github.com">GitHub</a>
+                  <a class="navbar-item" target="_blank" href="https://jwt.io">JWT.io</a>                  
+                  <a class="navbar-item" target="_blank" href="https://dotnet.microsoft.com">MS Docs</a>
+              </div>
+          </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="pg2" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
+    <h3 class="title"><a href="index.html">Gevorderd 2</a></h3>
+<ul class="nav-list">
+      <li class="nav-item is-active" data-depth="0">
+<ul class="nav-list">
+      <li class="nav-item is-active" data-depth="1">
+    <a class="nav-link" href="00-situering.html">Situering</a>
+  </li>
+      <li class="nav-item is-active" data-depth="1">
+    <a class="nav-link" href="01-http-apis.html">RESTful HTTP Api</a>
+  </li>
+      <li class="nav-item is-active" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="02-storefront-00-intro.html">Storefront Backend</a>
+<ul class="nav-list">
+      <li class="nav-item is-active" data-depth="2">
+    <a class="nav-link" href="02-storefront-01-api-ontwerp.html">API Ontwerp</a>
+  </li>
+      <li class="nav-item is-active" data-depth="2">
+    <a class="nav-link" href="02-storefront-02-api-architectuur.html">Architectuur</a>
+  </li>
+      <li class="nav-item is-active" data-depth="2">
+    <a class="nav-link" href="02-storefront-03-api-implementatie.html">Implementatie C#</a>
+  </li>
+      <li class="nav-item is-active" data-depth="2">
+    <a class="nav-link" href="02-storefront-04-db-postgres.html">PostgreSQL</a>
+  </li>
+      <li class="nav-item is-active" data-depth="2">
+    <a class="nav-link" href="02-storefront-05-dapper.html">Dapper</a>
+  </li>
+      <li class="nav-item is-active" data-depth="2">
+    <a class="nav-link" href="03-storefront-06-ef-01-scaffolding.html">EF Core Scaffolding</a>
+  </li>
+      <li class="nav-item is-active" data-depth="2">
+    <a class="nav-link" href="tussentijdse2.html">EF Core Migrations</a>
+  </li>
+      <li class="nav-item is-active" data-depth="2">
+    <span class="nav-text">Integratie Async (03/04)</span>
+  </li>
+      <li class="nav-item is-active" data-depth="2">
+    <span class="nav-text">Integratie MongoDb (24/04)</span>
+  </li>
+</ul>
+  </li>
+      <li class="nav-item is-active" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Stand-alone lessen</span>
+<ul class="nav-list">
+      <li class="nav-item is-active is-current-page" data-depth="2">
+    <a class="nav-link" href="04-ef-code-first.html">Ef Core Migrations</a>
+  </li>
+      <li class="nav-item is-active" data-depth="2">
+    <a class="nav-link" href="06-async.html">Parallel &amp; Async</a>
+  </li>
+      <li class="nav-item is-active" data-depth="2">
+    <a class="nav-link" href="07-mongo.html">MongoDB</a>
+  </li>
+</ul>
+  </li>
+      <li class="nav-item is-active" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Opdrachten</span>
+<ul class="nav-list">
+      <li class="nav-item is-active" data-depth="2">
+    <a class="nav-link" href="tussentijdse.html">Tussentijdse 1</a>
+  </li>
+      <li class="nav-item is-active" data-depth="2">
+    <a class="nav-link" href="tussentijdse2.html">Tussentijdse 2</a>
+  </li>
+</ul>
+  </li>
+      <li class="nav-item is-active" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Oefeningen</span>
+<ul class="nav-list">
+      <li class="nav-item is-active" data-depth="2">
+    <a class="nav-link" href="90-01-herhaling.html">Herhaling C# en UML</a>
+  </li>
+      <li class="nav-item is-active" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Backend Api</span>
+<ul class="nav-list">
+      <li class="nav-item is-active" data-depth="3">
+    <a class="nav-link" href="90-03-pokemons.html">Api + In-Memory Data</a>
+  </li>
+      <li class="nav-item is-active" data-depth="3">
+    <a class="nav-link" href="90-03-pokemons-dapper.html">Api + Dapper</a>
+  </li>
+      <li class="nav-item is-active" data-depth="3">
+    <a class="nav-link" href="90-02-backend.html">Api + EF Core Scaffolding 1</a>
+  </li>
+      <li class="nav-item is-active" data-depth="3">
+    <a class="nav-link" href="90-02-backend-voetbal.html">Api + EF Core Scaffolding 2</a>
+  </li>
+</ul>
+  </li>
+      <li class="nav-item is-active" data-depth="2">
+    <a class="nav-link" href="90-04-fototoestellen.html">EF Core Migrations</a>
+  </li>
+      <li class="nav-item is-active" data-depth="2">
+    <a class="nav-link" href="90-06-mongo.html">MongoDB</a>
+  </li>
+      <li class="nav-item is-active" data-depth="2">
+    <a class="nav-link" href="90-08-async.html">Async</a>
+  </li>
+      <li class="nav-item is-active" data-depth="2">
+    <a class="nav-link" href="90-07-alles.html">Cover-All</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Gevorderd 2</span>
+    <span class="version"></span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <div class="title"><a href="index.html">Gevorderd 2</a></div>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Gevorderd 2</a></li>
+    <li>Stand-alone lessen</li>
+    <li><a href="04-ef-code-first.html">Ef Core Migrations</a></li>
+  </ul>
+</nav>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">EF Core Migrations</h1>
+<div class="sect1">
+<h2 id="_doel"><a class="anchor" href="#_doel"></a>Doel</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Verschil begrijpen tussen <em>SQL First</em> en <em>Code First</em>.</p>
+</li>
+<li>
+<p>Entity Framework Core (<em>Code First</em>) Migrations leren gebruiken.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_inleiding"><a class="anchor" href="#_inleiding"></a>Inleiding</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In de vorige lessen hebben we een databank opgezet en vervolgens, met behulp van EF Core, een volledige <em>Data Access Layer</em> gegenereerd. We hebben eerst SQL geschreven, en dan C# gegenereerd. Dat is de <em>SQL First</em> aanpak.</p>
+</div>
+<div class="paragraph">
+<p>Je kan ook in de omgekeerde richting werken: eerst een <em>DAL</em> schrijven in C# en dan SQL (DDL) genereren. Dat is de <em>Code First</em> aanpak.</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_concreet_voorbeeld"><a class="anchor" href="#_concreet_voorbeeld"></a>Concreet Voorbeeld</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We bouwen (een deeltje van!) een informatiebeheersysteem voor dierenartsen.</p>
+</div>
+<div class="paragraph">
+<p>Beschouw onderstaand klassendiagram.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Een <code>Owner</code> (Eigenaar) kan een aantal huisdieren (<code>Pets</code>) hebben.</p>
+</li>
+<li>
+<p>Een <code>Pet</code> (Huisdier) kan een aantal notities (<code>Notes</code>) hebben.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/ef-code-first/DCD.png" alt="DCD">
+</div>
+</div>
+<div class="paragraph">
+<p>Om de scope beperkt te houden, introduceren we geen noemenswaardige business logica in deze klassen. De applicatie zal <em>gewoon</em> alle data inlezen uit de databank en op de command line dumpen.</p>
+</div>
+<div class="sect2">
+<h3 id="_databank"><a class="anchor" href="#_databank"></a>Databank</h3>
+<div class="paragraph">
+<p>Gezien deze les niet rechtstreeks verbonden is aan de StoreFront app, is het een goed idee deze scheiding ook op databaseniveau te maken.</p>
+</div>
+<div class="listingblock">
+<div class="title">Maak een nieuw schema</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-postgresql hljs" data-lang="postgresql">CREATE SCHEMA "Pets";</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Indien je EF Core voorziet van een SQL user die schema&#8217;s kan maken, zal EF Core he schema impliciet aanmaken indien het niet bestaat.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_net"><a class="anchor" href="#_net"></a>.Net</h3>
+<div class="paragraph">
+<p>We bespreken een concreet voorbeeld, dus we gaan een beetje C# moeten schrijven.</p>
+</div>
+<div class="sect3">
+<h4 id="_project_opzetten"><a class="anchor" href="#_project_opzetten"></a>Project Opzetten</h4>
+<div class="listingblock">
+<div class="title">Maak een nieuw <em>Console</em> project</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dotnet new console -o Gevorderd2EFCoreCodeFirst</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Voeg de PostgreSQL specifieke EF Core Nuget package toe</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dotnet add package Npgsql.EntityFrameworkCore.PostgreSQL</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Voeg de EF Core Design Nuget package toe</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dotnet add package Microsoft.EntityFrameworkCore.Design</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_zelf_dbcontext_schrijven"><a class="anchor" href="#_zelf_dbcontext_schrijven"></a>Zelf DbContext Schrijven</h4>
+<div class="paragraph">
+<p>In de <em>SQL First</em> aanpak heeft <em>EF Core</em> voor ons de <em>DbContext</em> en alle relevante klassen gegenereerd. Nu we in de omgekeerde richting werken, gaan we zelf de <em>DAL</em> moeten programmeren.</p>
+</div>
+<div class="listingblock">
+<div class="title">Model</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">public class Owner <i class="conum" data-value="1"></i><b>(1)</b>
+{
+    public long Id { get; set; } <i class="conum" data-value="2"></i><b>(2)</b>
+
+    [MaxLength(30)] <i class="conum" data-value="3"></i><b>(3)</b>
+    public string FirstName { get; set; }
+    [MaxLength(30)] <i class="conum" data-value="3"></i><b>(3)</b>
+    public string LastName { get; set; }
+    [MaxLength(50)] <i class="conum" data-value="3"></i><b>(3)</b>
+    public string Email { get; set; }
+
+    public List&lt;Pet&gt; Pets { get; set; } <i class="conum" data-value="4"></i><b>(4)</b>
+}
+
+public class Pet
+{
+    public long Id { get; set; } <i class="conum" data-value="2"></i><b>(2)</b>
+
+    [MaxLength(30)] <i class="conum" data-value="3"></i><b>(3)</b>
+    public string Name { get; set; }
+    public DateTime DateOfBirth { get; set; }
+    public DateTime? DateOfDeath { get; set; } <i class="conum" data-value="5"></i><b>(5)</b>
+
+    public Owner Owner { get; set; } <i class="conum" data-value="4"></i><b>(4)</b>
+    public List&lt;Note&gt; Notes { get ; set; } <i class="conum" data-value="4"></i><b>(4)</b>
+}
+
+public class Note
+{
+    public long Id { get; set; } <i class="conum" data-value="2"></i><b>(2)</b>
+
+    [MaxLength(2000)] <i class="conum" data-value="3"></i><b>(3)</b>
+    public string Content { get; set; }
+    public DateTime CreationDate { get; set; }
+
+    public Pet Pet { get; set; } <i class="conum" data-value="4"></i><b>(4)</b>
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Maak een klasse voor elk type (zie klassendiagram).</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Voorzie een Id veld dat zal dienen als <em>Primary Key</em>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Gebruik <code>[MaxLength(n)]</code> attributen op <code>string</code> voor database-efficiëntie.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Definieer relaties impliciet door props van een ander type uit het model te gebruiken.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Optioneel veld.</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">VetDbContext</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">using Microsoft.EntityFrameworkCore;
+
+namespace Gevorderd2EFCoreCodeFirst.Storage;
+
+public class VetDbContext : DbContext <i class="conum" data-value="1"></i><b>(1)</b>
+{
+    public DbSet&lt;Pet&gt; Pets { get; set; } <i class="conum" data-value="2"></i><b>(2)</b>
+    public DbSet&lt;Owner&gt; Owners { get; set; } <i class="conum" data-value="2"></i><b>(2)</b>
+    public DbSet&lt;Note&gt; Notes { get; set; } <i class="conum" data-value="2"></i><b>(2)</b>
+
+    // In een volwaardige web api zal je
+    // - de context aanmaken voor DI,
+    // - de connectionstring uit config lezen.
+    // Zie "StoreFront" voorbeeldcode.
+    protected override void OnConfiguring(DbContextOptionsBuilder options)
+    {
+        options.UseNpgsql( <i class="conum" data-value="3"></i><b>(3)</b>
+            "Server=localhost;Port=5432;Userid=admin;Password=secret;Database=pg2db",
+            builder =&gt; builder.MigrationsHistoryTable(
+                "__EFMigrationsHistory","Pets") <i class="conum" data-value="4"></i><b>(4)</b>
+        );
+    }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.HasDefaultSchema("Pets");<i class="conum" data-value="5"></i><b>(5)</b>
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Erf over van DbContext. Dit <em>hookt</em> de code in <em>EF Core</em>. Anders gaat het niet werken.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Maak een <code>DbSet</code> voor elk type uit het model.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>In productiesoftware zal je de connection string elders bewaren (zie vorige lessen).</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Locatie van de EF Core housekeeping tabel.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Schema waarin tabellen zullen geplaatst worden.</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_migrations"><a class="anchor" href="#_migrations"></a>Migrations</h3>
+<div class="paragraph">
+<p><em>EF Core</em> kan C# programma&#8217;s genereren die definiëren wat er in de structuur van de databank aangemaakt, of verwijderd, moet worden. Zo een programma heeft een <em>Migration</em>.</p>
+</div>
+<div class="paragraph">
+<p>Wanneer je een migration uitvoert, worden er at runtime SQL DLL-statements gegenereerd en uitgevoerd.</p>
+</div>
+<div class="sect3">
+<h4 id="_eerste_migration"><a class="anchor" href="#_eerste_migration"></a>Eerste Migration</h4>
+<div class="paragraph">
+<p>Maak een eerste <em>Migration</em>. Op dit moment bestaan er nog geen tabellen in het databankschema, dus de delta (=het verschil) met de DbContext is op dit moment allesomvattend. De migration zal alles wat beschreven staat in de <em>DbContext</em> bevatten.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dotnet ef migrations add InitialCreate --output-dir Storage/Migrations</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+"InitialCreate" is een vrij te kiezen naam. Dat, of een variatie op het thema zoals "Initial" en "Init", is niet meer dan een veelgebruikte naam voor de eerste <em>migration</em>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>De <em>migration</em> verschijnt als C# code in het project.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>.
+├── Gevorderd2EFCoreCodeFirst.csproj
+├── Model
+│   └── Model.cs
+├── Program.cs
+└── Storage
+    ├── Migrations
+    │   ├── 20260326094007_InitialCreate.Designer.cs
+    │   ├── 20260326094007_InitialCreate.cs
+    │   └── VetDbContextModelSnapshot.cs
+    └── VetDbContext.cs</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Lees de code van de <code>.cs</code> file diagonaal. <strong>Indien</strong> je niet tevreden bent, kan je de laatste <em>migration</em> verwijderen.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dotnet ef migrations remove</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Om de nog niet uitgevoerde <em>migrations</em> toe te passen op de database, voer je onderstaand statement uit.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dotnet ef database update</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Merk op dat er een tabel gemaakt werd voor <code>Owners</code>, <code>Pets</code> en <code>Notes</code>.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>select table_schema, table_name
+from information_schema.tables
+where table_schema = 'Pets'
+
++------------+----------+
+|table_schema|table_name|
++------------+----------+
+|pets        |__efcore  |
+|pets        |Owners    |
+|pets        |Pets      |
+|pets        |Notes     |
++------------+----------+</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>De DbContext die we schreven is voldoende helder voor <em>EF Core</em> om automatisch <em>Primary Keys</em> en <em>Foreign Keys</em> te voorzien.</p>
+</div>
+<div class="paragraph">
+<p>In de EFCore tabel zal het systeem bijgehouden welke <em>migrations</em> toegepast werden op de huidige database.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_volgende_migrations"><a class="anchor" href="#_volgende_migrations"></a>Volgende Migrations</h4>
+<div class="paragraph">
+<p>De kans dat je (database) model nooit meer verandert, is bijzonder klein. <em>EF Core</em> biedt ondersteuning voor het genereren van opeenvolgende migrations.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Change Request:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Het veld <code>Note.Content</code> moet een lengte van 5000 krijgen.</p>
+</li>
+<li>
+<p><code>Owner</code> moet een nieuw veld <code>PhoneNumber</code> (16 vrij in te vullen tekens) krijgen.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Model</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">public class Owner
+{
+    //...
+    [MaxLength(16)]
+    public string PhoneNumber { get; set; }
+    //...
+}
+//...
+public class Note
+{
+    //...
+    [MaxLength(5000)]
+    public string Content { get; set; }
+    //...
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dotnet ef migrations add CRFieldUpdate</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Er verschijnt een tweede <em>migration</em> bestand in het project.</p>
+</div>
+<div class="paragraph">
+<p>Breng de database up to date.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dotnet ef database update</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>De <code>__EFMigrationsHistory</code> tabel wordt geupdatet wanneer de operatie slaagt.</p>
+</div>
+<div class="listingblock">
+<div class="title">Uitgevoerde migrations controleren</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-postgresql hljs" data-lang="postgresql">SELECT * FROM Pets.__EFMigrationsHistory;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We verwachten twee entries.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_terugdraaien_migration"><a class="anchor" href="#_terugdraaien_migration"></a>Terugdraaien Migration</h4>
+<div class="paragraph">
+<p>Zou deze laatste migration ook gewerkt hebben moest er al data in het systeem gezeten hebben? Laten we dat eens testen.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Methodologie</dt>
+<dd>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Databasestructuur terugdraaien naar de vorige migration.</p>
+</li>
+<li>
+<p>Test data inserten.</p>
+</li>
+<li>
+<p>Laatste <em>migration</em> terug uitvoeren.</p>
+</li>
+</ol>
+</div>
+</dd>
+</dl>
+</div>
+<div class="literalblock">
+<div class="title">Terugdraaien naar migration op basis van de naam</div>
+<div class="content">
+<pre>dotnet ef database update InitialCreate</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="title">Uitgevoerde migrations controleren</div>
+<div class="content">
+<pre>SELECT * FROM Pets.__EFMigrationsHistory;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We verwachten enkel de eerste migration.</p>
+</div>
+<div class="listingblock">
+<div class="title">Test data inserten</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-postgresql hljs" data-lang="postgresql">insert into "Pets"."Owners" ("FirstName", "LastName", "Email")
+values ('Test', 'TestLast', 'tist@test.com');
+insert into "Pets"."Owners" ("FirstName", "LastName", "Email")
+values ('Test2', 'TestLast2', 'tist2@test.com');
+
+insert into "Pets"."Pets" ("Name", "DateOfBirth", "OwnerId")
+values ('Felix', '2010-09-13', 1);
+insert into "Pets"."Pets" ("Name", "DateOfBirth", "OwnerId")
+values ('Fifi', '2011-09-13', 2);
+insert into "Pets"."Pets" ("Name", "DateOfBirth", "OwnerId")
+values ('Coco', '1990-09-13', 1);
+
+insert into "Pets"."Notes" ("Content", "CreationDate", "PetId")
+values ('Een gans verhaal over de trauma`s van Fifi.', current_timestamp, 2);
+insert into "Pets"."Notes" ("Content", "CreationDate", "PetId")
+values ('We gaan een hondenfluisteraar nodig hebben.', current_timestamp, 2);
+insert into "Pets"."Notes" ("Content", "CreationDate", "PetId")
+values ('Coco is nog piraat geweest. Wilde verhalen!', current_timestamp, 3);</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">CRFieldUpdate migration opnieuw toepassen</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dotnet ef database update</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Het werkt. De databank hoeft niet leeg te zijn om een <em>Migration</em> uit te kunnen voeren.</p>
+</div>
+<div class="listingblock">
+<div class="title">Bestaande data bekijken</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-postgresql hljs" data-lang="postgresql">select o."FirstName", p."Name", p."DateOfBirth", n."Content"
+from "Owners" o
+left outer join "Pets"  p on p."OwnerId" = o."Id"
+left outer join "Notes" n on n."PetId"   = p."Id"
+
++---------+-----+---------------------------------+-------------------------------------------+
+|FirstName|Name |DateOfBirth                      |Content                                    |
++---------+-----+---------------------------------+-------------------------------------------+
+|Test     |Felix|2010-09-13 00:00:00.000000 +00:00|null                                       |
+|Test2    |Fifi |2011-09-13 00:00:00.000000 +00:00|We gaan een hondenfluisteraar nodig hebben.|
+|Test2    |Fifi |2011-09-13 00:00:00.000000 +00:00|Een gans verhaal over de trauma`s van Fifi.|
+|Test     |Coco |1990-09-13 00:00:00.000000 +00:00|Coco is nog piraat geweest. Wilde verhalen!|
++---------+-----+---------------------------------+-------------------------------------------+</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_logica"><a class="anchor" href="#_logica"></a>Logica</h3>
+<div class="paragraph">
+<p>Schrijf een beetje eenvoudige logica om interactie met de gegenereerde database te testen.</p>
+</div>
+<div class="listingblock">
+<div class="title">Program.cs</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">using var db = new VetDbContext();
+
+var ownersWithPetsAndNotes = db.Owners
+    .Include(o =&gt; o.Pets)
+    .ThenInclude(p =&gt; p.Notes);
+
+foreach (var owner in ownersWithPetsAndNotes)
+{
+    Console.WriteLine($"{owner.FirstName} {owner.LastName}, {owner.Email}");
+    foreach (var pet in owner.Pets)
+    {
+        Console.WriteLine($"&gt; {pet.Name} {pet.DateOfBirth}");
+        foreach (var note in pet.Notes)
+        {
+            Console.WriteLine($"  &gt; {note.Content}");
+        }
+    }
+    Console.WriteLine("---");
+}</code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="title">Output</div>
+<div class="content">
+<pre>Test TestLast, tist@test.com
+&gt; Felix 13/09/2010 00:00:00
+&gt; Coco 13/09/1990 00:00:00
+  &gt; Coco is nog piraat geweest. Wilde verhalen!
+---
+Test2 TestLast2, tist2@test.com
+&gt; Fifi 13/09/2011 00:00:00
+  &gt; Een gans verhaal over de trauma's van Fifi.
+  &gt; We gaan een hondenfluisteraar nodig hebben.
+---</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_complexere_scenarios"><a class="anchor" href="#_complexere_scenarios"></a>Complexere Scenario&#8217;s</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Beknopte academische voorbeelden leiden veelal, by design, tot een elegante, harmonieuze, werkende oplossing. Laten we toch even de grenzen verleggen met iets complexere scenario&#8217;s.</p>
+</div>
+<div class="sect2">
+<h3 id="_unique_keys"><a class="anchor" href="#_unique_keys"></a>Unique Keys</h3>
+<div class="paragraph">
+<p>In een <em>SQL First</em> scenario waar je nauwgezet en doelbewust aan databaseontwerp doet, zullen er meer dan waarschijnlijk <em>Unique Keys</em> gedefinieerd worden om business regels rond uniciteit af te dwingen.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Je kan <em>Unique Keys</em> gebruikt als doel van een <em>Foreign Key</em>, maar dat is een <em>bad practice</em>. Gebruik altijd enkelvoudige <em>Primary Keys</em> als doel van <em>Foreign Keys</em>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>In een <em>Code First</em> scenario is er minder expliciete aandacht voor het ontwerp van de databank. <em>Primary Keys</em> worden gebruikt om relaties te leggen. Wanneer je velden uniek wil maken, maak je geen <em>Unique Key</em>, maar wel een <em>Unique Index</em>.</p>
+</div>
+<div class="paragraph">
+<p>Een <em>Unique Index</em> dwingt uniciteit van de data af, maar kan niet gebruikt worden als target van een <em>Foreign Key</em>. Perfect!</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<strong>Change Request:</strong> Het email adres van een owner moet uniek zijn.
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">[Index(nameof(Email), IsUnique = true)]
+public class Owner
+{
+    //...
+    [MaxLength(50)]
+    public string Email { get; set; }
+    //...
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Maak een nieuwe <em>Migration</em></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dotnet ef migrations add CROwnerEmailUniqueIndex</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">En voer ze uit.</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dotnet ef database update</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/ef-code-first/unique.png" alt="unique">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_overerving"><a class="anchor" href="#_overerving"></a>Overerving</h3>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Change Request:</strong> Introduceer de <em>Entities</em> <code>Horse</code> en <code>Hedgehog</code> die overerven van <code>Pet</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Een <code>Horse</code> heeft extra properties <code>ShoeSizeFront</code> en <code>ShoeSizeBack</code> met geldige waard [0-6].</p>
+</li>
+<li>
+<p>Een <code>Hedgehog</code> heeft extra property <code>IsDomesticatedBreed</code> met geldige waarden [true, false].</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">public class Horse : Pet
+{
+    [Range(0,6)]
+    public int ShoeSizeFront { get; set; }
+    [Range(0,6)]
+    public int ShoeSizeBack { get; set; }
+}
+
+public class Hedgehog : Pet
+{
+    public bool IsDomesticatedBreed { get; set; }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Maak een nieuwe <em>Migration</em></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dotnet ef migrations add CRHorseAndHedgehog</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">En voer ze uit.</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dotnet ef database update</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Er is niets veranderd. Waarom? Omdat deze Models niet in de DbContext opgenomen zijn als Entities.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">public class VetDbContext : DbContext
+{
+    public DbSet&lt;Pet&gt; Pets { get; set; }
+    public DbSet&lt;Horse&gt; Horses { get; set; }
+    public DbSet&lt;Hedgehog&gt; Hedgehogs { get; set; }
+
+    //...</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Maak een nieuwe <em>Migration</em></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dotnet ef migrations add CRHorseAndHedgehog2</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">En voer ze uit.</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dotnet ef database update</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Bekijk de aangebrachte veranderingen in de database om te zien hoe EF Core dergelijk scenario <em>by default</em> oplost.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Dit is hoe een team van ervaren computerwetenschappers het ziet. <em>Who are we to argue?</em> Als jouw mening vaak botst met het gedrag van EF Core Migrations, ben je waarschijnlijk beter af met EF Core Scaffolding, of Dapper als je echt zin hebt om alles tot in de puntjes zelf te beslissen.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Als je reeds data hebt, ga je deze een geldige discriminator moeten toewijzen om de records te kunnen mappen naar Entities. De base class is 'Pet' in dit geval.
+</td>
+</tr>
+</table>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>update "Pets"
+set "Discriminator" = 'Pet'
+where "Discriminator" = '';</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Je kan deze update, of andere dml die je wil runnen, ook in de migration duwen.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">protected override void Up(MigrationBuilder migrationBuilder)
+{
+
+    // Ef Core...
+
+    // Developer
+    migrationBuilder.Sql(
+        @"update pets.""Pets""
+          set ""Discriminator"" = 'Pet'
+          where ""Discriminator"" = ''");
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_veel_op_veel_relaties"><a class="anchor" href="#_veel_op_veel_relaties"></a>Veel-op-Veel relaties</h3>
+<div class="paragraph">
+<p>Relationele databasemanagementsystemen kennen alleen één-op-veel relaties. Als je nood hebt aan andere relaties, moet je de gekende kunstgrepen toepassen.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">één-op-één</dt>
+<dd>
+<p>De kolom van de vertrekkende kant van de <em>Foreign Key</em> wordt <em>Unique</em> gemaakt.</p>
+</dd>
+<dt class="hdlist1">veel-op-veel</dt>
+<dd>
+<p>Er wordt een technische <em>tussentabel</em> geïntroduceerd die de veel-op-veel relatie uiteentrekt in twee 1-op-veel relaties.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>C# kent die beperking niet, want je kan lijsten gebruiken als datatype.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Change Request:</strong> Introduceer de <em>Entity</em> <code>Vet</code> (Dierenarts).</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Een <code>Vet</code> heeft meerdere patiënten (<code>Pets</code>).</p>
+</li>
+<li>
+<p>Een <code>Pet</code> kan patiënt zijn bij meerdere <code>Vets</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">public class Pet
+{
+    //...
+    public List&lt;Vet&gt; Vets { get; set; }
+}
+
+public class Vet
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public List&lt;Pet&gt; Pets { get; set; }
+}
+
+public class VetDbContext : DbContext
+{
+    //...
+    public DbSet&lt;Vet&gt; Vets { get; set; }
+    //...
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In C# is dit snel gebeurd. Maar, hoe gaat dat er in de database uitzien? Kan <em>EF Core</em> daar iets zinnigs van maken? Only one way to find out!</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dotnet ef migrations add CRVets</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dotnet ef database update</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>De <em>Migration</em> heeft niet enkel een <code>Vet</code> tabel toegevoegd, maar ook een <code>PetVet</code> tussentabel om de veel-op-veel relatie te faciliteren. Perfect!</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/ef-code-first/manymany.png" alt="manymany">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_source_control"><a class="anchor" href="#_source_control"></a>Source Control</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Wanneer je code first werkt, heb je dankzij de migrations versioning van de database structuur in je codebase (git) historiek. Straf!</p>
+</div>
+<div class="paragraph">
+<p>Misschien is <em>Code First</em> werken toch niet zo kort door de bocht? 🙂</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_alternatieve_deployments"><a class="anchor" href="#_alternatieve_deployments"></a>Alternatieve Deployments</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Tijdens de les hebben we de database changes steeds toegepast dmv <code>dotnet ef database update</code>. Dat is niet de enige manier. Naargelang wensen en noden van het project of bedrijf, kan je opteren voor alternatieven.</p>
+</div>
+<div class="sect2">
+<h3 id="_sql_script"><a class="anchor" href="#_sql_script"></a>SQL Script</h3>
+<div class="paragraph">
+<p>Je kan aan de tooling vragen om je migrations te scripten als <em>DDL</em>. Waarom? Een doorsnee Database Administrator zal verkiezen dat de migrations <em>gescript</em> worden en enkel onder het wakende oog van de <em>DBA</em> uitgevoerd worden.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Het is niet verrassend dat dit mogelijk is. Herinner je: <em>Migrations</em> zijn C# programma&#8217;s. Wanneer je er een toepast op de database, genereert het programma <em>SQL</em> statements.
+</td>
+</tr>
+</table>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>dotnet ef migrations script</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-postgresql hljs" data-lang="postgresql">DO $EF$
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM pg_namespace WHERE nspname = 'pets') THEN
+        CREATE SCHEMA pets;
+    END IF;
+END $EF$;
+CREATE TABLE IF NOT EXISTS pets.__efcore (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___efcore" PRIMARY KEY ("MigrationId")
+);
+
+START TRANSACTION;
+DO $EF$
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM pg_namespace WHERE nspname = 'pets') THEN
+        CREATE SCHEMA pets;
+    END IF;
+END $EF$;
+
+CREATE TABLE pets."Owners" (
+    "Id" bigint GENERATED BY DEFAULT AS IDENTITY,
+    "FirstName" character varying(30) NOT NULL,
+    "LastName" character varying(30) NOT NULL,
+    "Email" character varying(50) NOT NULL,
+    CONSTRAINT "PK_Owners" PRIMARY KEY ("Id")
+);
+
+CREATE TABLE pets."Pets" (
+    "Id" bigint GENERATED BY DEFAULT AS IDENTITY,
+    "Name" character varying(30) NOT NULL,
+    "DateOfBirth" timestamp with time zone NOT NULL,
+    "DateOfDeath" timestamp with time zone,
+    "OwnerId" bigint NOT NULL,
+    CONSTRAINT "PK_Pets" PRIMARY KEY ("Id"),
+    CONSTRAINT "FK_Pets_Owners_OwnerId" FOREIGN KEY ("OwnerId") REFERENCES pets."Owners" ("Id") ON DELETE CASCADE
+);
+
+CREATE TABLE pets."Notes" (
+    "Id" bigint GENERATED BY DEFAULT AS IDENTITY,
+    "Content" character varying(2000) NOT NULL,
+    "CreationDate" timestamp with time zone NOT NULL,
+    "PetId" bigint NOT NULL,
+    CONSTRAINT "PK_Notes" PRIMARY KEY ("Id"),
+    CONSTRAINT "FK_Notes_Pets_PetId" FOREIGN KEY ("PetId") REFERENCES pets."Pets" ("Id") ON DELETE CASCADE
+);
+
+CREATE INDEX "IX_Notes_PetId" ON pets."Notes" ("PetId");
+
+CREATE INDEX "IX_Pets_OwnerId" ON pets."Pets" ("OwnerId");
+
+INSERT INTO pets.__efcore ("MigrationId", "ProductVersion")
+VALUES ('20260326135120_InitialCreate', '10.0.4');
+
+COMMIT;
+
+START TRANSACTION;
+ALTER TABLE pets."Notes" ALTER COLUMN "Content" TYPE character varying(5000);
+
+INSERT INTO pets.__efcore ("MigrationId", "ProductVersion")
+VALUES ('20260326135745_CRFieldUpdate', '10.0.4');
+
+COMMIT;
+
+START TRANSACTION;
+CREATE UNIQUE INDEX "IX_Owners_Email" ON pets."Owners" ("Email");
+
+INSERT INTO pets.__efcore ("MigrationId", "ProductVersion")
+VALUES ('20260326142422_CROwnerEmailUniqueIndex', '10.0.4');
+
+COMMIT;
+
+START TRANSACTION;
+INSERT INTO pets.__efcore ("MigrationId", "ProductVersion")
+VALUES ('20260326143201_CRHorseAndHedgehog', '10.0.4');
+
+COMMIT;
+
+START TRANSACTION;
+ALTER TABLE pets."Pets" ADD "Discriminator" character varying(8) NOT NULL DEFAULT '';
+
+ALTER TABLE pets."Pets" ADD "IsDomesticatedBreed" boolean;
+
+ALTER TABLE pets."Pets" ADD "ShoeSizeBack" integer;
+
+ALTER TABLE pets."Pets" ADD "ShoeSizeFront" integer;
+
+update "Pets"
+                  set "Discriminator" = 'Pet'
+                  where "Discriminator" = ''
+
+INSERT INTO pets.__efcore ("MigrationId", "ProductVersion")
+VALUES ('20260326143507_CRHorseAndHedgehog2', '10.0.4');
+
+COMMIT;
+
+START TRANSACTION;
+CREATE TABLE pets."Vets" (
+    "Id" integer GENERATED BY DEFAULT AS IDENTITY,
+    "Name" text NOT NULL,
+    CONSTRAINT "PK_Vets" PRIMARY KEY ("Id")
+);
+
+CREATE TABLE pets."PetVet" (
+    "PetsId" bigint NOT NULL,
+    "VetsId" integer NOT NULL,
+    CONSTRAINT "PK_PetVet" PRIMARY KEY ("PetsId", "VetsId"),
+    CONSTRAINT "FK_PetVet_Pets_PetsId" FOREIGN KEY ("PetsId") REFERENCES pets."Pets" ("Id") ON DELETE CASCADE,
+    CONSTRAINT "FK_PetVet_Vets_VetsId" FOREIGN KEY ("VetsId") REFERENCES pets."Vets" ("Id") ON DELETE CASCADE
+);
+
+CREATE INDEX "IX_PetVet_VetsId" ON pets."PetVet" ("VetsId");
+
+INSERT INTO pets.__efcore ("MigrationId", "ProductVersion")
+VALUES ('20260326144100_CRVets', '10.0.4');
+
+COMMIT;
+
+START TRANSACTION;
+INSERT INTO pets.__efcore ("MigrationId", "ProductVersion")
+VALUES ('20260326145842_PetOwnerId', '10.0.4');
+COMMIT;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_at_runtime"><a class="anchor" href="#_at_runtime"></a>At Runtime</h3>
+<div class="paragraph">
+<p>Het is mogelijk via applicatieve code het uitvoeren van <em>Migrations</em> aan te vragen.</p>
+</div>
+<div class="listingblock">
+<div class="title">Program.cs</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">using var db = new VetDbContext();
+db.Database.Migrate();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Laat ons voor de lol eens gans de databasestructuur droppen en bovenstaande eens uittesten.</p>
+</div>
+<div class="paragraph">
+<p>Bij het starten van de applicatie zullen de nog niet uitgevoerde (allemaal dus in dit geval) <em>Migrations</em> toegepast worden.</p>
+</div>
+<div class="listingblock">
+<div class="title">Of in een web api project Program.cs</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">//...
+
+var app = builder.Build();
+
+//...
+
+using var dbScope = app.Services.CreateScope();
+var db = dbScope.ServiceProvider.GetRequiredService&lt;VetDbContext&gt;();
+db.Database.Migrate();
+
+//...
+
+app.Run();</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Je voelt aan dat dit een bepaald risico draagt. Niet elke app de EF Core gebruikt, runt at startup de migrations. Deze keuze moet weloverwogen gemaakt worden.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_referenties"><a class="anchor" href="#_referenties"></a>Referenties</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://learn.microsoft.com/en-us/ef/core/get-started/overview/first-app?tabs=netcore-cli">.Net EF Docs</a></p>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+    <p>This page was built using a customized version of the Antora default UI. The source code for the default UI is licensed under the terms of the MPL-2.0 license.</p>
+    <p>Course material may *not* be used to teach, tutor, coach, or present without obtaining explicit consent from Stefan Courteaux.</p>
+</footer><script id="site-script" src="../_/js/site.js" data-ui-root-path="../_"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

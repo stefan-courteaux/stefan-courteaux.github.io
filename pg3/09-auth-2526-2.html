@@ -82,13 +82,13 @@
     <a class="nav-link" href="04-middleware.html">Middleware &amp; Extensions</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="08-open-data-2526.html">Open Data</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="09-auth-2526.html">Authenticatie</a>
   </li>
   <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="09-auth-2526-2.html">Autorisatie</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="08-open-data-2526.html">Open Data</a>
   </li>
 </ul>
   </li>
@@ -581,7 +581,7 @@ Dit is een technische demonstratie van de nodige dependencies en interactie. Rea
 <div class="listingblock">
 <div class="title">main.tsx</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">// ... andere imports
+<pre class="highlightjs highlight"><code class="language-typescriptjsx hljs" data-lang="typescriptjsx">// ... andere imports
 import { AuthProvider } from "react-oidc-context"; <i class="conum" data-value="1"></i><b>(1)</b>
 import type { UserManagerSettings } from "oidc-client-ts"; <i class="conum" data-value="1"></i><b>(1)</b>
 
@@ -590,6 +590,7 @@ const settings: UserManagerSettings = { <i class="conum" data-value="2"></i><b>(
   client_id: "webapp-client",
   client_secret: "webapp-secret",
   redirect_uri: "http://localhost:5173/",
+  post_logout_redirect_uri: "http://localhost:5173/",
   response_type: "code",
   scope: "openid profile shipit.pricequotes.api.read",
   monitorSession: true,
@@ -906,13 +907,13 @@ export const PriceQuote = () =&gt; {
 <div class="sect2">
 <h3 id="_aanmaken"><a class="anchor" href="#_aanmaken"></a>Aanmaken</h3>
 <div class="paragraph">
-<p>De functionaliteit voor gebruikersrollen is reeds aanwezig in het systeem. We kunnen zelf rollen definiëren en toewijzen. We opteren ter illustratie voor <em>Quoter</em> en <em>Admin</em>.</p>
+<p>De functionaliteit voor gebruikersrollen is reeds aanwezig in het systeem. We kunnen zelf rollen definiëren en toewijzen.</p>
 </div>
 <div class="listingblock">
 <div class="title">Roles maken</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">insert into AspNetRoles (Id, Name, NormalizedName) values
-(NEWID(), 'Admin', 'ADMIN'),
+(NEWID(), 'Chump', 'CHUMP'),
 (NEWID(), 'Quoter', 'QUOTER')
 go</code></pre>
 </div>
@@ -926,8 +927,12 @@ values
 (
     (select id from AspNetUsers where UserName = 'alice'),
     (select id from AspNetRoles where NormalizedName = 'QUOTER')
+),
+-- bob wordt een chump
+(
+    (select id from AspNetUsers where UserName = 'bob'),
+    (select id from AspNetRoles where NormalizedName = 'CHUMP')
 )
--- bob krijgt geen rechten (op dit moment)
 go</code></pre>
 </div>
 </div>
@@ -1028,41 +1033,25 @@ public static IEnumerable&lt;Client&gt; Clients =&gt;
 <div class="listingblock">
 <div class="title">ShipIt.IdentityServer/ProfileService.cs</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">public class ProfileService : IProfileService
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">public class ShipItProfileService(UserManager&lt;ShipItUser&gt; users) : IProfileService
 {
-    private readonly UserManager&lt;ApplicationUser&gt; _userManager;
-    private readonly IUserClaimsPrincipalFactory&lt;ApplicationUser&gt; _claimsFactory;
-
-    public ProfileService(UserManager&lt;ApplicationUser&gt; userManager,
-                          IUserClaimsPrincipalFactory&lt;ApplicationUser&gt; claimsFactory)
-    {
-        _userManager = userManager;
-        _claimsFactory = claimsFactory;
-    }
-
     public async Task GetProfileDataAsync(ProfileDataRequestContext context)
     {
-        var userId = context.Subject.GetSubjectId();
-        var user = await _userManager.FindByIdAsync(userId);
+        var user = await users.GetUserAsync(context.Subject)
+            ?? throw new Exception("Cannot map roles for (null) user!");
 
-        var principal = await _claimsFactory.CreateAsync(user);
-        var claims = principal.Claims.ToList();
+        var roles = await users.GetRolesAsync(user);
 
-        <i class="conum" data-value="1"></i><b>(1)</b>
-        var roles = await _userManager.GetRolesAsync(user);
-        claims.AddRange(roles.Select(r =&gt; new Claim(JwtClaimTypes.Role, r)));
-
-        <i class="conum" data-value="2"></i><b>(2)</b>
-        claims = claims.Where(c =&gt; context.RequestedClaimTypes.Contains(c.Type)).ToList();
-        context.IssuedClaims = claims;
+        var claims = roles.Select(role =&gt; new Claim("role", role));
+        context.IssuedClaims.AddRange(claims); <i class="conum" data-value="1"></i><b>(1)</b>
     }
 
     public async Task IsActiveAsync(IsActiveContext context)
     {
-        var userId = context.Subject.GetSubjectId();
-        context.IsActive = await _userManager.FindByIdAsync(userId) is not null;
+        var existing = await users
+            .FindByIdAsync(context.Subject.GetSubjectId());
+        context.IsActive = existing?.LockoutEnd is null;
     }
-
 }</code></pre>
 </div>
 </div>
@@ -1071,10 +1060,6 @@ public static IEnumerable&lt;Client&gt; Clients =&gt;
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
 <td>AspNetUserRoles in de bestaande lijst van claims duwen.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Alles uit de bestaande lijst wippen dat niet gevraagd werd. In principe vragen wij alles impliciet door de verschillende <code>identityresource</code> scopes mee te geven.</td>
 </tr>
 </table>
 </div>
@@ -1098,8 +1083,8 @@ public static IEnumerable&lt;Client&gt; Clients =&gt;
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">//...
     ...
-    .AddAspNetIdentity&lt;ApplicationUser&gt;()
-    .AddProfileService&lt;ProfileService&gt;(); <i class="conum" data-value="1"></i><b>(1)</b>
+    .AddAspNetIdentity&lt;ShipItUser&gt;()
+    .AddProfileService&lt;ShipItProfileService&gt;() <i class="conum" data-value="1"></i><b>(1)</b>
 //...</code></pre>
 </div>
 </div>
@@ -1107,7 +1092,7 @@ public static IEnumerable&lt;Client&gt; Clients =&gt;
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Hiet gebeurt het.</td>
+<td>Hier gebeurt het.</td>
 </tr>
 </table>
 </div>
@@ -1115,127 +1100,50 @@ public static IEnumerable&lt;Client&gt; Clients =&gt;
 <div class="sect2">
 <h3 id="_afdwingen"><a class="anchor" href="#_afdwingen"></a>Afdwingen</h3>
 <div class="paragraph">
-<p>Voeg nuget <code>duende.identitymodel</code> toe aan <code>ShipIt.PriceQuote.Api</code>.</p>
-</div>
-<div class="listingblock">
-<div class="title">ShipIt.PriceQuote.Api/Program.cs</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">//...
-.AddJwtBearer(options =&gt;
-{
-    //...
-    options.MapInboundClaims = false; <i class="conum" data-value="1"></i><b>(1)</b>
-});
-//...</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Geen automapping van claims op properties met andere namen. We de draad niet verliezen.</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
 <p>We definiëren een eigen <em>AuthorizationRequirement</em> die de nodige info bevat om onze eigen Autorisatie logica te schrijven. Systemen met en zonder gebruikers moeten gebruik kunnen maken, dus we zullen een Claim of Role (combinatie) moeten evalueren.</p>
 </div>
 <div class="listingblock">
-<div class="title">ShipIt.PriceQuote.Api/ClaimRoleRequirement.cs</div>
+<div class="title">ShipIt.PriceQuote.Api/ShipItRequirement.cs</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">public class ClaimOrRoleRequirement : IAuthorizationRequirement
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">public class ShipItRequirement(string claim, string role) : IAuthorizationRequirement
 {
-    public string Claim { get; }
-    public string Role { get; }
-
-    public ClaimOrRoleRequirement(string claim, string role)
-    {
-        Claim = claim;
-        Role = role;
-    }
+    public string Claim { get; } = claim;
+    public string Role { get; } = role;
 }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>We schrijven de autorisatie redenering voor onze <code>ClaimOrRoleRequirement</code>. Deze is niet specifieke aan een bepaalde scope of rol. De logica is generiek.</p>
+<p>We schrijven de autorisatie redenering uit. Deze is niet specifieke aan een bepaalde scope of rol. De logica is generiek.</p>
 </div>
 <div class="listingblock">
 <div class="title">ShipIt.PriceQuote.Api/ShipItAuthHandler.cs</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">using System;
-using Duende.IdentityModel.Client;
-using Microsoft.AspNetCore.Authentication;
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 
 namespace ShipIt.PriceQuote.Api;
 
-public class ShipItAuthHandler : AuthorizationHandler&lt;ClaimOrRoleRequirement&gt;
+public class ShipItAuthHandler() : AuthorizationHandler&lt;ShipItRequirement&gt;
 {
-    private readonly IHttpContextAccessor _httpContextAccessor;
-
-    public ShipItAuthHandler(IHttpContextAccessor httpContextAccessor)
-    {
-        _httpContextAccessor = httpContextAccessor;
-    }
-
     protected override Task HandleRequirementAsync(
         AuthorizationHandlerContext context,
-        ClaimOrRoleRequirement requirement)
+        ShipItRequirement requirement)
     {
-        var claims = context.User.Claims.ToList();
 
-        // Als de app client de juiste _apiscope_ niet heeft...
-        if (!claims.Exists(c =&gt; c.Value == requirement.Claim))
-        {
-            // ...is het NOT OK.
-            context.Fail();
-        }
-        // Als de app client de juiste scope wel heeft...
+        var isRequiredClaimPresent = context.User.Claims.ToList().Exists(c =&gt; c.Value == requirement.Claim);
+        var isUserSubPresent = context.User.FindFirst(ClaimTypes.NameIdentifier)?.Value is not null;
+
+        // Systeem heeft rechten en er is geen user
+        if (isRequiredClaimPresent &amp;&amp; !isUserSubPresent)
+            context.Succeed(requirement);
+
+        // Systeem heeft rechten, er is een user en die heeft de nodige rol.
+        else if (isRequiredClaimPresent &amp;&amp; isUserSubPresent &amp;&amp; context.User.IsInRole(requirement.Role))
+            context.Succeed(requirement);
+
+        // Alle andere gevallen
         else
-        {
-            var userId = claims.FirstOrDefault(c =&gt; c.Type == "sub")?.Value;
-
-            // ...en de call gebeurt door een _persoon_...
-            if (userId is not null)
-            {
-                // ... dan vragen we meer info aan identity server...
-                var client = new HttpClient();
-                var disco = client
-                    .GetDiscoveryDocumentAsync("https://localhost:5001").Result;
-
-                var token = _httpContextAccessor
-                    .HttpContext.GetTokenAsync("access_token").Result;
-
-                var request = new UserInfoRequest
-                {
-                    Address = disco.UserInfoEndpoint,
-                    Token = token,
-
-                };
-
-                var userInfo = client.GetUserInfoAsync(request).Result;
-
-                // ... en de persoon heeft de juiste _rol_...
-                if (userInfo.Claims.ToList()
-                    .Exists(c =&gt; c.Type == "role" &amp;&amp; c.Value == requirement.Role))
-                {
-                    // ...dan is het OK.
-                    context.Succeed(requirement);
-                }
-                // ... en de persoon heeft de juiste _rol_ niet
-                else
-                {
-                    // ...dan is het NOT OK.
-                    context.Fail();
-                }
-            }
-            // ...en de call gebeurt door een _systeem_...
-            else
-            {
-                // ...dan is het OK.
-                context.Succeed(requirement);
-            }
-        }
+            context.Fail();
 
         return Task.CompletedTask;
     }
@@ -1248,8 +1156,8 @@ public class ShipItAuthHandler : AuthorizationHandler&lt;ClaimOrRoleRequirement&
 <pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">builder.Services.AddAuthorizationBuilder()
     .AddPolicy("QuoteReadPolicy", policy =&gt;
         policy.Requirements.Add(
-            new ClaimOrRoleRequirement( <i class="conum" data-value="1"></i><b>(1)</b>
-                "shipit.pricequote.api.read",
+            new ShipItRequirement( <i class="conum" data-value="1"></i><b>(1)</b>
+                "shipit.pricequotes.api.read",
                 "Quoter")));</code></pre>
 </div>
 </div>
@@ -1257,19 +1165,19 @@ public class ShipItAuthHandler : AuthorizationHandler&lt;ClaimOrRoleRequirement&
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>We gebruiken de nieuwe <code>ClaimOrRoleRequirement</code> en geven de concrete rol en scope mee die bij deze policy horen.</td>
+<td>We gebruiken de nieuwe <code>ShipItRequirement</code> en geven de concrete rol en scope mee die bij deze policy horen.</td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>We zetten de <code>ShipItAuthHandler</code> klaar voor injectie. Deze gebruikt zelf <code>IHttpContextAccessor</code> dus die moet ook toegevoegd worden.</p>
+<p>We zetten de <code>ShipItAuthHandler</code> klaar voor injectie.</p>
 </div>
 <div class="listingblock">
 <div class="title">ShipIt.PriceQuote.Api/Program.cs</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddHttpContextAccessor();
-builder.Services.AddSingleton&lt;IAuthorizationHandler, ShipItAuthHandler&gt;();</code></pre>
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">//...
+builder.Services.AddSingleton&lt;IAuthorizationHandler, ShipItAuthHandler&gt;();
+//...</code></pre>
 </div>
 </div>
 </div>
@@ -1302,7 +1210,7 @@ builder.Services.AddSingleton&lt;IAuthorizationHandler, ShipItAuthHandler&gt;();
 [Authorize(Policy = "QuoteWritePolicy")]
 public async ... CreatePriceQuoteAsync(...)
 {
-    var userId = User.FindFirst("sub")?.Value; <i class="conum" data-value="1"></i><b>(1)</b>
+    var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value; <i class="conum" data-value="1"></i><b>(1)</b>
 
     var result = await priceQuoteService
         .CreatePriceQuoteAsync(

@@ -794,9 +794,9 @@ public class Ambtenaar
         var stopwatch = new Stopwatch();
 
         stopwatch.Start();
-        ambtenaar.VerrichtKleineTaak(1);
         var wachtendeToestemming = ambtenaar.VraagToestemmingAsync(2); <i class="conum" data-value="1"></i><b>(1)</b>
-        ambtenaar.VerrichtKleineTaak(3);<i class="conum" data-value="2"></i><b>(2)</b>
+        ambtenaar.VerrichtKleineTaak(1); <i class="conum" data-value="2"></i><b>(2)</b>
+        ambtenaar.VerrichtKleineTaak(3); <i class="conum" data-value="2"></i><b>(2)</b>
         await wachtendeToestemming; <i class="conum" data-value="3"></i><b>(3)</b>
         ambtenaar.VerrichtGroteTaak(2);
         stopwatch.Stop();
@@ -824,13 +824,12 @@ public class Ambtenaar
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>Karel vraagt toestemming voor taak 2 aan Bob
-Karel deed kleine administratie 1.
-Chef Bob geeft toestemming voor taak 2
-Karel deed kleine administratie 3.
-Karel deed grote administratie 2.
-Verstreken tijd 0:00:00:00,4576303 (C#).
-Verstreken tijd 0:07:37:00,0000000 (Realiteit).</pre>
+<pre>Karel verrichte kleine taak 1
+Karel vraagt toestemming voor taak 2 aan Bernard
+Karel verrichte kleine taak 3
+Chef Bernard geeft toestemming voor taak 2
+Karel verrichte grote taak 2
+De dag duurde 484 milliseconden.</pre>
 </div>
 </div>
 <div class="paragraph">

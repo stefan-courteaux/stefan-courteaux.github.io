@@ -90,6 +90,9 @@
   <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="08-open-data-2526.html">Open Data</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="10-deploy.html">Deployment</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
@@ -175,7 +178,7 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_een_open_data_api_gebruiken"><a class="anchor" href="#_een_open_data_api_gebruiken"></a>Een Open Data Api Gebruiken</h2>
+<h2 id="_open_data"><a class="anchor" href="#_open_data"></a>Open Data</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Vaak zal de software die je bouwt gedeeltelijk, of volledig, steunen op api&#8217;s van derde partijen. Bepaalde datasets zijn, al dan niet door de EU verplicht, vrij beschikbaar via api. Dit heet <em>Open Data</em>.</p>
@@ -184,41 +187,74 @@
 <p>Open data kan ook beschikbaar gesteld worden onder de vorm van gestructureerde bestanden of databanken. In dit voorbeeld zullen we een api gebruiken. Het aanroepen van api&#8217;s - of die nu intern, extern, of open data van aard zijn - verloopt technisch altijd op ongeveer dezelfde manier.</p>
 </div>
 <div class="paragraph">
+<p>Vlaanderen heeft een eigen Open Data Platform <a href="https://www.vlaanderen.be/digitaal-vlaanderen/onze-diensten-en-platformen/open-data">Open Data Vlaanderen</a>.</p>
+</div>
+<div class="paragraph">
+<p>Los van "officiële" Open Data, bestaan er vele andere gratis api&#8217;s die je (binnen bepaalde grenzen) gratis kan gebruiken. Zie <a href="https://publicapis.io" class="bare">https://publicapis.io</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_data_formaten"><a class="anchor" href="#_data_formaten"></a>Data Formaten</h2>
+<div class="sectionbody">
+<div class="paragraph">
 <p>Doorgaans zullen moderne systemen JSON berichten uitwisselen. Oudere systemen zullen vaak steunen op XML. Naargelang de sector waarin je werkt, kan het zijn dat er andere gestructureerde formaten zoals <a href="https://service.unece.org/trade/untdid/d00a/trmd/coarri_c.htm">UN/EDIFACT</a> gebruikt worden.</p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_voorbeeld"><a class="anchor" href="#_voorbeeld"></a>Voorbeeld</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>In dit voorbeeld zullen een Open Data api van de Franse overheid gebruiken. De <a href="https://geoservices.ign.fr/documentation/services/services-geoplateforme/autocompletion">SERVICE GÉOPLATEFORME D’AUTOCOMPLÉTION</a> laat ons toe een adres in Frankrijk op te zoeken op basis van vage zoektermen en geldige adressen terug te krijgen. Dit kan heel interessant zijn voor een bedrijf dat pakjes levert.</p>
+<p>In dit voorbeeld zullen we een Open Data api van de Franse overheid gebruiken die ons toelaat een adres op te zoeken.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>https://api-adresse.data.gouv.fr/search</pre>
+</div>
 </div>
 <div class="paragraph">
-<p>We kunnen dit integreren in het ShipIt project. We kunnen ongeldige adressen verwerpen bij het aanmaken van een label. Zo vermijden we leveringspogingen op een ongeldig adres.</p>
+<p>We kunnen dit in het ShipIt project integreren. We controleren of de Open Data set een adres bevat dat <em>genoeg</em> lijkt op de user input. Indien niet, geven we een foutmelding.</p>
 </div>
 <div class="literalblock">
 <div class="title">Voorbeeld Request</div>
 <div class="content">
-<pre>https://data.geopf.fr/geocodage/completion/?text=12, Rue de rivoli, Paris&amp;type=StreetAddress&amp;maximumResponses=3</pre>
+<pre>https://api-adresse.data.gouv.fr/search?q=blabla&amp;limit=1</pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Voorbeeld Response</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
-    "status": "OK",
-    "results": [
-        {
-            "x": 2.35995,
-            "y": 48.855602,
-            "country": "StreetAddress",
-            "city": "Paris",
-            "oldcity": "",
-            "kind": "housenumber",
-            "zipcode": "75004",
-            "street": "Rue de Rivoli",
-            "metropole": true,
-            "fulltext": "12 Rue de Rivoli, 75004 Paris",
-            "classification": 7
-        },
-        ...
-    ]
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-0.59324, 44.840202]
+      },
+      "properties": {
+        "label": "12 Rue Pierre 33000 Bordeaux",
+        "score": 0.979040909090909,
+        "housenumber": "12",
+        "id": "33063_7260_00012",
+        "banId": "c711eb10-8973-4b4f-a2a6-8aaabf84097a",
+        "name": "12 Rue Pierre",
+        "postcode": "33000",
+        "citycode": "33063",
+        "x": 416145.27,
+        "y": 6422130.24,
+        "city": "Bordeaux",
+        "context": "33, Gironde, Nouvelle-Aquitaine",
+        "type": "housenumber",
+        "importance": 0.76945,
+        "street": "Rue Pierre",
+        "_type": "address"
+      }
+    }
+  ],
+  "query": "12 rue pierre bordeaux"
 }</code></pre>
 </div>
 </div>
@@ -230,17 +266,11 @@
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-c# hljs" data-lang="c#">public class AddressResponseContract
 {
-    public List&lt;Feature&gt; Resu { get; set; }
+    public List&lt;Feature&gt; Features { get; set; }
 }
 
 public class Feature{
-    public Geometry Geometry { get; set; }
     public Properties Properties { get; set; }
-}
-
-public class Geometry
-{
-    public double[] Coordinates { get; set; }
 }
 
 public class Properties
@@ -290,9 +320,6 @@ public class Properties
         if(addressResponse.Features[0].Properties.Score &lt; 0.6)
             throw new ArgumentException("Adres lijkt nergens op");
     }
-
-    if(quoteResponse.ValidUntil &lt; DateTime.UtcNow)
-        throw new Exception("quote too old.");
     //...
 });</code></pre>
 </div>
@@ -308,7 +335,7 @@ public class Properties
 <p>Probeer zelf de taken van deze week te implementeren. Je kan steeds kijken naar de code uit de les als je vast loopt.</p>
 </li>
 <li>
-<p><a href="https://publicapis.io">Informeer je online</a> over gratis/opendata api&#8217;s die nuttig zouden kunnen zijn voor jouw opdracht.</p>
+<p>Informeer je online over gratis/opendata api&#8217;s die nuttig zouden kunnen zijn voor jouw opdracht.</p>
 </li>
 </ul>
 </div>

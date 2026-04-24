@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Herhalingsoefening C# en UML :: Programmeren Gevorderd 2 (BETA)</title>
+    <title>Feedback Opdrachten :: Programmeren Gevorderd 2 (BETA)</title>
     <meta name="generator" content="Antora 3.1.14">
     <link rel="stylesheet" href="../_/css/site.css">
   </head>
@@ -124,7 +124,7 @@
       <li class="nav-item is-active" data-depth="2">
     <a class="nav-link" href="tussentijdse2.html">Tussentijdse 2 🗓️ 10 apr</a>
   </li>
-      <li class="nav-item is-active" data-depth="2">
+      <li class="nav-item is-active is-current-page" data-depth="2">
     <a class="nav-link" href="tussentijdse-feedback.html">Feedback</a>
   </li>
 </ul>
@@ -133,7 +133,7 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Oefeningen</span>
 <ul class="nav-list">
-      <li class="nav-item is-active is-current-page" data-depth="2">
+      <li class="nav-item is-active" data-depth="2">
     <a class="nav-link" href="90-01-herhaling.html">Herhaling C# en UML</a>
   </li>
       <li class="nav-item is-active" data-depth="2">
@@ -187,8 +187,8 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Gevorderd 2</a></li>
-    <li>Oefeningen</li>
-    <li><a href="90-01-herhaling.html">Herhaling C# en UML</a></li>
+    <li>Opdrachten</li>
+    <li><a href="tussentijdse-feedback.html">Feedback</a></li>
   </ul>
 </nav>
 </div>
@@ -197,271 +197,190 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Herhalingsoefening C# en UML</h1>
-<div id="preamble">
-<div class="sectionbody">
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-Alle skills die je nodig hebt om deze oefening te maken, worden  normaal als gekend beschouwd bij aanvang van het vak. Indien je toch vragen hebt, stel je ze dus beter vroeg dan laat.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph text-center">
-<p><span class="image"><img src="_images/oefeningen/boerderij/boerderij.png" alt="boerderij"></span></p>
-</div>
-</div>
-</div>
+<h1 class="page">Feedback Opdrachten</h1>
 <div class="sect1">
-<h2 id="_doel"><a class="anchor" href="#_doel"></a>Doel</h2>
+<h2 id="_opdracht_1_wishlist_met_dapper"><a class="anchor" href="#_opdracht_1_wishlist_met_dapper"></a>Opdracht 1 - Wishlist Met Dapper</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_foreign_key"><a class="anchor" href="#_foreign_key"></a>Foreign Key</h3>
 <div class="paragraph">
-<p>Bouw een Boerderij Management Systeem.</p>
+<p>Een FK Customer &#8658; Wishlist is niet zelfde als Wishlist &#8658; Customer.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Implementeer het ontwerp op basis van het gegeven UML diagram.</p>
-</li>
+<p>Wil je de optie open laten gemakkelijk meerdere lijsten per klant te hebben?</p>
+<div class="ulist">
+<ul>
 <li>
-<p>Implementeer de domeinregels op basis van de beknopte tekstuele analyse.</p>
-</li>
-<li>
-<p>Implementeer applicatielogica op basis van voorbeeldoutput.</p>
+<p>Wishlist &#8658; Customer</p>
 </li>
 </ul>
 </div>
+</li>
+<li>
+<p>Hoe verhinderen we dat meerdere klanten aan dezelfde wishlist gekoppeld worden?</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Unique Keys/Indexes</p>
+</li>
+</ul>
 </div>
+</li>
+<li>
+<p>Hoe gemakkelijk kunnen we controleren of klant een wishlist heeft?</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Gemakkelijker wanneer Customer &#8658; Wishlist</p>
+</li>
+</ul>
 </div>
-<div class="sect1">
-<h2 id="_uml"><a class="anchor" href="#_uml"></a>UML</h2>
-<div class="sectionbody">
-<div class="paragraph text-center">
-<p><span class="image"><img src="_images/oefeningen/boerderij/uml-high.png" alt="uml high"></span></p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_domeinregels"><a class="anchor" href="#_domeinregels"></a>Domeinregels</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_eigendom"><a class="anchor" href="#_eigendom"></a>Eigendom</h3>
-<div class="paragraph">
-<p><code>ToString()</code> geeft dynamisch het type van het object terug, gevolgd door de naam en de kost.</p>
-</div>
-<div class="literalblock">
-<div class="title">Voorbeeld</div>
-<div class="content">
-<pre>Akker "Achteraan" met kost 4000.</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_melkerij"><a class="anchor" href="#_melkerij"></a>Melkerij</h3>
-<div class="paragraph">
-<p>Het <code>AantalKoeien</code> kan na initialisatie niet meer aangepast worden.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>Om de opbrengst te berekenen, vermenigvuldig je eerst het <code>AantalKoeien</code> met <code>300</code>. Verminder dan met de <code>Kost</code> om het resultaat te bekomen.</p>
+<p>Maak een bewuste keuze en weet ze te verdedigen.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_akker"><a class="anchor" href="#_akker"></a>Akker</h3>
+<h3 id="_modelbinding_annotations"><a class="anchor" href="#_modelbinding_annotations"></a>Modelbinding Annotations</h3>
 <div class="paragraph">
-<p>De <code>OppervlakteM2</code> kan na initialisatie niet meer aangepast worden.</p>
+<p>Gebruik ze. De validatie is grofweg gratis en wordt afgehandeld nog voor jouw api controller code aangeroepen wordt.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_dapper_insert_list"><a class="anchor" href="#_dapper_insert_list"></a>Dapper Insert List</h3>
+<div class="paragraph">
+<p>Dapper accepteert in <code>param</code> ook een lijst van objecten. Je hoeft dus zelf geen loop te schrijven om meerdere <code>WishlistProducts</code> in één keer te inserten.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_sql_merge"><a class="anchor" href="#_sql_merge"></a>SQL Merge</h3>
+<div class="paragraph">
+<p>SQL biedt ondersteuning voor een conditioneel statement dat in een enkele dataset verschillende rijen anders (insert/update/delete) kan afhandelen.</p>
 </div>
 <div class="paragraph">
-<p>De <code>OppervlakteM2</code> moet strikt positief zijn.</p>
+<p>Dit is veel performanter dan steeds heen en weer gaan tussen C# en database (al dan niet in een lus).</p>
 </div>
 <div class="paragraph">
-<p>Om de opbrengst te berekenen, vermenigvuldig je <code>OppervlakteM2</code> met de opbrengst per m2 (zie hieronder). Verminder dan met de <code>Kost</code> om het resultaat te bekomen.</p>
+<p>De basis case is ofwel inserten, ofwel updaten als de sleutelwaarde al bestaat. Dit is een <em>Upsert</em> (Update + Insert).</p>
 </div>
 <div class="paragraph">
-<p>De opbrengst per m2 is verschillend voor elk gewas:</p>
+<p>Moet je plots alles als <code>merge</code> operatie schrijven? Neen. Zal je professioneel  occasioneel situaties kunnen herkennen waar dit duidelijk de betere keuze is? Ja.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Volwaardige Merge</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://learn.microsoft.com/en-us/sql/t-sql/statements/merge-transact-sql?view=sql-server-ver17">MS SQL Server (Full Merge)</a></p>
+</li>
+<li>
+<p><a href="https://docs.oracle.com/en/database/oracle/oracle-database/18/sqlrf/MERGE.html">Oracle (Full Merge)</a></p>
+</li>
+<li>
+<p><a href="https://www.postgresql.org/docs/current/sql-merge.html">Postgres (Full Merge)</a></p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Upsert</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://dev.mysql.com/doc/refman/8.4/en/insert-on-duplicate.html">MySQL (Upsert)</a></p>
+</li>
+<li>
+<p><a href="https://www.postgresql.org/docs/current/sql-insert.html">Postgres (Upsert)</a></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_filter_in_db_wanneer_mogelijk"><a class="anchor" href="#_filter_in_db_wanneer_mogelijk"></a>Filter In DB Wanneer Mogelijk</h3>
+<div class="paragraph">
+<p>Wanneer je slechts een enkel resultaat (wishlist) zoekt, moet je er voor zorgen dat de filtering is SQL gebeurt. Het is niet efficient om een volledige tabel in te lezen, deze te mappen en dan te filteren in service/api layer.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_dapper_map_met_dictionary"><a class="anchor" href="#_dapper_map_met_dictionary"></a>Dapper Map Met Dictionary</h3>
+<div class="paragraph">
+<p>Wanneer je een n-n of 1-n query resultaat wil mappen, moet je een <code>map()</code> functie meegeven aan Dapper. Deze functie zal uitgevoerd worden voor elk record in de result set om uiteindelijk het resultaat van de <code>Query()</code> methode op te bouwen.</p>
+</div>
+<div class="paragraph">
+<p>Daarna zal je de resultaten nog moeten groeperen / flatmappen (<code>SelectMany</code>).</p>
+</div>
+<div class="paragraph">
+<p>Je kan er voor opteren dit alles in een keer te doen door buiten de <code>map</code> een Dictionary te declareren en deze in de <code>map</code> te onderhouden.</p>
+</div>
+<div class="paragraph">
+<p>Deze aanpak heeft een aantal neveneffecten</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Aardappel: 0.32</p>
+<p><code>map</code> is geen zuivere functie meer - er zijn side effects. Je verwacht dit niet van een lambda.</p>
 </li>
 <li>
-<p>Prei: 0.43</p>
-</li>
-<li>
-<p>Hop: 0.91</p>
+<p>Het resultaat van de <code>Query()</code> call wordt niet gebruikt.</p>
 </li>
 </ul>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_persoon"><a class="anchor" href="#_persoon"></a>Persoon</h3>
 <div class="paragraph">
-<p>Hoewel her-implementeerbaar, geeft <code>BerekenLoonKost()</code> standaard 0.0 terug.</p>
-</div>
-<div class="paragraph">
-<p>De natuurlijke sortering van een <code>Persoon</code> gebeurt op basis van de <code>Naam</code>.</p>
-</div>
-<div class="paragraph">
-<p>De <code>GeboorteDatum</code> kan na initialisatie niet meer aangepast worden.</p>
-</div>
-<div class="paragraph">
-<p>Een persoon is minstens 18 jaar oud.</p>
-</div>
-<div class="paragraph">
-<p>De <code>Naam mag</code> niet leeg zijn. Gooi een exception indien de naam leeg is.</p>
-</div>
-<div class="paragraph">
-<p><code>ToString()</code> geeft dynamisch het type van het object terug, gevolgd de <code>Naam</code> en de <code>GeboorteDatum</code>.</p>
-</div>
-<div class="literalblock">
-<div class="title">Voorbeeld</div>
-<div class="content">
-<pre>Boer Emzara (1960/02/29)</pre>
-</div>
+<p>Hoewel werkend, is het duidelijk niet de elegantste oplossing.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_boer"><a class="anchor" href="#_boer"></a>Boer</h3>
+<h3 id="_createdat"><a class="anchor" href="#_createdat"></a>CreatedAt</h3>
 <div class="paragraph">
-<p>Geldige waarden voor <code>AandeelInDeOnderneming</code> zijn <code>0</code> tot en met <code>100</code>. Gooi een exception indien dit niet het geval is.</p>
-</div>
-<div class="paragraph">
-<p><code>ToString()</code> geeft bovenop de basis informatie van een persoon ook het <code>AandeelInDeOnderneming</code> terug.</p>
-</div>
-<div class="literalblock">
-<div class="title">Voorbeeld</div>
-<div class="content">
-<pre>Boer Emzara (1960/02/29) bezit 40.90% van de onderneming.</pre>
-</div>
+<p>De 201 met <code>Location</code> header en aangemaakte resource in body is toch wel handig, hé. Gebruik het.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_werknemer"><a class="anchor" href="#_werknemer"></a>Werknemer</h3>
+<h3 id="_badrequest_leugen"><a class="anchor" href="#_badrequest_leugen"></a>BadRequest Leugen</h3>
 <div class="paragraph">
-<p>Wanneer bij constructie van een Werknemer geen <code>loon</code> meegegeven wordt, wordt de waarde <code>0.0</code> expliciet gezet.</p>
-</div>
-<div class="paragraph">
-<p>De LoonKost wordt berekend door het <code>BasisLoon</code> te vermenigvuldigen met <code>1.45</code>.</p>
-</div>
-<div class="paragraph">
-<p><code>GenereerWerknemersNummer()</code> geeft een nieuw werknemersnummer terug op basis van een input string. De logica is niet gebonden aan een instantie van de klasse.</p>
-</div>
-<div class="paragraph">
-<p>Het werknemersnummer bestaat uit drie delen:</p>
+<p>Een generieke <code>Exception</code> catchen in api controller methode en dan een <code>BadRequest</code> teruggeven is geen goeie manier van werken.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>De eerste drie letters van de input string.</p>
+<p>Top level generieke catches laat je beter afhandelen door <code>ErrorController</code>.</p>
 </li>
 <li>
-<p>De datum in 8 posities.</p>
-</li>
-<li>
-<p>Een willekeurig getal van 100 tot 1000.</p>
+<p><code>BadRequest</code> antwoorden op generieke <code>Exception</code> is niet oprecht. Hoe weet jij dat het de fout van de Client is als je zelfs niet weet wat er verkeerd liep?</p>
 </li>
 </ul>
-</div>
-<div class="paragraph">
-<p>Voorbeeld: <code>Sam20240612126</code></p>
-</div>
-<div class="paragraph">
-<p><code>ToString()</code> geeft bovenop de basis informatie van een persoon ook het <code>WerknemersNummer</code> en de <code>LoonKost</code> terug.</p>
-</div>
-<div class="literalblock">
-<div class="title">Voorbeeld</div>
-<div class="content">
-<pre>Werknemer Samaël (1990/08/02) met nummer Sam20240612126 kost 2415.7.</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_eigendomcomparer"><a class="anchor" href="#_eigendomcomparer"></a>EigendomComparer</h3>
-<div class="paragraph">
-<p>Vergelijkt het object Type. Indien dit gelijk is, wordt de <code>Naam</code> gebruikt.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_boerderij"><a class="anchor" href="#_boerderij"></a>Boerderij</h3>
-<div class="paragraph">
-<p>De winst wordt berekend door de opbrengst van alle Eigendommen op te tellen en daar de loonkost van alle Personen af te trekken.</p>
-</div>
-<div class="paragraph">
-<p><code>ToString()</code> geeft de <code>Naam</code>, het <code>BTWNummer</code> en de winst terug.</p>
-</div>
-<div class="literalblock">
-<div class="title">Voorbeeld</div>
-<div class="content">
-<pre>De Ark (BE012345567) met winst 32724.3.</pre>
-</div>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_applicatie"><a class="anchor" href="#_applicatie"></a>Applicatie</h2>
+<h2 id="_opdracht_2_zet_over_naar_ef_core_migrations"><a class="anchor" href="#_opdracht_2_zet_over_naar_ef_core_migrations"></a>Opdracht 2 - Zet Over Naar EF Core Migrations</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_entity_annotations"><a class="anchor" href="#_entity_annotations"></a>Entity Annotations</h3>
 <div class="paragraph">
-<p>Schrijf een kleine BoerderijApp. De App heeft géén interactie met de gebruiker.</p>
+<p>Gebruik annotations om EF Core en de database informatie te verschaffen over jouw intenties. Een project met EF Core Migrations die geen enkele annotation op de entities heeft, is verdacht.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_dbcontext_licht_houden"><a class="anchor" href="#_dbcontext_licht_houden"></a>DbContext Licht Houden</h3>
+<div class="paragraph">
+<p>Wanneer je SQL First werkt, wordt er een uitgebreide DbContext gegenereerd.</p>
 </div>
 <div class="paragraph">
-<p>Schrijf procedurele code die het volgende doet:</p>
+<p>Wanneer je Code First werkt, hou je de DbContext zo minimaal mogelijk. Nagenoeg alles wat in een SQL First DBContext staat, wordt automatisch toegepast in een Code First scenario op basis van een set conventies.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>Initialiseer een Boerderij met</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Naam,</p>
-</li>
-<li>
-<p>BtwNummer,</p>
-</li>
-<li>
-<p>een aantal Personen,</p>
-</li>
-<li>
-<p>een aantal Eigendommen.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Print de globale boerderij informatie.</p>
-</li>
-<li>
-<p>Print een natuurlijk gesorteerde lijst van de Personen.</p>
-</li>
-<li>
-<p>Print een gesorteerde lijst van Eigendommen gebruik makende van EigendomComparer.</p>
-</li>
-</ul>
-</div>
-<div class="literalblock">
-<div class="title">Voorbeeld</div>
-<div class="content">
-<pre>De Ark (BE012345567) met winst 32724.3.
----------------------------------------
-Overzicht van personen:
-Boer Emzara (1960/02/29) bezit 40.90% van de onderneming.
-Boer Japheth (1985/12/21) bezit 9.00% van de onderneming.
-Werknemer Michaël (1989/11/09) met nummer Mic20240612578 kost 2610.
-Boer Noah (1955/06/21) bezit 50.10% van de onderneming.
-Werknemer Pieter (2006/05/12) met nummer Pie20240612677 kost 0.
-Werknemer Samaël (1990/08/02) met nummer Sam20240612126 kost 2415.7.
-
-Overzicht van eigendommen:
-Akker "Achteraan" met kost 4000.
-Akker "Oostkant" met kost 12000.
-Melkerij "Melkerij 1" met kost 21000.
-Melkerij "Melkerij 2" met kost 17000.</pre>
+<div class="paragraph">
+<p>Voeg enkel toe wat niet vanzelf werkt en je niet gemakkelijk kwijt kan in entity annotations.</p>
 </div>
 </div>
 </div>

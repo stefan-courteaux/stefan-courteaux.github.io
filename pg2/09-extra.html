@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Herhalingsoefening C# en UML :: Programmeren Gevorderd 2 (BETA)</title>
+    <title>Extra&#8217;s :: Programmeren Gevorderd 2 (BETA)</title>
     <meta name="generator" content="Antora 3.1.14">
     <link rel="stylesheet" href="../_/css/site.css">
   </head>
@@ -111,7 +111,7 @@
   </li>
 </ul>
   </li>
-      <li class="nav-item is-active" data-depth="1">
+      <li class="nav-item is-active is-current-page" data-depth="1">
     <a class="nav-link" href="09-extra.html">Extra&#8217;s</a>
   </li>
       <li class="nav-item is-active" data-depth="1">
@@ -133,7 +133,7 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Oefeningen</span>
 <ul class="nav-list">
-      <li class="nav-item is-active is-current-page" data-depth="2">
+      <li class="nav-item is-active" data-depth="2">
     <a class="nav-link" href="90-01-herhaling.html">Herhaling C# en UML</a>
   </li>
       <li class="nav-item is-active" data-depth="2">
@@ -187,8 +187,7 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Gevorderd 2</a></li>
-    <li>Oefeningen</li>
-    <li><a href="90-01-herhaling.html">Herhaling C# en UML</a></li>
+    <li><a href="09-extra.html">Extra&#8217;s</a></li>
   </ul>
 </nav>
 </div>
@@ -197,272 +196,255 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Herhalingsoefening C# en UML</h1>
-<div id="preamble">
+<h1 class="page">Extra&#8217;s</h1>
+<div class="sect1">
+<h2 id="_generics"><a class="anchor" href="#_generics"></a>Generics</h2>
 <div class="sectionbody">
-<div class="admonitionblock important">
+<div class="paragraph">
+<p>Een (extreem minimale cache) implementatie moet gedupliceerd worden voor elk Type dat men wenst te cachen.</p>
+</div>
+<div class="listingblock">
+<div class="title">Types</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">public class Person
+{
+    public int Id { get; set; }
+    public string Email { get; set; }
+
+    public override string ToString()
+    {
+        return $"Id: {Id}, Email: {Email}";
+    }
+}
+
+public class Pet
+{
+    public int Id { get; set; }
+    public string VetNotes { get; set; }
+    public string Name { get; set; }
+    public override string ToString(){
+        return $"Id: {Id}, Name: {Name}, VetNotes: {VetNotes}";}
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Cache</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">public class PersonCache
+{
+    private readonly Dictionary&lt;int, Person&gt; _dic = new();
+
+    public void Add(int id, Person person)
+    {
+        _dic[id] = person;
+    }
+
+    public Person Get(int id)
+    {
+        return _dic[id];
+    }
+}
+
+public class PetCache
+{
+    private readonly Dictionary&lt;int, Pet&gt; _dic = new();
+
+    public void Add(int id, Pet pet)
+    {
+        _dic[id] = pet;
+    }
+
+    public Pet Get(int id)
+    {
+        return _dic[id];
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Cache Gebruik</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">var pCache = new PersonCache();
+var person = new Person() { Id = 1, Email = "jefke@hotmail.com" };
+pCache.Add(1, person);
+Console.WriteLine(pCache.Get(1));
+
+var petCache = new PetCache();
+var pet = new Pet() { Id = 1, Name = "Misty",  VetNotes = "Some notes" };
+petCache.Add(1, pet);
+Console.WriteLine(petCache.Get(1));</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We kunnen dit generiek afhandelen.</p>
+</div>
+<div class="listingblock">
+<div class="title">Cache Generic</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">public class GenericCache&lt;T&gt;
+{
+    private readonly Dictionary&lt;int, T&gt; _dic = new();
+    public void Add(int id, T pet)
+    {
+        _dic[id] = pet;
+    }
+
+    public T Get(int id)
+    {
+        return _dic[id];
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Een generieke methode veel doen, zolang de logica niet Type afhankelijk is.</p>
+</div>
+<div class="listingblock">
+<div class="title">Reverse Generic</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">public class GenericCache&lt;T&gt;
+{
+    //...
+
+    public T[] ReverseArray(T[] arr)
+    {
+        var localArray = arr.ToArray();
+
+        int leftIndex = 0;
+        int rightIndex = localArray.Length - 1;
+        T val;
+        while (leftIndex &lt; rightIndex)
+        {
+            val = localArray[leftIndex];
+            localArray[leftIndex] = localArray[rightIndex];
+            localArray[rightIndex] = val;
+            leftIndex++;
+            rightIndex--;
+        }
+
+        return localArray;
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Gebruik</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">var pCache = new GenericCache&lt;Person&gt;();
+var person = new Person() { Id = 1, Email = "jefke@hotmail.com" };
+pCache.Add(1, person);
+Console.WriteLine(pCache.Get(1));
+
+var petCache = new GenericCache&lt;Pet&gt;();
+var pet = new Pet() { Id = 1, Name = "Misty",  VetNotes = "Some notes" };
+petCache.Add(1, pet);
+Console.WriteLine(petCache.Get(1));</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_pattern_matching"><a class="anchor" href="#_pattern_matching"></a>Pattern Matching</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/functional/pattern-matching" class="bare">https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/functional/pattern-matching</a></p>
+</div>
+<div class="listingblock">
+<div class="title">Null</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">string? message = "123";
+
+if (message is not null)
+{
+    Console.WriteLine(message);
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Is</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">int? maybe = 12;
+
+if (maybe is int number)
+{
+    Console.WriteLine($"The nullable int 'maybe' has the value {number}");
+}
+else
+{
+    Console.WriteLine("The nullable int 'maybe' doesn't hold a value");
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Properties</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csharp hljs" data-lang="csharp">public class Order
+{
+    public int Items { get; set; }
+    public decimal Cost { get; set; }
+}
+
+public static class OrderManager
+{
+    public static decimal CalculateDiscount(Order order) =&gt;
+        order switch
+        {
+            { Items: &gt; 10, Cost: &gt; 1000.00m } =&gt; 0.10m,
+            { Items: &gt; 5, Cost: &gt; 500.00m } =&gt; 0.05m,
+            { Cost: &gt; 250.00m } =&gt; 0.02m,
+            null =&gt; throw new ArgumentNullException(nameof(order), "Can't calculate discount on null order"),
+            var someObject =&gt; 0m,
+        };
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_fluentvalidation"><a class="anchor" href="#_fluentvalidation"></a>FluentValidation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Main point: alle validatie fouten ineens ipv exception uit setter die steeds 1 fout geeft.</p>
+</div>
+<div class="paragraph">
+<p><a href="https://docs.fluentvalidation.net/en/latest/start.html" class="bare">https://docs.fluentvalidation.net/en/latest/start.html</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_union_types_met_oneof"><a class="anchor" href="#_union_types_met_oneof"></a>Union Types met OneOf</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Exceptions in c# zijn "unchecked", dwz het afhandelen van exceptions wordt <strong>niet</strong> afgedwongen.</p>
+</div>
+<div class="paragraph">
+<p>Los van andere redenen om geen Exceptions te gebruiken om business flows op te bouwen, heb je dus ook geen compile-time checks om te zien of alle scenario&#8217;s afgehandeld worden.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Oplossing</dt>
+<dd>
+<p>Meerdere return types per methode, 1 voor elk business scenario.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>De meest gebruikte library om dit te doen is <a href="https://github.com/mcintyre321/OneOf">OneOf</a>.</p>
+</div>
+<div class="paragraph">
+<p>Bekijk een voorbeeld in de <a href="https://github.com/stefan-courteaux/pg2/tree/f6b5a101c4a6f6fb7d512048bfb4199575d70155/2026-04-24/Extra/WebShopMetOneOf/WebShoppie">PG2 GitHub</a> in het <code>CreateCustomer</code> pad.</p>
+</div>
+<div class="admonitionblock tip">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-important" title="Important"></i>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Alle skills die je nodig hebt om deze oefening te maken, worden  normaal als gekend beschouwd bij aanvang van het vak. Indien je toch vragen hebt, stel je ze dus beter vroeg dan laat.
+Binnenkort unions ondersteund in C# 14 (.Net 11)! <a href="https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/union" class="bare">https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/union</a>
 </td>
 </tr>
 </table>
-</div>
-<div class="paragraph text-center">
-<p><span class="image"><img src="_images/oefeningen/boerderij/boerderij.png" alt="boerderij"></span></p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_doel"><a class="anchor" href="#_doel"></a>Doel</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Bouw een Boerderij Management Systeem.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Implementeer het ontwerp op basis van het gegeven UML diagram.</p>
-</li>
-<li>
-<p>Implementeer de domeinregels op basis van de beknopte tekstuele analyse.</p>
-</li>
-<li>
-<p>Implementeer applicatielogica op basis van voorbeeldoutput.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_uml"><a class="anchor" href="#_uml"></a>UML</h2>
-<div class="sectionbody">
-<div class="paragraph text-center">
-<p><span class="image"><img src="_images/oefeningen/boerderij/uml-high.png" alt="uml high"></span></p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_domeinregels"><a class="anchor" href="#_domeinregels"></a>Domeinregels</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_eigendom"><a class="anchor" href="#_eigendom"></a>Eigendom</h3>
-<div class="paragraph">
-<p><code>ToString()</code> geeft dynamisch het type van het object terug, gevolgd door de naam en de kost.</p>
-</div>
-<div class="literalblock">
-<div class="title">Voorbeeld</div>
-<div class="content">
-<pre>Akker "Achteraan" met kost 4000.</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_melkerij"><a class="anchor" href="#_melkerij"></a>Melkerij</h3>
-<div class="paragraph">
-<p>Het <code>AantalKoeien</code> kan na initialisatie niet meer aangepast worden.</p>
-</div>
-<div class="paragraph">
-<p>Om de opbrengst te berekenen, vermenigvuldig je eerst het <code>AantalKoeien</code> met <code>300</code>. Verminder dan met de <code>Kost</code> om het resultaat te bekomen.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_akker"><a class="anchor" href="#_akker"></a>Akker</h3>
-<div class="paragraph">
-<p>De <code>OppervlakteM2</code> kan na initialisatie niet meer aangepast worden.</p>
-</div>
-<div class="paragraph">
-<p>De <code>OppervlakteM2</code> moet strikt positief zijn.</p>
-</div>
-<div class="paragraph">
-<p>Om de opbrengst te berekenen, vermenigvuldig je <code>OppervlakteM2</code> met de opbrengst per m2 (zie hieronder). Verminder dan met de <code>Kost</code> om het resultaat te bekomen.</p>
-</div>
-<div class="paragraph">
-<p>De opbrengst per m2 is verschillend voor elk gewas:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Aardappel: 0.32</p>
-</li>
-<li>
-<p>Prei: 0.43</p>
-</li>
-<li>
-<p>Hop: 0.91</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_persoon"><a class="anchor" href="#_persoon"></a>Persoon</h3>
-<div class="paragraph">
-<p>Hoewel her-implementeerbaar, geeft <code>BerekenLoonKost()</code> standaard 0.0 terug.</p>
-</div>
-<div class="paragraph">
-<p>De natuurlijke sortering van een <code>Persoon</code> gebeurt op basis van de <code>Naam</code>.</p>
-</div>
-<div class="paragraph">
-<p>De <code>GeboorteDatum</code> kan na initialisatie niet meer aangepast worden.</p>
-</div>
-<div class="paragraph">
-<p>Een persoon is minstens 18 jaar oud.</p>
-</div>
-<div class="paragraph">
-<p>De <code>Naam mag</code> niet leeg zijn. Gooi een exception indien de naam leeg is.</p>
-</div>
-<div class="paragraph">
-<p><code>ToString()</code> geeft dynamisch het type van het object terug, gevolgd de <code>Naam</code> en de <code>GeboorteDatum</code>.</p>
-</div>
-<div class="literalblock">
-<div class="title">Voorbeeld</div>
-<div class="content">
-<pre>Boer Emzara (1960/02/29)</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_boer"><a class="anchor" href="#_boer"></a>Boer</h3>
-<div class="paragraph">
-<p>Geldige waarden voor <code>AandeelInDeOnderneming</code> zijn <code>0</code> tot en met <code>100</code>. Gooi een exception indien dit niet het geval is.</p>
-</div>
-<div class="paragraph">
-<p><code>ToString()</code> geeft bovenop de basis informatie van een persoon ook het <code>AandeelInDeOnderneming</code> terug.</p>
-</div>
-<div class="literalblock">
-<div class="title">Voorbeeld</div>
-<div class="content">
-<pre>Boer Emzara (1960/02/29) bezit 40.90% van de onderneming.</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_werknemer"><a class="anchor" href="#_werknemer"></a>Werknemer</h3>
-<div class="paragraph">
-<p>Wanneer bij constructie van een Werknemer geen <code>loon</code> meegegeven wordt, wordt de waarde <code>0.0</code> expliciet gezet.</p>
-</div>
-<div class="paragraph">
-<p>De LoonKost wordt berekend door het <code>BasisLoon</code> te vermenigvuldigen met <code>1.45</code>.</p>
-</div>
-<div class="paragraph">
-<p><code>GenereerWerknemersNummer()</code> geeft een nieuw werknemersnummer terug op basis van een input string. De logica is niet gebonden aan een instantie van de klasse.</p>
-</div>
-<div class="paragraph">
-<p>Het werknemersnummer bestaat uit drie delen:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>De eerste drie letters van de input string.</p>
-</li>
-<li>
-<p>De datum in 8 posities.</p>
-</li>
-<li>
-<p>Een willekeurig getal van 100 tot 1000.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Voorbeeld: <code>Sam20240612126</code></p>
-</div>
-<div class="paragraph">
-<p><code>ToString()</code> geeft bovenop de basis informatie van een persoon ook het <code>WerknemersNummer</code> en de <code>LoonKost</code> terug.</p>
-</div>
-<div class="literalblock">
-<div class="title">Voorbeeld</div>
-<div class="content">
-<pre>Werknemer Samaël (1990/08/02) met nummer Sam20240612126 kost 2415.7.</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_eigendomcomparer"><a class="anchor" href="#_eigendomcomparer"></a>EigendomComparer</h3>
-<div class="paragraph">
-<p>Vergelijkt het object Type. Indien dit gelijk is, wordt de <code>Naam</code> gebruikt.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_boerderij"><a class="anchor" href="#_boerderij"></a>Boerderij</h3>
-<div class="paragraph">
-<p>De winst wordt berekend door de opbrengst van alle Eigendommen op te tellen en daar de loonkost van alle Personen af te trekken.</p>
-</div>
-<div class="paragraph">
-<p><code>ToString()</code> geeft de <code>Naam</code>, het <code>BTWNummer</code> en de winst terug.</p>
-</div>
-<div class="literalblock">
-<div class="title">Voorbeeld</div>
-<div class="content">
-<pre>De Ark (BE012345567) met winst 32724.3.</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_applicatie"><a class="anchor" href="#_applicatie"></a>Applicatie</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Schrijf een kleine BoerderijApp. De App heeft géén interactie met de gebruiker.</p>
-</div>
-<div class="paragraph">
-<p>Schrijf procedurele code die het volgende doet:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Initialiseer een Boerderij met</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Naam,</p>
-</li>
-<li>
-<p>BtwNummer,</p>
-</li>
-<li>
-<p>een aantal Personen,</p>
-</li>
-<li>
-<p>een aantal Eigendommen.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Print de globale boerderij informatie.</p>
-</li>
-<li>
-<p>Print een natuurlijk gesorteerde lijst van de Personen.</p>
-</li>
-<li>
-<p>Print een gesorteerde lijst van Eigendommen gebruik makende van EigendomComparer.</p>
-</li>
-</ul>
-</div>
-<div class="literalblock">
-<div class="title">Voorbeeld</div>
-<div class="content">
-<pre>De Ark (BE012345567) met winst 32724.3.
----------------------------------------
-Overzicht van personen:
-Boer Emzara (1960/02/29) bezit 40.90% van de onderneming.
-Boer Japheth (1985/12/21) bezit 9.00% van de onderneming.
-Werknemer Michaël (1989/11/09) met nummer Mic20240612578 kost 2610.
-Boer Noah (1955/06/21) bezit 50.10% van de onderneming.
-Werknemer Pieter (2006/05/12) met nummer Pie20240612677 kost 0.
-Werknemer Samaël (1990/08/02) met nummer Sam20240612126 kost 2415.7.
-
-Overzicht van eigendommen:
-Akker "Achteraan" met kost 4000.
-Akker "Oostkant" met kost 12000.
-Melkerij "Melkerij 1" met kost 21000.
-Melkerij "Melkerij 2" met kost 17000.</pre>
-</div>
 </div>
 </div>
 </div>

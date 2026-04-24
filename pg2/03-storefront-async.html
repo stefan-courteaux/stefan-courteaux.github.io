@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Herhalingsoefening C# en UML :: Programmeren Gevorderd 2 (BETA)</title>
+    <title>StoreFront Async Integratie :: Programmeren Gevorderd 2 (BETA)</title>
     <meta name="generator" content="Antora 3.1.14">
     <link rel="stylesheet" href="../_/css/site.css">
   </head>
@@ -91,7 +91,7 @@
       <li class="nav-item is-active" data-depth="2">
     <a class="nav-link" href="tussentijdse2.html">Integratie EF Core Migrations</a>
   </li>
-      <li class="nav-item is-active" data-depth="2">
+      <li class="nav-item is-active is-current-page" data-depth="2">
     <a class="nav-link" href="03-storefront-async.html">Integratie Async</a>
   </li>
 </ul>
@@ -133,7 +133,7 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Oefeningen</span>
 <ul class="nav-list">
-      <li class="nav-item is-active is-current-page" data-depth="2">
+      <li class="nav-item is-active" data-depth="2">
     <a class="nav-link" href="90-01-herhaling.html">Herhaling C# en UML</a>
   </li>
       <li class="nav-item is-active" data-depth="2">
@@ -187,8 +187,8 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Gevorderd 2</a></li>
-    <li>Oefeningen</li>
-    <li><a href="90-01-herhaling.html">Herhaling C# en UML</a></li>
+    <li><a href="02-storefront-00-intro.html">Storefront Backend</a></li>
+    <li><a href="03-storefront-async.html">Integratie Async</a></li>
   </ul>
 </nav>
 </div>
@@ -197,9 +197,7 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Herhalingsoefening C# en UML</h1>
-<div id="preamble">
-<div class="sectionbody">
+<h1 class="page">StoreFront Async Integratie</h1>
 <div class="admonitionblock important">
 <table>
 <tr>
@@ -207,264 +205,12 @@
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-Alle skills die je nodig hebt om deze oefening te maken, worden  normaal als gekend beschouwd bij aanvang van het vak. Indien je toch vragen hebt, stel je ze dus beter vroeg dan laat.
+Async werd uitgelegd aan de hand van de stand alone les <a href="06-async.html" class="xref page">Asynchroon &amp; Parallel Programmeren</a>.<br>
+<br>
+Je kan steeds de <a href="https://github.com/stefan-courteaux/pg2/tree/d59a47fac571212e066af21bf1e21d1a345d6695/2026-04-24/1%20-%20WebShoppie%20Migrations%20Async/WebShoppie">async storefront voorbeeldcode</a> bekijken.
 </td>
 </tr>
 </table>
-</div>
-<div class="paragraph text-center">
-<p><span class="image"><img src="_images/oefeningen/boerderij/boerderij.png" alt="boerderij"></span></p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_doel"><a class="anchor" href="#_doel"></a>Doel</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Bouw een Boerderij Management Systeem.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Implementeer het ontwerp op basis van het gegeven UML diagram.</p>
-</li>
-<li>
-<p>Implementeer de domeinregels op basis van de beknopte tekstuele analyse.</p>
-</li>
-<li>
-<p>Implementeer applicatielogica op basis van voorbeeldoutput.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_uml"><a class="anchor" href="#_uml"></a>UML</h2>
-<div class="sectionbody">
-<div class="paragraph text-center">
-<p><span class="image"><img src="_images/oefeningen/boerderij/uml-high.png" alt="uml high"></span></p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_domeinregels"><a class="anchor" href="#_domeinregels"></a>Domeinregels</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_eigendom"><a class="anchor" href="#_eigendom"></a>Eigendom</h3>
-<div class="paragraph">
-<p><code>ToString()</code> geeft dynamisch het type van het object terug, gevolgd door de naam en de kost.</p>
-</div>
-<div class="literalblock">
-<div class="title">Voorbeeld</div>
-<div class="content">
-<pre>Akker "Achteraan" met kost 4000.</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_melkerij"><a class="anchor" href="#_melkerij"></a>Melkerij</h3>
-<div class="paragraph">
-<p>Het <code>AantalKoeien</code> kan na initialisatie niet meer aangepast worden.</p>
-</div>
-<div class="paragraph">
-<p>Om de opbrengst te berekenen, vermenigvuldig je eerst het <code>AantalKoeien</code> met <code>300</code>. Verminder dan met de <code>Kost</code> om het resultaat te bekomen.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_akker"><a class="anchor" href="#_akker"></a>Akker</h3>
-<div class="paragraph">
-<p>De <code>OppervlakteM2</code> kan na initialisatie niet meer aangepast worden.</p>
-</div>
-<div class="paragraph">
-<p>De <code>OppervlakteM2</code> moet strikt positief zijn.</p>
-</div>
-<div class="paragraph">
-<p>Om de opbrengst te berekenen, vermenigvuldig je <code>OppervlakteM2</code> met de opbrengst per m2 (zie hieronder). Verminder dan met de <code>Kost</code> om het resultaat te bekomen.</p>
-</div>
-<div class="paragraph">
-<p>De opbrengst per m2 is verschillend voor elk gewas:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Aardappel: 0.32</p>
-</li>
-<li>
-<p>Prei: 0.43</p>
-</li>
-<li>
-<p>Hop: 0.91</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_persoon"><a class="anchor" href="#_persoon"></a>Persoon</h3>
-<div class="paragraph">
-<p>Hoewel her-implementeerbaar, geeft <code>BerekenLoonKost()</code> standaard 0.0 terug.</p>
-</div>
-<div class="paragraph">
-<p>De natuurlijke sortering van een <code>Persoon</code> gebeurt op basis van de <code>Naam</code>.</p>
-</div>
-<div class="paragraph">
-<p>De <code>GeboorteDatum</code> kan na initialisatie niet meer aangepast worden.</p>
-</div>
-<div class="paragraph">
-<p>Een persoon is minstens 18 jaar oud.</p>
-</div>
-<div class="paragraph">
-<p>De <code>Naam mag</code> niet leeg zijn. Gooi een exception indien de naam leeg is.</p>
-</div>
-<div class="paragraph">
-<p><code>ToString()</code> geeft dynamisch het type van het object terug, gevolgd de <code>Naam</code> en de <code>GeboorteDatum</code>.</p>
-</div>
-<div class="literalblock">
-<div class="title">Voorbeeld</div>
-<div class="content">
-<pre>Boer Emzara (1960/02/29)</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_boer"><a class="anchor" href="#_boer"></a>Boer</h3>
-<div class="paragraph">
-<p>Geldige waarden voor <code>AandeelInDeOnderneming</code> zijn <code>0</code> tot en met <code>100</code>. Gooi een exception indien dit niet het geval is.</p>
-</div>
-<div class="paragraph">
-<p><code>ToString()</code> geeft bovenop de basis informatie van een persoon ook het <code>AandeelInDeOnderneming</code> terug.</p>
-</div>
-<div class="literalblock">
-<div class="title">Voorbeeld</div>
-<div class="content">
-<pre>Boer Emzara (1960/02/29) bezit 40.90% van de onderneming.</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_werknemer"><a class="anchor" href="#_werknemer"></a>Werknemer</h3>
-<div class="paragraph">
-<p>Wanneer bij constructie van een Werknemer geen <code>loon</code> meegegeven wordt, wordt de waarde <code>0.0</code> expliciet gezet.</p>
-</div>
-<div class="paragraph">
-<p>De LoonKost wordt berekend door het <code>BasisLoon</code> te vermenigvuldigen met <code>1.45</code>.</p>
-</div>
-<div class="paragraph">
-<p><code>GenereerWerknemersNummer()</code> geeft een nieuw werknemersnummer terug op basis van een input string. De logica is niet gebonden aan een instantie van de klasse.</p>
-</div>
-<div class="paragraph">
-<p>Het werknemersnummer bestaat uit drie delen:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>De eerste drie letters van de input string.</p>
-</li>
-<li>
-<p>De datum in 8 posities.</p>
-</li>
-<li>
-<p>Een willekeurig getal van 100 tot 1000.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Voorbeeld: <code>Sam20240612126</code></p>
-</div>
-<div class="paragraph">
-<p><code>ToString()</code> geeft bovenop de basis informatie van een persoon ook het <code>WerknemersNummer</code> en de <code>LoonKost</code> terug.</p>
-</div>
-<div class="literalblock">
-<div class="title">Voorbeeld</div>
-<div class="content">
-<pre>Werknemer Samaël (1990/08/02) met nummer Sam20240612126 kost 2415.7.</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_eigendomcomparer"><a class="anchor" href="#_eigendomcomparer"></a>EigendomComparer</h3>
-<div class="paragraph">
-<p>Vergelijkt het object Type. Indien dit gelijk is, wordt de <code>Naam</code> gebruikt.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_boerderij"><a class="anchor" href="#_boerderij"></a>Boerderij</h3>
-<div class="paragraph">
-<p>De winst wordt berekend door de opbrengst van alle Eigendommen op te tellen en daar de loonkost van alle Personen af te trekken.</p>
-</div>
-<div class="paragraph">
-<p><code>ToString()</code> geeft de <code>Naam</code>, het <code>BTWNummer</code> en de winst terug.</p>
-</div>
-<div class="literalblock">
-<div class="title">Voorbeeld</div>
-<div class="content">
-<pre>De Ark (BE012345567) met winst 32724.3.</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_applicatie"><a class="anchor" href="#_applicatie"></a>Applicatie</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Schrijf een kleine BoerderijApp. De App heeft géén interactie met de gebruiker.</p>
-</div>
-<div class="paragraph">
-<p>Schrijf procedurele code die het volgende doet:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Initialiseer een Boerderij met</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Naam,</p>
-</li>
-<li>
-<p>BtwNummer,</p>
-</li>
-<li>
-<p>een aantal Personen,</p>
-</li>
-<li>
-<p>een aantal Eigendommen.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Print de globale boerderij informatie.</p>
-</li>
-<li>
-<p>Print een natuurlijk gesorteerde lijst van de Personen.</p>
-</li>
-<li>
-<p>Print een gesorteerde lijst van Eigendommen gebruik makende van EigendomComparer.</p>
-</li>
-</ul>
-</div>
-<div class="literalblock">
-<div class="title">Voorbeeld</div>
-<div class="content">
-<pre>De Ark (BE012345567) met winst 32724.3.
----------------------------------------
-Overzicht van personen:
-Boer Emzara (1960/02/29) bezit 40.90% van de onderneming.
-Boer Japheth (1985/12/21) bezit 9.00% van de onderneming.
-Werknemer Michaël (1989/11/09) met nummer Mic20240612578 kost 2610.
-Boer Noah (1955/06/21) bezit 50.10% van de onderneming.
-Werknemer Pieter (2006/05/12) met nummer Pie20240612677 kost 0.
-Werknemer Samaël (1990/08/02) met nummer Sam20240612126 kost 2415.7.
-
-Overzicht van eigendommen:
-Akker "Achteraan" met kost 4000.
-Akker "Oostkant" met kost 12000.
-Melkerij "Melkerij 1" met kost 21000.
-Melkerij "Melkerij 2" met kost 17000.</pre>
-</div>
-</div>
-</div>
 </div>
 </article>
   </div>

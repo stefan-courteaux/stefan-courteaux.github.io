@@ -170,7 +170,7 @@
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Deze pagina gebruikt dotnet CLI om snel te gaan. Je mag uiteraard alles met IDE doen.
+Deze pagina gebruikt dotnet CLI om snel te gaan. Je mag uiteraard alles met IDE doen. Let steeds goed op de paden in de <code>.yml</code> file. Deze moeten perfect overeen stemmen met de structuur van jouw repo/solution setup.
 </td>
 </tr>
 </table>
@@ -591,6 +591,9 @@ Standaard zal de workflow niet verder gaan wanneer de tests falen.
 <div class="content">
 <img src="_images/githubactions/deployok.png" alt="deployok">
 </div>
+</div>
+<div class="paragraph">
+<p>Vanaf dit moment zal elke push vanzelf jouw app opnieuw deployen zonder extra moeite. Wil je dit niet, beperk je dan tot de <code>workflow_dispatch:</code> optie zodat de workflow alleen manueel start.</p>
 </div>
 </div>
 </div>

@@ -597,6 +597,78 @@ Standaard zal de workflow niet verder gaan wanneer de tests falen.
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_jobs_splitsen"><a class="anchor" href="#_jobs_splitsen"></a>Jobs Splitsen</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Je kan de jobs binnen een workflow ook verder uitsplitsen. Dit helpt om het verloop van de flow beter te visualiseren in GitHub. We beschouwen <em>build</em>, <em>test</em> en <em>deploy</em> als aparte jobs binnen eenzelfde workflow.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/githubactions/jobs.png" alt="jobs">
+</div>
+</div>
+<div class="paragraph">
+<p>Er is geen garantie dat jobs binnen een workflow op dezelfde vm uitgevoerd worden. We zien ons dus genoodzaakt de code voor elke job te clonen en dotnet te installeren.</p>
+</div>
+<div class="listingblock">
+<div class="title">ci-cd-demo.yml</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">name: CI-CD-Demo-Dag
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+jobs:
+    build:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Clone repo
+          uses: actions/checkout@v4
+        - name: Install dotnet
+          uses: actions/setup-dotnet@v4
+          with:
+            dotnet-version: "10.0.x"
+        - name: Build app
+          run: dotnet build PG3CICDGent/PG3CICDGent.slnx
+    test:
+      needs: build
+      runs-on: ubuntu-latest
+      steps:
+        - name: Clone repo
+          uses: actions/checkout@v4
+        - name: Install dotnet
+          uses: actions/setup-dotnet@v4
+          with:
+            dotnet-version: "10.0.x"
+        - name: Run tests
+          run: dotnet test PG3CICDGent/Test*/*.csproj
+    deploy:
+      needs: test
+      runs-on: ubuntu-latest
+      steps:
+        - name: Clone repo
+          uses: actions/checkout@v4
+        - name: Install dotnet
+          uses: actions/setup-dotnet@v4
+          with:
+            dotnet-version: "10.0.x"
+        - name: Publish
+          run: dotnet publish PG3CICDGent/PG3CICDGent/PG3CICDGent.csproj -o ${{ github.workspace }}/publish
+        - name: Deploy
+          uses: azure/webapps-deploy@v3
+          with:
+            app-name: "hogent-pg3-dag-cicd"
+            publish-profile: ${{ secrets.API_PUBLISH_PROFILE_AZURE }}
+            package: ${{ github.workspace }}/publish</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Er bestaan elegantere manier om dit in te richten, maar dat gaat de school voorbij.</p>
+</div>
+</div>
+</div>
 </article>
   </div>
 </main>

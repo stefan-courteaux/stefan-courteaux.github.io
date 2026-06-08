@@ -8,34 +8,50 @@
         <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     </head>
     <body>
-        <div class="">
-            <div class="block bg-emerald-50 p-4 border-b-2 border-b-emerald-300 shadow-lg/20">
-                <h1 class="text-4xl font-bold text-emerald-900 text-center">
+        <div>
+            <div class="block p-4 border-b-2 border-b-gray-300 shadow-lg/20 bg-gray-50">
+                <h1 class="text-4xl font-bold text-gray-900 text-shadow-lg text-center">
                     Marc Courteaux
                 </h1>
+                <h1 class="text-2xl font-bold text-gray-500 text-shadow-lg text-center">
+                    1954-2026
+                </h1>
             </div>
-            <div class="block m-4 mt-8 lg:max-w-3/4 shadow-lg/20 rounded-lg border-2 border-emerald-300 ">
-                <div class="rounded-t-lg bg-emerald-50 p-4">
-                    <h2 class="text-xl font-bold text-emerald-900">Ramble On</h2>
+            <div class="block m-4 mt-8 lg:max-w-3/4 lg:mx-auto shadow-lg/20 rounded-lg border-2 border-gray-300 ">
+                <div class="rounded-t-lg bg-gray-50 p-4">
+                    <h2 class="text-xl font-bold text-gray-900">Ramble On</h2>
+                    <a href="./video/MarcCourteaux-RambleOn-H265720pmono.mp4" download>
+                        <span class="underline text-sky-600 hover:animate-pulse">Download for Offline Playback</span>
+                        <span class="text-gray-600"> (Right-click if needed)</span>
+                    </a>
                 </div>
                 <video class="h-full w-full rounded-b-lg" controls>
-                    <source src="video/Marc Courteaux - Ramble On - H265 720p mono.mp4" type="video/mp4"/>
-                    bla
+                    <source src="./video/MarcCourteaux-RambleOn-H265720pmono.mp4" type="video/mp4"/>
                 </video>
             </div>
-            <div class="block m-4 mt-8 lg:max-w-3/4 shadow-lg/20 rounded-lg border-2 border-emerald-300 ">
-                <div class="rounded-t-lg bg-emerald-50 p-4">
-                    <h2 class="text-xl font-bold text-emerald-900">Stairway to Heaven</h2>
+            <div class="block m-4 mt-8 lg:max-w-3/4 lg:mx-auto shadow-lg/20 rounded-lg border-2 border-gray-300 ">
+                <div class="rounded-t-lg bg-gray-50 p-4">
+                    <h2 class="text-xl font-bold text-gray-900">Stairway to Heaven</h2>
+                    <a href="./video/MarcCourteaux-StairwayToHeaven-H265720pmono.mp4" download>
+                        <span class="underline text-sky-600 hover:animate-pulse">Download for Offline Playback</span>
+                        <span class="text-gray-600"> (Right-click if needed)</span>
+                    </a>
                 </div>
                 <video class="h-full w-full rounded-b-lg" controls>
-                    <source src="video/Marc Courteaux - Stairway to Heaven - H265 720p mono.mp4" type="video/mp4"/>
-                    bla
+                    <source src="./video/MarcCourteaux-StairwayToHeaven-H265720pmono.mp4" type="video/mp4"/>
                 </video>
             </div>
             <div class="block m-4 mt-8">
-                <h1 class="text-m text-emerald-900 text-center">
-                    Stefan Courteaux
-                </h1>
+                <footer>
+                    <p class="text-m text-gray-900 text-center">
+                        2026 Stefan Courteaux
+                    </p>
+                    <p class="text-center">
+                        <span class="text-s text-gray-300">Built with tailwindcss and H.265</span>
+                        <br/>
+                        <span class="text-s text-gray-200">0.0% vibe code</span>
+                    </p>
+                </footer>
             </div>
         </div>
     </body>

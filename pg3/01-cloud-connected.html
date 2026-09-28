@@ -55,7 +55,7 @@
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
     <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
-    <h3 class="title"><a href="index.html">Gevorderd 3</a></h3>
+    <h3 class="title"><a href="index.html">Cloudontwikkeling</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
@@ -129,12 +129,12 @@
 </div>
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
-    <span class="title">Gevorderd 3</span>
+    <span class="title">Cloudontwikkeling</span>
     <span class="version"></span>
   </div>
   <ul class="components">
     <li class="component is-current">
-      <div class="title"><a href="index.html">Gevorderd 3</a></div>
+      <div class="title"><a href="index.html">Cloudontwikkeling</a></div>
     </li>
   </ul>
 </div>
@@ -146,7 +146,7 @@
 <button class="nav-toggle"></button>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="index.html">Gevorderd 3</a></li>
+    <li><a href="index.html">Cloudontwikkeling</a></li>
     <li><a href="01-cloud-connected.html">Cloud Connected</a></li>
   </ul>
 </nav>
@@ -388,31 +388,131 @@
 <div class="paragraph">
 <p>Het installeren van eigen gebouwde software naar een server die de app zal uitvoeren, heet <strong>deployen</strong>. Wij gaan nu een kort-door-de-bocht deployment doen naar Azure. We gaan dus deployen naar "De Cloud".</p>
 </div>
+<div class="sect2">
+<h3 id="_inloggen"><a class="anchor" href="#_inloggen"></a>Inloggen</h3>
 <div class="paragraph">
 <p>Open een terminal venster en log in op Azure met je Hogent account.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">az login</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">az login</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>De login operatie zal de standaard web browser van jouw systeem openen op de Microsoft login pagina. Gebruik je Hogent account om in te loggen. Je krijgt een bevestiging.</p>
+<p>De login operatie zal een MS login venster openen (web browser, os-integratie&#8230;&#8203;). Gebruik je Hogent account om in te loggen. Je krijgt een bevestiging.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="_images/cloud-connected/login.png" alt="login">
 </div>
 </div>
-<div class="paragraph">
-<p>Navigeer in de terminal naar de root folder van het demo project dat je gemaakt hebt. Dit is de folder waar de <code>.sln</code> file staat. Navigeer nu nog 1 niveau dieper tot in de folder waar de <code>.csproj</code> file zicht bevindt.</p>
 </div>
-<div class="paragraph">
-<p>Gebruik onderstaande commando om de app te deployen.</p>
+<div class="sect2">
+<h3 id="_huidige_manier"><a class="anchor" href="#_huidige_manier"></a>Huidige Manier</h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Het klassieke all-in-one <code>webapp up</code> commando werd recent geklasseerd als deprecated. Spijtig. We doen het werk nu in meerdere stappen&#8230;&#8203;
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Create Resource Group</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">az group create --location francecentral --name hogent-stefanc-demogroup</code></pre>
+</div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">az webapp up --sku F1 --name hogent-demoapi-&lt;voornaam&gt;&lt;naam&gt; --os-type linux</code></pre>
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "id": "/subscriptions/2befd48b-d38f-443e-be38-e04dc3f380f7/resourceGroups/hogent-stefanc-demogroup",
+  "location": "francecentral",
+  "managedBy": null,
+  "name": "hogent-stefanc-demogroup",
+  "properties": {
+    "provisioningState": "Succeeded"
+  },
+  "tags": null,
+  "type": "Microsoft.Resources/resourceGroups"
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Create Service Plan</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">az appservice plan create --name hogent-stefanc-demoplan --resource-group hogent-stefanc-demogroup --sku F1 --is-linux true</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "asyncScalingEnabled": false,
+  "elasticScaleEnabled": false,
+  "geoRegion": "France Central",
+  "hyperV": false,
+  "id": "/subscriptions/2befd48b-d38f-443e-be38-e04dc3f380f7/resourceGroups/hogent-stefanc-demogroup/providers/Microsoft.Web/serverfarms/hogent-stefanc-demoplan",
+  "isCustomMode": false,
+  ...
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Create Web App</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">az webapp create --name hogent-stefanc-demoapi --plan hogent-stefanc-demoplan --resource-group hogent-stefanc-demogroup --runtime "DOTNETCORE|10.0"</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  ...
+  "defaultHostName": "hogent-stefanc-demoapi.azurewebsites.net",
+  ...
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Navigeer in de terminal naar de root folder van het demo project dat je gemaakt hebt. Dit is de folder waar de <code>.sln</code> file staat. Navigeer nu nog 1 niveau dieper tot in de folder waar de relevante <code>.csproj</code> file zicht bevindt.</p>
+</div>
+<div class="listingblock">
+<div class="title">Build &amp; Zip App</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">dotnet publish -c Release -o publish</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">cd publish</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">zip -r ./deployme.zip .</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Deploy Web App</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">az webapp deploy --name hogent-stefanc-demoapi --resource-group hogent-stefanc-demogroup --src-path ./deployme.zip --type zip</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">You can visit your app at: http://hogent-stefanc-demoapi.azurewebsites.net</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_deprecated_manier"><a class="anchor" href="#_deprecated_manier"></a>Deprecated Manier</h3>
+<div class="listingblock">
+<div class="title">Klassieke webapp up</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">az webapp up --sku F1 --name hogent-demoapi-stefanc --os-type linux</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -434,6 +534,9 @@
 }</code></pre>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_testen"><a class="anchor" href="#_testen"></a>Testen</h3>
 <div class="imageblock">
 <div class="content">
 <img src="_images/cloud-connected/deployed.png" alt="deployed">
@@ -464,12 +567,10 @@
 </div>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_foutmeldingen"><a class="anchor" href="#_foutmeldingen"></a>Foutmeldingen</h2>
-<div class="sectionbody">
 <div class="sect2">
-<h3 id="_namespace_error"><a class="anchor" href="#_namespace_error"></a>Namespace Error</h3>
+<h3 id="_foutmeldingen"><a class="anchor" href="#_foutmeldingen"></a>Foutmeldingen</h3>
+<div class="sect3">
+<h4 id="_namespace_error"><a class="anchor" href="#_namespace_error"></a>Namespace Error</h4>
 <div class="paragraph">
 <p>Indien je een foutmelding krijgt die lijkt op <code>The subscription is not registered to use namespace 'Microsoft.Web'</code>, surf je naar de azure portal, navigeer je naar je subscription en activeer je de namespace.</p>
 </div>
@@ -482,8 +583,8 @@
 <p>Dergelijke fouten los je in de toekomst op gelijkaardige manier op. Start de deploy opnieuw wanneer de Azure taak voltooid is.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_region_policy_error"><a class="anchor" href="#_region_policy_error"></a>Region Policy Error</h3>
+<div class="sect3">
+<h4 id="_region_policy_error"><a class="anchor" href="#_region_policy_error"></a>Region Policy Error</h4>
 <div class="paragraph">
 <p>Indien je een regio-gerelateerde policy error ontvangt tijdens het deployen, doe je als volgt:</p>
 </div>
@@ -514,6 +615,7 @@ takes 1 positional argument but
 <td>Je ziet een Python trace omdat de Azure CLI in Python geschreven werd, niet in C#.</td>
 </tr>
 </table>
+</div>
 </div>
 </div>
 </div>

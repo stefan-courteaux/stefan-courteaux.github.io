@@ -55,7 +55,7 @@
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
     <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
-    <h3 class="title"><a href="index.html">Gevorderd 3</a></h3>
+    <h3 class="title"><a href="index.html">Cloudontwikkeling</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
@@ -129,12 +129,12 @@
 </div>
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
-    <span class="title">Gevorderd 3</span>
+    <span class="title">Cloudontwikkeling</span>
     <span class="version"></span>
   </div>
   <ul class="components">
     <li class="component is-current">
-      <div class="title"><a href="index.html">Gevorderd 3</a></div>
+      <div class="title"><a href="index.html">Cloudontwikkeling</a></div>
     </li>
   </ul>
 </div>
@@ -146,7 +146,7 @@
 <button class="nav-toggle"></button>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="index.html">Gevorderd 3</a></li>
+    <li><a href="index.html">Cloudontwikkeling</a></li>
     <li>ShipIt Voorbeeldje 📦️</li>
     <li><a href="02-az-devops.html">Iteratief Ontwikkelen</a></li>
   </ul>
@@ -691,28 +691,23 @@ src/ShipIt.PriceQuote.Api/appsettings.Development.json</pre>
 </div>
 <div class="sect2">
 <h3 id="_deployment"><a class="anchor" href="#_deployment"></a>Deployment</h3>
-<div class="listingblock">
-<div class="title">Azure Deployment</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">az webapp up --sku F1 --name hogent-shipit-&lt;voornaam&gt;&lt;naam&gt;-quote --os-type linux</code></pre>
+<div class="paragraph">
+<p>Refereer naar <a href="01-cloud-connected.html#_deployen_naar_azure" class="xref page">Cloud Connected</a> voor manuele deployment via CLI.</p>
 </div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+We kunnen de resource group en het service plan van deze service later refereren om alle samenhorende microservices logisch te groeperen in Azure.
+</td>
+</tr>
+</table>
 </div>
-<div class="listingblock">
-<div class="title">Azure Feedback</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">{
-  "URL": "http://hogent-shipit-stefancourteaux-quote.azurewebsites.net",
-  "appserviceplan": "stefan.courteaux_asp_6085",
-  "location": "canadacentral",
-  "name": "hogent-shipit-stefancourteaux-quote",
-  "os": "Linux",
-  "resourcegroup": "stefan.courteaux_rg_8123",
-  "runtime_version": "dotnetcore|8.0",
-  "runtime_version_detected": "8.0",
-  "sku": "FREE",
-  "src_path": "//Users//stefancourteaux//Source//PG3//Les02//ShipIt2425S2//ShipIt//ShipIt.PriceQuote.Api"
-}</code></pre>
-</div>
+<div class="paragraph">
+<p>Test met Postman.</p>
 </div>
 <div class="paragraph">
 <p><span class="image"><img src="_images/az-devops/postman-az.png" alt="postman az"></span></p>
@@ -721,150 +716,10 @@ src/ShipIt.PriceQuote.Api/appsettings.Development.json</pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_azure_deployment_resources"><a class="anchor" href="#_azure_deployment_resources"></a>Azure Deployment &amp; Resources</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_opruimen"><a class="anchor" href="#_opruimen"></a>Opruimen</h3>
-<div class="paragraph">
-<p>Tot op heden hebben we zeer kort door de bocht gedeployed naar Azure. Deze manier van deployen is handig, maar doet veel impliciet werk dat na herhaalde deployments ongewenste resources achterlaat in Azure. We kunnen dit beter doen door expliciet te zijn en resources te hergebruiken.</p>
-</div>
-<div class="paragraph">
-<p>Indien er nog resources bestaan, wissen we deze eerst via de Azure Portal. De handigste manier om te zien wat er bestaat, is te vertrekken vanuit Resource Groups.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/middleware/rgroups.png" alt="rgroups">
-</div>
-</div>
-<div class="paragraph">
-<p>Wis al de resources die aangemaakt werden tijdens vorige deployment pogingen.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_hiërarchie"><a class="anchor" href="#_hiërarchie"></a>Hiërarchie</h3>
-<div class="paragraph">
-<p>Nu kunnen we stap voor stap de nodige resources aanmaken en expliciet benoemen.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Je kan <strong>PowerShell commands splitsen over meerdere lijnen door een backtick te gebruiken</strong>. Dit is geen magic, backtick is gewoon het <em>escape character</em>. De newline zal dus genegeerd worden. Gebruik backslash in Linux/MacOS style terminal.
-</td>
-</tr>
-</table>
-</div>
-<div class="listingblock">
-<div class="title">Resource Group</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ps hljs" data-lang="ps">az group create ` <i class="conum" data-value="1"></i><b>(1)</b>
---name hogent-pg3-stefanc-shipit ` <i class="conum" data-value="2"></i><b>(2)</b>
---location westeurope <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Lukt het allemaal niet, zet het commande dan op één lijn.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Kies een naam die duidelijk en logisch voelt.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>We deployen naar Azure in Europa. Gebruik een regio die beschikbaar is op jouw Azure subscription.</td>
-</tr>
-</table>
-</div>
-<div class="listingblock">
-<div class="title">App Service Plan</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ps hljs" data-lang="ps">az appservice plan create `
---name hogent-pg3-stefanc-shipit-plan ` <i class="conum" data-value="1"></i><b>(1)</b>
---resource-group hogent-pg3-stefanc-shipit ` <i class="conum" data-value="2"></i><b>(2)</b>
---is-linux `
---sku F1</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Kies een naam die duidelijk en logisch voelt.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>De naam die je gekozen hebt in de eerste stap.</td>
-</tr>
-</table>
-</div>
-<div class="listingblock">
-<div class="title">App Service</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ps hljs" data-lang="ps">az webapp up `
---name hogent-pg3-stefanc-shipit-quote ` <i class="conum" data-value="1"></i><b>(1)</b>
---resource-group hogent-pg3-stefanc-shipit ` <i class="conum" data-value="2"></i><b>(2)</b>
---plan hogent-pg3-stefanc-shipit-plan ` <i class="conum" data-value="3"></i><b>(3)</b>
---os-type linux</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Kies een naam die duidelijk en logisch voelt.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>De naam die je gekozen hebt in de eerste stap.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>De naam die je gekozen hebt in de vorige stap.</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>We kunnen een nieuwe versie van de app deployen door bovenstaand commando opnieuw uit te voeren. Op deze manier worden er niet elke keer bijkomende resources aangemaakt.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_korte_versie"><a class="anchor" href="#_korte_versie"></a>Korte Versie</h3>
-<div class="paragraph">
-<p>Nu we de hiërarchie begrijpen, is het interessant om weten dat we dit allemaal in een enkel statement kunnen inrichten. We moeten er gewoon op letten telkens exact hetzelfde statement uit te voeren om een bepaalde service te deployen.</p>
-</div>
-<div class="listingblock">
-<div class="title">Alles ineens</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ps hljs" data-lang="ps">az webapp up `
-  --name hogent-pg3-stefanc-shipit-quote `
-  --plan hogent-pg3-stefanc-shipit-plan `
-  --resource-group hogent-pg3-stefanc-shipit `
-  --location westeurope `
-  --os-type linux</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_opdracht"><a class="anchor" href="#_opdracht"></a>Opdracht</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Maak zelf een GitHub repo, board etc voor jouw oefeningen. Maak een aparte repo voor jouw eigen project. Geef de lesgever toegang tot het repo indien je feedback wil kunnen vragen.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
 <h2 id="_oefening"><a class="anchor" href="#_oefening"></a>Oefening</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Probeer zelf de taak van de week te implementeren. Je kan steeds kijken naar de code uit de les als je vast loopt.</p>
+<p>Maak zelf een GitHub repo, board etc voor jouw oefeningen. Probeer zelf de taak van de week te implementeren. Je kan steeds kijken naar de code uit de les als je vast loopt.</p>
 </div>
 </div>
 </div>

@@ -219,7 +219,7 @@
 <p><code>varchar(<em>&lt;lengte&gt;</em>)</code></p>
 </li>
 <li>
-<p><code>int</code> / <code>bigint</code></p>
+<p><code>int</code> / <code>INT</code></p>
 </li>
 <li>
 <p><code>decimal(<em>&lt;positiesInTotaal&gt;,&lt;cijfersAchterDeKomma&gt;</em>)</code></p>
@@ -291,6 +291,20 @@
 <div class="content">
 <img src="_images/storefront-api/pgadmin-erd.png" alt="pgadmin erd">
 </div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Gebruik geen genAI tools om een <em>vaag</em> ERD te genereren op basis van jouw database. Dit is een <em>deterministische</em> operatie en zit gewoon in pgAdmin.<br>
+<br>
+pgAdmin &#8594; Servers &#8594; {jouw-db} &#8594; Schemas &#8594; storefront &#8594; right click "ERD For Schema"
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -391,7 +405,7 @@ Door unieke <code>-p</code> en <code>--name</code> toe te wijzen, kan je meerder
 CREATE SCHEMA Storefront;
 
 CREATE TABLE Storefront.Customers (
-    CustomerId   BIGINT GENERATED ALWAYS AS IDENTITY NOT NULL,
+    CustomerId   INT GENERATED ALWAYS AS IDENTITY NOT NULL,
     FirstName    VARCHAR(60)                         NOT NULL,
     LastName     VARCHAR(60)                         NOT NULL,
     DateOfBirth  TIMESTAMP                           NOT NULL,
@@ -411,7 +425,7 @@ ADD CONSTRAINT uk_Customers
 UNIQUE (Email);
 
 CREATE TABLE Storefront.Products (
-    ProductId   BIGINT GENERATED ALWAYS AS IDENTITY NOT NULL,
+    ProductId   INT GENERATED ALWAYS AS IDENTITY NOT NULL,
     Title       VARCHAR(50)                         NOT NULL,
     Description VARCHAR(250)                        NOT NULL,
     Price       DECIMAL(8,2)                        NOT NULL,
@@ -427,9 +441,9 @@ ADD CONSTRAINT uk_Products
 UNIQUE (Title);
 
 CREATE TABLE Storefront.Orders (
-    OrderId    BIGINT GENERATED ALWAYS AS IDENTITY NOT NULL,
+    OrderId    INT GENERATED ALWAYS AS IDENTITY NOT NULL,
 	OrderDate  TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
-	CustomerId BIGINT 							   NOT NULL,
+	CustomerId INT 							   NOT NULL,
 	TotalPrice DECIMAL(8,2) 					   NOT NULL
 );
 
@@ -450,9 +464,9 @@ CREATE INDEX fki_Orders_CustomerId
 ON Storefront.Orders(CustomerId);
 
 CREATE TABLE Storefront.OrderProducts (
-    OrderProductId BIGINT GENERATED ALWAYS AS IDENTITY NOT NULL,
-	OrderId        BIGINT 							   NOT NULL,
-	ProductId      BIGINT 							   NOT NULL,
+    OrderProductId INT GENERATED ALWAYS AS IDENTITY NOT NULL,
+	OrderId        INT 							   NOT NULL,
+	ProductId      INT 							   NOT NULL,
 	Quantity       INT								   NOT NULL,
 	Price          DECIMAL(6,2)						   NOT NULL
 );

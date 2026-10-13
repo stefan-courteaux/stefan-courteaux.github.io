@@ -271,6 +271,20 @@ Bewaar de connectionstring in <code>appsettings.(Development).json</code> en lee
 </li>
 </ul>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Deze snippets komen uit een project waar men er voor koos het domeinmodel te gebruiken in de spec van de persistentie methoden.<br>
+Ook wanneer jouw project datamodellen gebruikt in de spec van de persistentie blijft deze code relevant om de Dapper flow te illustreren.<br>
+Welke objecten je vervolgens waar mapt, hangt af van de gemaakte keuzes in jouw lagenmodel. Blijf nadenken 😉
+</td>
+</tr>
+</table>
+</div>
 <div class="sect2">
 <h3 id="_create"><a class="anchor" href="#_create"></a>Create</h3>
 <div class="listingblock">
@@ -516,7 +530,7 @@ Bewaar de connectionstring in <code>appsettings.(Development).json</code> en lee
     private string? _getOwnerByIdIncludePetsQuery;
     private string? _getOwnerById;
 
-    private const string QueryRoot = "Repositories/Queries/SQL/";
+    private const string QueryRoot = "Repositories/Queries/SQL/"; <i class="conum" data-value="1"></i><b>(1)</b>
 
     public string GetOwnerByIdIncludePetsQuery =&gt;
         _getOwnerByIdIncludePetsQuery ??=
@@ -528,6 +542,14 @@ Bewaar de connectionstring in <code>appsettings.(Development).json</code> en lee
         File.ReadAllText(QueryRoot + queryName + ".sql");
 }</code></pre>
 </div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Naargelang omgeving <code>AppContext.BaseDirectory</code> nuttig.</td>
+</tr>
+</table>
 </div>
 <div class="admonitionblock note">
 <table>

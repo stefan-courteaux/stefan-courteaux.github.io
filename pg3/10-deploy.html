@@ -208,6 +208,9 @@
 <div class="sect1">
 <h2 id="_deploy_services"><a class="anchor" href="#_deploy_services"></a>Deploy Services</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>Refereer naar <a href="01-cloud-connected.html#_deployen_naar_azure" class="xref page">Cloud Connected</a> voor manuele deployment via CLI.</p>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -220,53 +223,21 @@ Zoals altijd, <code>backslash</code> voor Linux/macOS en <code>backtick</code> v
 </tr>
 </table>
 </div>
-<div class="literalblock">
-<div class="title">IdentityServer</div>
-<div class="content">
-<pre>az webapp up \
-  --name hogent-pg3-stefanc-shipit-identity \
-  --plan hogent-pg3-stefanc-shipit-plan \
-  --resource-group hogent-pg3-stefanc-shipit \
-  --location canadacentral \
-  --os-type linux</pre>
+<div class="paragraph">
+<p>Te deployen</p>
 </div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>--&gt; https://hogent-pg3-stefanc-shipit-identity.azurewebsites.net</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="title">PriceQuote</div>
-<div class="content">
-<pre>az webapp up \
-  --name hogent-pg3-stefanc-shipit-quote \
-  --plan hogent-pg3-stefanc-shipit-plan \
-  --resource-group hogent-pg3-stefanc-shipit \
-  --location canadacentral \
-  --os-type linux</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>--&gt; https://hogent-pg3-stefanc-shipit-quote.azurewebsites.net</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="title">Label</div>
-<div class="content">
-<pre>az webapp up \
-  --name hogent-pg3-stefanc-shipit-label \
-  --plan hogent-pg3-stefanc-shipit-plan \
-  --resource-group hogent-pg3-stefanc-shipit \
-  --location canadacentral \
-  --os-type linux</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>--&gt; https://hogent-pg3-stefanc-shipit-label.azurewebsites.net</pre>
-</div>
+<div class="ulist">
+<ul>
+<li>
+<p>IdentityServer</p>
+</li>
+<li>
+<p>PriceQuote</p>
+</li>
+<li>
+<p>Label</p>
+</li>
+</ul>
 </div>
 </div>
 </div>

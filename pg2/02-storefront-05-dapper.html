@@ -423,6 +423,12 @@ Welke objecten je vervolgens waar mapt, hangt af van de gemaakte keuzes in jouw 
 </div>
 <div class="sect2">
 <h3 id="_relaties"><a class="anchor" href="#_relaties"></a>Relaties</h3>
+<div class="paragraph">
+<p>Wanneer je complexe data uitleest door veel kleine queries te doen en de informatie samen te rapen in C#, noemt men dat <em>Coded Joins</em>.</p>
+</div>
+<div class="paragraph">
+<p>Bij het uitlezen van grote hoeveelheden informatie dmv <em>Coded Joins</em> kunnen performance problemen optreden. De oplossing is dan de database te laten joinen en de info in 1 keer uit te lezen.</p>
+</div>
 <div class="listingblock">
 <div class="title">OrderRepository.GetOrder()</div>
 <div class="content">
@@ -527,7 +533,8 @@ Welke objecten je vervolgens waar mapt, hangt af van de gemaakte keuzes in jouw 
     private string? _getOwnerByIdIncludePetsQuery;
     private string? _getOwnerById;
 
-    private const string QueryRoot = "Repositories/Queries/SQL/"; <i class="conum" data-value="1"></i><b>(1)</b>
+    private const string QueryRoot = AppContext.BaseDirectory +
+        "/Repositories/Queries/SQL/"; <i class="conum" data-value="1"></i><b>(1)</b>
 
     public string GetOwnerByIdIncludePetsQuery =&gt;
         _getOwnerByIdIncludePetsQuery ??=
@@ -544,7 +551,7 @@ Welke objecten je vervolgens waar mapt, hangt af van de gemaakte keuzes in jouw 
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Naargelang omgeving <code>AppContext.BaseDirectory</code> nuttig.</td>
+<td><code>AppContext.BaseDirectory</code> = Directory waar executable staat</td>
 </tr>
 </table>
 </div>

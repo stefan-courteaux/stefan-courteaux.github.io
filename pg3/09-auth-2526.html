@@ -303,27 +303,11 @@ Een <strong>user(account)</strong> behandelt de authenticatie van een <strong>me
 <div class="sect2">
 <h3 id="_opzetten"><a class="anchor" href="#_opzetten"></a>Opzetten</h3>
 <div class="paragraph">
-<p>Ga naar de Azure Portal en kies het resource type "SQL Databases".</p>
+<p>Ga naar de Azure Portal en maak een nieuwe Azure SQL Database aan. Bij de initiële creatie stap kan je opteren voor een gratis database.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="_images/identity-server-sql/sql-resource-type.png" alt="sql resource type">
-</div>
-</div>
-<div class="paragraph">
-<p>Selecteer een standaard Azure SQL Database.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/identity-server-sql/sql-overview-create-2.png" alt="sql overview create 2">
-</div>
-</div>
-<div class="paragraph">
-<p>Gebruik het aanbod om een gratis SQL Database te maken.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/identity-server-sql/sql-create-free.png" alt="sql create free">
 </div>
 </div>
 <div class="paragraph">
@@ -345,53 +329,6 @@ Als je reeds een Azure SQL database gebruikt voor jouw project, hoef je geen nie
 </td>
 </tr>
 </table>
-</div>
-<div class="paragraph">
-<p>Onder Authentication Settings van de Server, kies je voor "Use both SQL Server and Microsoft Entra Authentication". Dit zorgt ervoor dat men zich kan authenticeren met een Azure account en ook een tradionele SQL Server user en wachtwoord.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Kies je eigen Azure account als Admin.</p>
-</li>
-<li>
-<p>Stel ook de SQL server admin login credentials in.</p>
-</li>
-</ul>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/identity-server-sql/sql-create-server-2.png" alt="sql create server 2">
-</div>
-</div>
-<div class="paragraph">
-<p>Nu de SQL Server Instance ingesteld is, kunnen we verder met de configuratie van de databank. Onze academische context vereist relaxte netwerkbeveiliging. Kies voor:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>"Public endpoint"</p>
-</li>
-<li>
-<p>"Allow Azure services and resources to access this server"</p>
-</li>
-<li>
-<p>"Add current client IP address"</p>
-</li>
-</ul>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/identity-server-sql/sql-create-db-2.png" alt="sql create db 2">
-</div>
-</div>
-<div class="paragraph">
-<p>Klik nu op "Review + Create". Controleer de instellingen en klik dan op "Create".</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/identity-server-sql/sql-review.png" alt="sql review">
-</div>
 </div>
 <div class="paragraph">
 <p>Na even wachten zal de database (en "server" instance) verschijnen als resource in het overzicht.</p>
@@ -432,7 +369,7 @@ De <a href="https://marketplace.visualstudio.com/items?itemName=ms-mssql.mssql">
 <div class="sect2">
 <h3 id="_firewall"><a class="anchor" href="#_firewall"></a>Firewall</h3>
 <div class="paragraph">
-<p>Bij het aanmaken van de DB heb je je IP toegevoegd aan de whitelist. Als je IP verandert, of je van op een andere locatie wil verbinden, moet je het relevante IP toevoegen.</p>
+<p>De SQL database zit standaard achter een firewall. Als je IP verandert, of je van op een andere locatie wil verbinden, moet je het relevante IP toevoegen.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -451,66 +388,10 @@ De <a href="https://marketplace.visualstudio.com/items?itemName=ms-mssql.mssql">
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Bepaalde apps, zoals SSMS en de VS Code plugin zullen dit detecteren en je voorstellen het werk voor jou te doen.
+Bepaalde apps, zoals SSMS en de VS Code plugin zullen dit detecteren en je voorstellen het werk voor jou te doen als je inlogt met je Azure account.
 </td>
 </tr>
 </table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_identityserver_sql_login"><a class="anchor" href="#_identityserver_sql_login"></a>IdentityServer SQL Login</h3>
-<div class="paragraph">
-<p>Op dit moment word je persoonlijke Azure identiteit, of een admin SQl login, gebruikt om te authenticeren bij de SQL Server. Dat is de bedoeling niet.</p>
-</div>
-<div class="paragraph">
-<p>We gaan de SQL admin user <strong>niet</strong> door de applicatie laten gebruiken. We maken een aparte user voor Identity Server en kennen de gepaste rechten toe.</p>
-</div>
-<div class="listingblock">
-<div class="title">Definieer een login voor IS op de <code>master</code> database.</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">CREATE LOGIN IdentityServer WITH PASSWORD = 'kies_een_wachtwoord';</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><span class="image"><img src="_images/identity-server-sql/create-login.png" alt="create login"></span></p>
-</div>
-<div class="paragraph">
-<p>De IS database user zal  dus rechten nodig hebben om objecten aan te maken (DDL) in de databank, alsook queries uit te voeren (DML).</p>
-</div>
-<div class="listingblock">
-<div class="title">Definieer een user voor IS op de <code>shipit</code> (niet master!) database.</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">CREATE USER IdentityServer FOR LOGIN IdentityServer
-GO
-
-GRANT CREATE TABLE TO IdentityServer
-GO
-GRANT ALTER ON SCHEMA::dbo TO IdentityServer
-GO
-GRANT INSERT, UPDATE, DELETE, SELECT, REFERENCES ON SCHEMA :: dbo TO IdentityServer
-GO</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Test de credentials die je voor IS gemaakt hebt door een nieuwe database server connectie toe te voegen.</p>
-</div>
-<div class="paragraph">
-<p>Je hebt nu twee verschillende connecties die naar dezelfde SQL Server verwijzen, maar met andere credentials.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Connectie op basis van jouw Azure Account.</p>
-</li>
-<li>
-<p>Connectie op basis van IS SQL user credentials.</p>
-</li>
-</ul>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/identity-server-quick/sql-2-conns.png" alt="sql 2 conns">
-</div>
 </div>
 </div>
 </div>
@@ -633,11 +514,32 @@ Toch kunnen we op dit moment nog niet inloggen. Wanneer je navigeert naar een se
             .GetConnectionString("DefaultConnection")));</code></pre>
 </div>
 </div>
+<div class="listingblock">
+<div class="title">ConnectionString (in appsettings.json)</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">Data Source=stefanchogentshipit.database.windows.net;Initial Catalog=free-sql-shipit;Authentication=Active Directory Default;Encrypt=True;</code></pre>
+</div>
+</div>
 <div class="paragraph">
-<p>De bestaande migration is niet geschikt voor SQL Server. We wissen de bestaande migrations folder.</p>
+<p>Deze connectionstring zal standaard de Azure Credential in scope gebruiken om in te loggen. Dat kan vanalles zijn, maar in de praktijk is dit de account die jij selecteerde na <code>az login</code> op CLI uit te voeren.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Wanneer we de app deployen op Azure, zal onze account niet in scope zijn. Op dat moment zullen we een Application Identity moeten toewijzen. Zie <a href="06-02-secret-management.html#_app_identity" class="xref page">les over "secrets"</a> voor meer context.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><strong>De bestaande migration is niet geschikt voor SQL Server. We wissen de bestaande migrations folder en maken een nieuwe migration.</strong></p>
 </div>
 <div class="literalblock">
-<div class="title">SQL Server Migrations aanmaken</div>
+<div class="title">SQL Server Migration aanmaken</div>
 <div class="content">
 <pre>dotnet ef migrations add InitAspNetUsers
 -c ApplicationDbContext
